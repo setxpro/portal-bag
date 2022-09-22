@@ -3,6 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import ModalTablesToBillsToPay from "../Components/Modal/ModalTablesToBillsToPay";
 import Template from "../Components/Template";
 import BillsToPay from "../Screens/BillsToPay";
+import ForgetPassword from "../Screens/Login/ForgetPassword";
+import PageProps from "../Screens/Login/PageProps";
+import SignInSide from "../Screens/Login/Signin";
+import SignUp from "../Screens/Login/SignUp";
 import Table from "../Screens/RegisterTarget";
 import Radu from "../Screens/Tables/Radu";
 import Shehrazade from "../Screens/Tables/Shehrazade";
@@ -56,6 +60,30 @@ const RoutesApp: React.FC = () => {
           </SecurityRoutes>
         }
       />
+
+      {/**
+       * Rotas para Login
+       */}
+      <Route path="/login" element={<SignInSide />} />
+      <Route
+        path="/forgot-pass"
+        element={
+          <PageProps>
+            <ForgetPassword />
+          </PageProps>
+        }
+      />
+      <Route
+        path="/update-pass"
+        element={
+          <PageProps>
+            <SignUp />
+          </PageProps>
+        }
+      />
+      {/**
+       * Rotas para Login
+       */}
     </Routes>
   );
 };
