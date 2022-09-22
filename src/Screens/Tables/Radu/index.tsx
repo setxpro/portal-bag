@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import * as C from "./styles";
 
@@ -24,7 +25,9 @@ const Radu: React.FC = () => {
             <td>natureza Radu</td>
             <td>parcela Radu</td>
             <td>
-              <C.InfoIcon />
+              <Link to="/modal/1">
+                <C.InfoIcon />
+              </Link>
             </td>
             <td>
               <input type="radio" name="radio-" />

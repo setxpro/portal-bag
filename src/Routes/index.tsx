@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import ModalTablesToBillsToPay from "../Components/Modal/ModalTablesToBillsToPay";
 import Template from "../Components/Template";
 import BillsToPay from "../Screens/BillsToPay";
 import Table from "../Screens/RegisterTarget";
@@ -34,6 +35,17 @@ const RoutesApp: React.FC = () => {
           </SecurityRoutes>
         }
       />
+      <Route
+        path="/modal/:id"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <ModalTablesToBillsToPay />
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+
       <Route
         path="/"
         element={

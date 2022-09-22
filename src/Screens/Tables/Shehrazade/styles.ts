@@ -14,6 +14,12 @@ export const Container = styled.div`
           padding: 0.5rem;
           color: ${(props) => props.theme.colors.text};
           background: ${(props) => props.theme.colors.main};
+
+          @media (max-width: 428px) {
+            &:nth-child(3) {
+              display: none;
+            }
+          }
         }
       }
     }
@@ -34,6 +40,12 @@ export const Container = styled.div`
             color: ${(props) => props.theme.colors.btnTabs};
             padding: 5px;
             border-radius: 4px;
+          }
+
+          @media (max-width: 428px) {
+            &:nth-child(3) {
+              display: none;
+            }
           }
         }
 
