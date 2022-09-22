@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 
 export const Container = styled.div<{ wrap: boolean }>`
   height: 100vh;
-  width: ${(props) => (props.wrap ? "200px" : "0px")};
+  width: ${(props) => (props.wrap ? "250px" : "0px")};
   border-right: 1px solid
     ${(props) => (props.wrap ? props.theme.colors.borders : "transparent")};
   overflow: hidden;

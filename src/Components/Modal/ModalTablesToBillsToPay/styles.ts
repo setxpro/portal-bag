@@ -52,6 +52,8 @@ export const Button = styled.button`
   border: 1px solid ${(props) => props.theme.colors.btnTabs};
   background: transparent;
   color: ${(props) => props.theme.colors.btnTabs};
-  padding: 5px;
+  padding: 0.5rem;
   border-radius: 4px;
+
+  margin: 0 0.8rem;
 `;

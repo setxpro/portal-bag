@@ -16,7 +16,7 @@ const RoutesApp: React.FC = () => {
   return (
     <Routes>
       <Route
-        path="/sherhazade"
+        path="/"
         element={
           <SecurityRoutes>
             <Template>
@@ -51,7 +51,7 @@ const RoutesApp: React.FC = () => {
       />
 
       <Route
-        path="/"
+        path="/table"
         element={
           <SecurityRoutes>
             <Template>

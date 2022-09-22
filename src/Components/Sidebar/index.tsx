@@ -19,14 +19,14 @@ const Sidebar: React.FC = () => {
       <C.ContentNavArea>
         <nav>
           <ul>
-            <Link
-              to="/sherhazade"
-              onClick={getHome}
-              className={cHome ? "active" : ""}
-            >
+            <Link to="/" onClick={getHome} className={cHome ? "active" : ""}>
               Contas a Pagar
             </Link>
-            <Link to="/" onClick={getTable} className={cTable ? "active" : ""}>
+            <Link
+              to="/table"
+              onClick={getTable}
+              className={cTable ? "active" : ""}
+            >
               Cadastro Etiquetas
             </Link>
           </ul>
