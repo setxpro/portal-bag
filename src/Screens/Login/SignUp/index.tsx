@@ -8,17 +8,60 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Error } from "../../../Components/Messages/Error";
+import { AuthContext } from "../../../Contexts/Auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [login, setLogin] = React.useState("");
+  const [passwordEmail, setEmailPassword] = React.useState("");
+  const [newPass, setNewPass] = React.useState("");
+  const [confirmPass, setConfirmPass] = React.useState("");
+  const [err, setErr] = React.useState("");
+
+  const { updatePassword, message } = React.useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    if (!login) {
+      setErr("Insira ao menos um nome.");
+      return;
+    }
+    if (!passwordEmail) {
+      setErr("Por favor, insira a senha que foi enviada para o seu e-mail.");
+      return;
+    }
+    if (!newPass) {
+      setErr("Insira ao menos uma nova senha.");
+      return;
+    }
+    if (!confirmPass) {
+      setErr("Insira a confirmação da nova senha.");
+      return;
+    }
+    if (newPass !== confirmPass) {
+      setErr("As senhas não são iguais.");
+      return;
+    }
+
+    let user = login;
+    let passEmail = passwordEmail;
+
+    if (login && passwordEmail && newPass && confirmPass) {
+      const data = await updatePassword(user, passEmail, newPass);
+
+      let status = data[0].STATUS;
+
+      if (status === "true") {
+        navigate("/");
+      }
+    }
+
+    return;
   };
 
   return (
@@ -48,7 +91,8 @@ export default function SignUp() {
               marginTop: 3,
             }}
           >
-            <Error error="Senha do e-mail está incorreta." />
+            <Error error={err} />
+            <Error error={message} />
           </Typography>
           <Box
             component="form"
@@ -65,6 +109,8 @@ export default function SignUp() {
                   label="Usuário"
                   name="login"
                   autoComplete="login"
+                  value={login}
+                  onChange={(e) => setLogin(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -76,6 +122,8 @@ export default function SignUp() {
                   type="password"
                   id="passwordEmail"
                   autoComplete="passwordEmail"
+                  value={passwordEmail}
+                  onChange={(e) => setEmailPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +135,8 @@ export default function SignUp() {
                   type="password"
                   id="newPassword"
                   autoComplete="new-password"
+                  value={newPass}
+                  onChange={(e) => setNewPass(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +148,8 @@ export default function SignUp() {
                   type="password"
                   id="confirmNewpassword"
                   autoComplete="confirmNewpassword"
+                  value={confirmPass}
+                  onChange={(e) => setConfirmPass(e.target.value)}
                 />
               </Grid>
             </Grid>

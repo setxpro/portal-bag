@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Error } from "../../../Components/Messages/Error";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 
 function Copyright(props: any) {
   return (
@@ -33,14 +34,40 @@ const theme = createTheme();
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
+  const { forgotPassword, message, status } = React.useContext(AuthContext);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [login, setLogin] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [err, setErr] = React.useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    let user = login;
+    let number = phone;
+
+    if (!login) {
+      setErr("Por favor, insira ao menos um login.");
+      return;
+    }
+
+    if (!phone) {
+      setErr("Por favor, insira ao menos um numero de telefone.");
+      return;
+    }
+
+    if (login && phone) {
+      const data = await forgotPassword(user, number);
+
+      if (data[0].STATUS === "true") {
+        navigate("/update-pass");
+      }
+
+      if (message === "Senha Enviado para Email") {
+        navigate("/update-pass");
+      }
+      return;
+    }
   };
 
   return (
@@ -70,7 +97,8 @@ export default function ForgetPassword() {
               marginTop: 1,
             }}
           >
-            <Error error="Usuário ou Telefone inválido" />
+            <Error error={message} />
+            <Error error={err} />
           </Typography>
 
           <Box
@@ -88,6 +116,8 @@ export default function ForgetPassword() {
                   label="Usuário"
                   name="login"
                   autoComplete="login"
+                  value={login}
+                  onChange={(e) => [setLogin(e.target.value), setErr("")]}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -99,6 +129,8 @@ export default function ForgetPassword() {
                   type="phone"
                   id="phone"
                   autoComplete="new-phone"
+                  value={phone}
+                  onChange={(e) => [setPhone(e.target.value), setErr("")]}
                 />
               </Grid>
             </Grid>

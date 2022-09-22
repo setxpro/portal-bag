@@ -1,11 +1,15 @@
-const SecurityRoutes = ( { children } : { children : JSX.Element } ) => {
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/Auth/AuthContext";
+import SignInSide from "../Screens/Login/Signin";
+import { ChildrenJsxElement } from "../Types/ChildrenProps";
 
-    const auth = true;
+const SecurityRoutes = ({ children }: ChildrenJsxElement) => {
+  const auth = useContext(AuthContext);
 
-    if (!auth) {
-        return <h1>Formulário de login</h1>
-    }
-    return children;
-}
+  if (!auth.user) {
+    return <SignInSide />;
+  }
+  return children;
+};
 
 export default SecurityRoutes;

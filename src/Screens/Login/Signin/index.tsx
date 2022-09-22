@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Error } from "../../../Components/Messages/Error";
 
 import thumbnail from "../../../images/thumbnail.jpg";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 
 function Copyright(props: any) {
   return (
@@ -35,13 +37,36 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignInSide() {
+  const [login, setLogin] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [err, setErr] = React.useState("");
+
+  const navigate = useNavigate();
+  const { signin, status, message } = React.useContext(AuthContext);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    let user = login;
+    let pass = password;
+
+    if (!login) {
+      setErr("Por favor, insira ao menos um login.");
+      return;
+    }
+
+    if (!password) {
+      setErr("Por favor, insira ao menos uma senha.");
+      return;
+    }
+
+    if (login && password) {
+      signin(user, pass);
+      if (status === "true") {
+        // toast(`Seja bem-vindo!`);
+        return navigate("/");
+      }
+    }
   };
 
   return (
@@ -75,7 +100,8 @@ export default function SignInSide() {
             }}
           >
             <Typography component="h1" variant="h5">
-              <Error error="User not Found!" />
+              <Error error={message} />
+              <Error error={err} />
             </Typography>
             <Box
               component="form"
@@ -92,6 +118,8 @@ export default function SignInSide() {
                 name="login"
                 autoComplete="login"
                 autoFocus
+                value={login}
+                onChange={(e) => [setLogin(e.target.value), setErr("")]}
               />
               <TextField
                 margin="normal"
@@ -102,6 +130,8 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => [setPassword(e.target.value), setErr("")]}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
