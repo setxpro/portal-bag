@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Error } from "../../../Components/Messages/Error";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
+import { toast } from "react-toastify";
 
 function Copyright(props: any) {
   return (
@@ -34,7 +35,7 @@ const theme = createTheme();
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
-  const { forgotPassword, message, status } = React.useContext(AuthContext);
+  const { forgotPassword } = React.useContext(AuthContext);
 
   const [login, setLogin] = React.useState("");
   const [phone, setPhone] = React.useState("");
@@ -58,12 +59,13 @@ export default function ForgetPassword() {
 
     if (login && phone) {
       const data = await forgotPassword(user, number);
-
+      setErr(data[0].MESSAGE);
       if (data[0].STATUS === "true") {
-        navigate("/update-pass");
-      }
+        toast(
+          "Senha temporária enviada com sucesso! Por favor, verifique o seu e-mail."
+        );
+        setErr("");
 
-      if (message === "Senha Enviado para Email") {
         navigate("/update-pass");
       }
       return;
@@ -97,7 +99,6 @@ export default function ForgetPassword() {
               marginTop: 1,
             }}
           >
-            <Error error={message} />
             <Error error={err} />
           </Typography>
 

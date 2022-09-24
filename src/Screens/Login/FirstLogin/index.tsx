@@ -14,14 +14,14 @@ import { toast } from "react-toastify";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function FirstLogin() {
   const [login, setLogin] = React.useState("");
   const [passwordEmail, setEmailPassword] = React.useState("");
   const [newPass, setNewPass] = React.useState("");
   const [confirmPass, setConfirmPass] = React.useState("");
   const [err, setErr] = React.useState("");
 
-  const { updatePassword } = React.useContext(AuthContext);
+  const { firstLogin } = React.useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -50,13 +50,15 @@ export default function SignUp() {
     }
 
     let user = login;
-    let passEmail = passwordEmail;
+    let pass = passwordEmail;
 
     if (login && passwordEmail && newPass && confirmPass) {
-      const data = await updatePassword(user, passEmail, newPass);
+      const data = await firstLogin(user, pass, newPass);
 
       let status = data[0].STATUS;
       let messageG = data[0].MESSAGE;
+
+      console.log(messageG);
 
       if (status === "true") {
         toast("Senha atualizada com sucesso!");

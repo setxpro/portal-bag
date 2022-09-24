@@ -17,4 +17,15 @@ export const useApi = () => ({
     const { data } = await uri.post("/PssAtuEsq", { user, passEmail, newPass });
     return data;
   },
+  firstLogin: async (user: string, pass: string, newPass: string) => {
+    const { data } = await uri.post("/PssFstLg", { user, pass, newPass });
+    return data;
+  },
+
+  // Get Table
+
+  getAllTable: async (id: string) => {
+    const { data } = await uri.get(`/gettitwkf?ccodaprv=${id}`);
+    return data;
+  },
 });

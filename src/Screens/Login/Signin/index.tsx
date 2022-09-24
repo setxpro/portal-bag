@@ -15,6 +15,7 @@ import { Error } from "../../../Components/Messages/Error";
 import thumbnail from "../../../images/thumbnail.jpg";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
+import { toast } from "react-toastify";
 
 function Copyright(props: any) {
   return (
@@ -63,11 +64,45 @@ export default function SignInSide() {
     if (login && password) {
       signin(user, pass);
       if (status === "true") {
-        // toast(`Seja bem-vindo!`);
         return navigate("/");
       }
     }
   };
+
+  React.useEffect(() => {
+    if (message === "Senha Atualizada") {
+      setErr("");
+      return;
+    }
+
+    if (message === "Usuario Inexistente") {
+      setErr("Usuário não encontrado!");
+      return;
+    }
+    if (message === "Senha Invalida") {
+      setErr("Senha incorreta");
+      return;
+    }
+
+    if (message === "Esqueceu Senha" && status === "false") {
+      toast(
+        "Você está em um proceso de redefinição de senha. Será redirecionado para a tela de esqueci minha senha."
+      );
+      setTimeout(() => {
+        navigate("/forgot-pass");
+      }, 5000);
+    }
+
+    if (message === "Primeiro Login" && status === "false") {
+      // OBS.: Pegar o valor correto da mensagem
+      toast(
+        "Você será levado para uma página de atualização de senha por conta do seu primeiro login no sistema."
+      );
+      setTimeout(() => {
+        navigate("/firstlogin");
+      }, 5000);
+    }
+  }, [message, status]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,7 +135,6 @@ export default function SignInSide() {
             }}
           >
             <Typography component="h1" variant="h5">
-              <Error error={message} />
               <Error error={err} />
             </Typography>
             <Box

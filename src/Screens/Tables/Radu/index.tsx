@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState, useEffect, useContext, memo } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/Auth/AuthContext";
+import { TableProps } from "../../../Types/TableProps";
 
 import * as C from "./styles";
 
 const Radu: React.FC = () => {
+  const { user, getAllTable } = useContext(AuthContext);
+  const [titles, setTitulo] = useState<TableProps[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getAllTable(`${user?.ID}`);
+      setTitulo(data);
+    })();
+  }, []);
+
+  const getIdByIndex = (index: number) => {
+    console.log({
+      ...titles[0],
+      id: index,
+    });
+  };
+
   return (
     <C.Container>
       <table>
@@ -20,52 +39,36 @@ const Radu: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>fornecedor Radu</td>
-            <td>natureza Radu</td>
-            <td>parcela Radu</td>
-            <td>
-              <Link to="/modal/1">
-                <C.InfoIcon />
-              </Link>
-            </td>
-            <td>
-              <input type="radio" name="radio-" />
-            </td>
-            <td>
-              <input type="radio" name="radio-" />
-            </td>
-            <td>
-              <input type="radio" name="radio-" />
-            </td>
-            <td>
-              <button>Send</button>
-            </td>
-          </tr>
-          <tr>
-            <td>fornecedor Radu</td>
-            <td>natureza Radu</td>
-            <td>parcela Radu</td>
-            <td>
-              <C.InfoIcon />
-            </td>
-            <td>
-              <input type="radio" name="radio-" />
-            </td>
-            <td>
-              <input type="radio" name="radio-" />
-            </td>
-            <td>
-              <input type="radio" name="radio-" />
-            </td>
-            <td>
-              <button>Enviar</button>
-            </td>
-          </tr>
+          {titles.map((item, index) => {
+            return (
+              <tr key={index}>
+                <td>{item.AFILWKF}</td>
+                <td>{item.ANATWKF}</td>
+                <td>{item.APARWKF}</td>
+                <td>
+                  <Link to={`/modal/${item.ATITWKF}`}>
+                    <C.InfoIcon onClick={() => getIdByIndex(index)} />
+                  </Link>
+                </td>
+                <td>
+                  <input type="radio" name="radio-" />
+                </td>
+                <td>
+                  <input type="radio" name="radio-" />
+                </td>
+                <td>
+                  <input type="radio" name="radio-" />
+                </td>
+                <td>
+                  <button>Enviar</button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </C.Container>
   );
 };
 
-export default Radu;
+export default memo(Radu);

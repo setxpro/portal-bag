@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/Auth/AuthContext";
 import { PalletContext } from "../../Contexts/Pallet/Pallet";
 import { useHeader } from "../../Hooks/useHeader";
 
@@ -7,7 +8,7 @@ import * as C from "./styles";
 
 const Sidebar: React.FC = () => {
   const { cHome, cTable, getHome, getTable } = useContext(PalletContext);
-
+  const { signout } = useContext(AuthContext);
   const { openMenuSidebar, wrapperMenu } = useHeader();
 
   return (
@@ -28,6 +29,9 @@ const Sidebar: React.FC = () => {
               className={cTable ? "active" : ""}
             >
               Cadastro Etiquetas
+            </Link>
+            <Link to="#" onClick={() => signout()}>
+              Logout
             </Link>
           </ul>
         </nav>

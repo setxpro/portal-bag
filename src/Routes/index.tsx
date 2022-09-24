@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import ModalTablesToBillsToPay from "../Components/Modal/ModalTablesToBillsToPay";
 import Template from "../Components/Template";
 import BillsToPay from "../Screens/BillsToPay";
+import FirstLogin from "../Screens/Login/FirstLogin";
 import ForgetPassword from "../Screens/Login/ForgetPassword";
 import PageProps from "../Screens/Login/PageProps";
 import SignInSide from "../Screens/Login/Signin";
@@ -65,6 +66,14 @@ const RoutesApp: React.FC = () => {
        * Rotas para Login
        */}
       <Route path="/login" element={<SignInSide />} />
+      <Route
+        path="/firstlogin"
+        element={
+          <PageProps>
+            <FirstLogin />
+          </PageProps>
+        }
+      />
       <Route
         path="/forgot-pass"
         element={

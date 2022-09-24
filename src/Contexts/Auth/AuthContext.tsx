@@ -12,6 +12,8 @@ type AuthContextType = {
     passEmail: string,
     newPass: string
   ) => Promise<any>;
+  firstLogin: (user: string, pass: string, newPass: string) => Promise<any>;
+  getAllTable: (id: string) => Promise<any>;
   signout: () => void;
   status: string;
   message: string;
@@ -113,6 +115,22 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
     setMessage(mess);
     return data;
   };
+  const firstLogin = async (user: string, pass: string, newPass: string) => {
+    const data = await api.firstLogin(user, pass, newPass);
+
+    let mess = data[0].MESSAGE;
+    let sts = data[0].STATUS;
+    console.log(mess);
+    setStatus(sts);
+    // Cancela o loading
+    setMessage(mess);
+    return data;
+  };
+
+  const getAllTable = async (id: string) => {
+    const data = await api.getAllTable(id);
+    return data;
+  };
 
   return (
     <AuthContext.Provider
@@ -125,6 +143,8 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
         signout,
         forgotPassword,
         updatePassword,
+        firstLogin,
+        getAllTable,
       }}
     >
       {children}
