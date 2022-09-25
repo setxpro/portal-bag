@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
   const { openMenuSidebar, wrapperMenu } = useHeader();
 
   return (
-    <C.Container wrap={openMenuSidebar}>
+    <C.Container wrapSidebar={openMenuSidebar}>
       <C.ContentLogo>
         <h3>BAGAGGIO</h3>
         <C.CloseMenu onClick={wrapperMenu} />

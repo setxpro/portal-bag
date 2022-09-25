@@ -8,13 +8,22 @@ import { Title } from "../../Page/Title";
 import * as C from "./styles";
 
 const ModalTablesToBillsToPay: React.FC = () => {
-  const history = useNavigate();
-  const { id } = useParams();
+  const history = useNavigate(); // Função nativa do react-router-dom para fazer o goBack
+  const { id } = useParams(); // Pegar o parametro da URL na posição ID
 
+  /**
+   *  getAllTable - função da API para obter informações dos títulos
+   *  user - para pegar o parametro na posição ID do usuário para atribuir a URL
+   */
   const { getAllTable, user } = useContext(AuthContext);
+  //
 
+  // State da aplicação passando como parametro a props
+  // TableProps para pegar a tipagem do items da tabela
   const [titles, setTitulo] = useState<TableProps[]>([]);
+  //
 
+  // Estados de cada item da tabela para que seja exibido no modal quando for chamado
   const [filial, setFilial] = useState("");
   const [fornecedor, setFornecedor] = useState("");
   const [natureza, setNatureza] = useState("");
@@ -23,7 +32,16 @@ const ModalTablesToBillsToPay: React.FC = () => {
   const [tipo, setTipo] = useState("");
   const [numTitulo, setNumTitulo] = useState("");
   const [loja, setLoja] = useState("");
+  //
 
+  /**
+   * getInfo - função que vai percorrer todo o obj, filtrando cada item pelo numero do titulo
+   * e retornará cada item desse obj em cada setState setado a baixo
+   *
+   * no Array de dependências esta o id e o titles -> que serão observados pelo state
+   *
+   * useCallback -> é uma função que retorna outra função
+   */
   const getInfo = useCallback(() => {
     const indice = titles.filter((i) => i.ATITWKF === id);
 
@@ -37,16 +55,29 @@ const ModalTablesToBillsToPay: React.FC = () => {
     setLoja(indice[0].ALOJWKF);
   }, [id, titles]);
 
+  //
+
+  /**
+   * useEffect -> no efeito colateral de rendenização de página
+   * ele vai fazer a requisição automaticamente por conta do ser efeit colateral
+   * e vai setar todos os dados no setTitles
+   */
   useEffect(() => {
     (async () => {
       const data = await getAllTable(`${user?.ID}`);
       setTitulo(data);
     })();
   }, [getAllTable, user?.ID]);
+  //
 
+  /**
+   * useEffect -> sempre que o componente for montado ele vai executar a função getInfo para obter
+   * todas os states setados
+   */
   useEffect(() => {
     getInfo();
   }, [getInfo]);
+  //
 
   return (
     <LayoutScreen>

@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
 
   // Função para fazer logout
   const signout = async () => {
+    setMessage("");
     // Seta o usuário como nulo
     setUser(null);
     // Reseta o localStorage
@@ -92,12 +93,12 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
 
   const forgotPassword = async (user: string, number: string) => {
     const data = await api.forgotPassword(user, number);
-    let mess = data[0].MESSAGE;
-    let sts = data[0].STATUS;
+    // let mess = data[0].MESSAGE;
+    // let sts = data[0].STATUS;
 
-    setStatus(sts);
-    // Cancela o loading
-    setMessage(mess);
+    // setStatus(sts);
+    // // Cancela o loading
+    // setMessage(mess);
     return data;
   };
   const updatePassword = async (
@@ -107,23 +108,22 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
   ) => {
     const data = await api.updatePassword(user, passEmail, newPass);
 
-    let mess = data[0].MESSAGE;
-    let sts = data[0].STATUS;
-    console.log(mess);
-    setStatus(sts);
+    // let mess = data[0].MESSAGE;
+    // let sts = data[0].STATUS;
+    // setStatus(sts);
     // Cancela o loading
-    setMessage(mess);
+    // setMessage(mess);
     return data;
   };
   const firstLogin = async (user: string, pass: string, newPass: string) => {
     const data = await api.firstLogin(user, pass, newPass);
 
-    let mess = data[0].MESSAGE;
-    let sts = data[0].STATUS;
-    console.log(mess);
-    setStatus(sts);
-    // Cancela o loading
-    setMessage(mess);
+    // let mess = data[0].MESSAGE;
+    // let sts = data[0].STATUS;
+    // console.log(mess);
+    // setStatus(sts);
+    // // Cancela o loading
+    // setMessage(mess);
     return data;
   };
 

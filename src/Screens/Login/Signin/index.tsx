@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 import { toast } from "react-toastify";
 
+// Função nativa do material ui que vai gerar um component informando a empresa e o Copyright
 function Copyright(props: any) {
   return (
     <Typography
@@ -34,75 +35,118 @@ function Copyright(props: any) {
     </Typography>
   );
 }
+//
 
 const theme = createTheme();
 
 export default function SignInSide() {
-  const [login, setLogin] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [err, setErr] = React.useState("");
+  const [login, setLogin] = React.useState(""); // State do login
+  const [password, setPassword] = React.useState(""); // state da senha
+  const [err, setErr] = React.useState(""); // State das mensagens de erro da aplicação
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Função nativa do react-router-dom para trabalhar com rotas
+
+  // Obtendo as informações por contexto do AuthContext
   const { signin, status, message } = React.useContext(AuthContext);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  // Função para enviar os dados para API
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Guardando na variável que esta vindo da API
     let user = login;
     let pass = password;
+    //
 
+    // Verifico se o campo de login foi preenchido
     if (!login) {
       setErr("Por favor, insira ao menos um login.");
       return;
     }
+    //
 
+    // Verifico se o campo de senha foi preenchido
     if (!password) {
       setErr("Por favor, insira ao menos uma senha.");
       return;
     }
+    //
 
+    // Verifico se login e senha estão preenchidos
     if (login && password) {
+      // Chamo o signin do meu contexto e passo os valores das variáveis que estão recebendo
+      // de login e password
       signin(user, pass);
+      //
+
+      // Verifico o status da resposta do servidor
       if (status === "true") {
+        // sendo "true", levo o usuário para a página inicial do sistema
         return navigate("/");
       }
+
+      // Caso seja false
+      if (status === "false") {
+      }
+      //
     }
+    //
   };
 
+  // ---------------- Efeitos colaterais
   React.useEffect(() => {
+    // Verifico se a mensagem esta como senha Atualizada
     if (message === "Senha Atualizada") {
-      setErr("");
+      setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
       return;
     }
+    //
 
-    if (message === "Usuario Inexistente") {
-      setErr("Usuário não encontrado!");
+    // Verifico se a mensagem esta como Usuário inexistente
+    if (message === "Usuario Inexistente" && status === "false") {
+      // setErr("Usuário não encontrado!"); -> testing
       return;
     }
+    //
+
+    // Verifico se a mensagem está como senha inválida
     if (message === "Senha Invalida") {
-      setErr("Senha incorreta");
-      return;
+      // seto no state error a mensagem vindo do servidor, mas paddando um novo valor
+      // setErr("Senha incorreta"); -> testing
+      return; // return para parar o fluxo de leitura do código
     }
+    //
 
+    //  Verifico se a mensagem esta como Esqueceu a senha
     if (message === "Esqueceu Senha" && status === "false") {
+      // Mensagem para orientar o usuário para que ele deve ir até o e-mail e pegar a senha temporária
       toast(
         "Você está em um proceso de redefinição de senha. Será redirecionado para a tela de esqueci minha senha."
       );
-      setTimeout(() => {
-        navigate("/forgot-pass");
-      }, 5000);
-    }
 
+      // Um time de 5s para que o usuário possa ler a mensagem de cima.
+      setTimeout(() => {
+        // Levo o usuário para a tela onde ele terá que informar o usuário e o celular
+        navigate("/forgot-pass");
+      }, 5000); // 5000 milissegundos === 5 segundos
+    }
+    //
+
+    //  Verifico se a mensagem esta como Primeiro login
     if (message === "Primeiro Login" && status === "false") {
-      // OBS.: Pegar o valor correto da mensagem
       toast(
         "Você será levado para uma página de atualização de senha por conta do seu primeiro login no sistema."
       );
+
+      // Um time de 5s para que o usuário possa ler a mensagem de cima.
       setTimeout(() => {
+        // Levo o usuário para a tela onde ele terá que informar o usuário e o celular
         navigate("/firstlogin");
-      }, 5000);
+      }, 5000); // 5000 milissegundos === 5 segundos
+      //
     }
-  }, [message, status]);
+    //
+  }, [message, status, navigate]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -135,6 +179,7 @@ export default function SignInSide() {
             }}
           >
             <Typography component="h1" variant="h5">
+              <Error error={message} />
               <Error error={err} />
             </Typography>
             <Box

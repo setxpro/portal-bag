@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { MdClose } from "react-icons/md";
 
-export const Container = styled.div<{ wrap: boolean }>`
+export const Container = styled.div<{ wrapSidebar: boolean }>`
   height: 100vh;
-  width: ${(props) => (props.wrap ? "250px" : "0px")};
+  width: ${(props) => (props.wrapSidebar ? "250px" : "0px")};
   border-right: 1px solid
-    ${(props) => (props.wrap ? props.theme.colors.borders : "transparent")};
+    ${(props) =>
+      props.wrapSidebar ? props.theme.colors.borders : "transparent"};
   overflow: hidden;
   white-space: nowrap;
 
@@ -16,12 +17,12 @@ export const Container = styled.div<{ wrap: boolean }>`
   border-left: 0;
 
   @media (max-width: 884px) {
-    width: ${(props) => (props.wrap ? "220px" : "0px")};
+    width: ${(props) => (props.wrapSidebar ? "220px" : "0px")};
     position: absolute;
     z-index: 999;
   }
   @media (max-width: 428px) {
-    width: ${(props) => (props.wrap ? "200px" : "0px")};
+    width: ${(props) => (props.wrapSidebar ? "200px" : "0px")};
     position: absolute;
     z-index: 999;
   }
