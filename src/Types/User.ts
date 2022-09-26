@@ -6,5 +6,4 @@ export type User = {
   EMAIL: string;
   USERNAME: string;
   AVATAR: string;
-  TITLES: string[];
 };

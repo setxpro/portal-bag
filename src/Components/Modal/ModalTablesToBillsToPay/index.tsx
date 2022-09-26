@@ -42,32 +42,17 @@ const ModalTablesToBillsToPay: React.FC = () => {
    *
    * useCallback -> é uma função que retorna outra função
    */
-  const getInfo = useCallback(() => {
-    const indice = titles.filter((i) => i.ATITWKF === id);
-
-    setFilial(indice[0].AFILWKF);
-    setFornecedor(indice[0].AFORWKF);
-    setNatureza(indice[0].ANATWKF);
-    setParcela(indice[0].APARWKF);
-    setPrefixo(indice[0].APREWKF);
-    setTipo(indice[0].ATIPWKF);
-    setNumTitulo(indice[0].ATITWKF);
-    setLoja(indice[0].ALOJWKF);
+  const getInfo = useCallback(async () => {
+    const data = await getAllTable(`${user?.ID}`);
+    setFilial(data[0].AFILWKF);
+    setFornecedor(data[0].AFORWKF);
+    setNatureza(data[0].ANATWKF);
+    setParcela(data[0].APARWKF);
+    setPrefixo(data[0].APREWKF);
+    setTipo(data[0].ATIPWKF);
+    setNumTitulo(data[0].ATITWKF);
+    setLoja(data[0].ALOJWKF);
   }, [id, titles]);
-
-  //
-
-  /**
-   * useEffect -> no efeito colateral de rendenização de página
-   * ele vai fazer a requisição automaticamente por conta do ser efeit colateral
-   * e vai setar todos os dados no setTitles
-   */
-  useEffect(() => {
-    (async () => {
-      const data = await getAllTable(`${user?.ID}`);
-      setTitulo(data);
-    })();
-  }, [getAllTable, user?.ID]);
   //
 
   /**

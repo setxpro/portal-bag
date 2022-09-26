@@ -15,6 +15,9 @@ export const ContentAreaItem = styled.div`
   padding: 0.5rem;
   border-radius: 8px;
   color: ${(props) => props.theme.colors.text};
+
+  display: flex;
+  align-items: center;
 `;
 export const ContentAreaTabs = styled.div`
   padding: 0.5rem;
@@ -56,4 +59,6 @@ export const Button = styled.button`
   border-radius: 4px;
 
   margin: 0 0.8rem;
+
+  height: 30px;
 `;

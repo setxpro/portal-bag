@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 import { TableProps } from "../../../Types/TableProps";
 
+import * as XLSX from "xlsx";
+
 import * as C from "./styles";
 
 const Radu: React.FC = () => {
@@ -23,6 +25,14 @@ const Radu: React.FC = () => {
     });
   };
 
+  const handleExport = () => {
+    var wb = XLSX.utils.book_new(),
+      ws = XLSX.utils.json_to_sheet([...titles]);
+
+    XLSX.utils.book_append_sheet(wb, ws, "MyDocument");
+    XLSX.writeFile(wb, "Document.xlsx");
+  };
+
   return (
     <C.Container>
       <table>
@@ -35,14 +45,16 @@ const Radu: React.FC = () => {
             <th>A</th>
             <th>R</th>
             <th>E</th>
-            <th></th>
+            <th>
+              <button onClick={handleExport}>Csv</button>
+            </th>
           </tr>
         </thead>
         <tbody>
           {titles.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.AFILWKF}</td>
+                <td>{item.AFORWKF}</td>
                 <td>{item.ANATWKF}</td>
                 <td>{item.APARWKF}</td>
                 <td>
