@@ -1,5 +1,11 @@
 import { User } from "../../Types/User";
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { ChildrenReactNode } from "../../Types/ChildrenProps";
 import { useApi } from "../../Hooks/useApi";
 
@@ -15,6 +21,7 @@ type AuthContextType = {
   firstLogin: (user: string, pass: string, newPass: string) => Promise<any>;
   getAllTable: (id: string) => Promise<any>;
   signout: () => void;
+  setMessage: Dispatch<SetStateAction<string>>;
   status: string;
   message: string;
   loading: boolean;
@@ -145,6 +152,7 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
         updatePassword,
         firstLogin,
         getAllTable,
+        setMessage,
       }}
     >
       {children}

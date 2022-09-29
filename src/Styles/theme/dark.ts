@@ -10,5 +10,7 @@ export const dark = {
     content: "#22222f",
     sidebarLogo: "#22222f",
     btnTabs: "#FFF",
+    betnTabsBorder: "#FFF",
+    btnInfoTab: "#aaa",
   },
 };

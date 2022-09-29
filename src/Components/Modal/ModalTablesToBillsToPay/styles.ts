@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { AiOutlineCheck } from "react-icons/ai";
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,10 +44,13 @@ export const Span = styled.div`
   align-items: center;
   justify-content: center;
 
+  position: relative;
+
   input[type="radio"] {
     width: 25px;
     height: 25px;
     opacity: 0;
+    position: absolute;
   }
 `;
 
@@ -61,4 +66,10 @@ export const Button = styled.button`
   margin: 0 0.8rem;
 
   height: 30px;
+`;
+
+export const CheckIcon = styled(AiOutlineCheck)`
+  color: ${(props) => props.theme.colors.text};
+  transition: all 1s ease;
+  font-size: 2rem;
 `;

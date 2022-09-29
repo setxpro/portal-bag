@@ -1,36 +1,17 @@
-import React, { useState, useEffect, useContext, memo } from "react";
+import React, { useContext, memo } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../Contexts/Auth/AuthContext";
-import { TableProps } from "../../../Types/TableProps";
-
-import * as XLSX from "xlsx";
 
 import * as C from "./styles";
+import { SendResponseContext } from "./../../../Contexts/SendResponse/index";
 
-const Radu: React.FC = () => {
-  const { user, getAllTable } = useContext(AuthContext);
-  const [titles, setTitulo] = useState<TableProps[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      const data = await getAllTable(`${user?.ID}`);
-      setTitulo(data);
-    })();
-  }, []);
+const Radu = () => {
+  const { setOptions, mock, sendOneInfo } = useContext(SendResponseContext);
 
   const getIdByIndex = (index: number) => {
     console.log({
-      ...titles[0],
+      ...mock[0],
       id: index,
     });
-  };
-
-  const handleExport = () => {
-    var wb = XLSX.utils.book_new(),
-      ws = XLSX.utils.json_to_sheet([...titles]);
-
-    XLSX.utils.book_append_sheet(wb, ws, "MyDocument");
-    XLSX.writeFile(wb, "Document.xlsx");
   };
 
   return (
@@ -45,34 +26,64 @@ const Radu: React.FC = () => {
             <th>A</th>
             <th>R</th>
             <th>E</th>
-            <th>
-              <button onClick={handleExport}>Csv</button>
-            </th>
           </tr>
         </thead>
         <tbody>
-          {titles.map((item, index) => {
+          {mock.map((item, index) => {
             return (
               <tr key={index}>
                 <td>{item.AFORWKF}</td>
                 <td>{item.ANATWKF}</td>
                 <td>{item.APARWKF}</td>
                 <td>
-                  <Link to={`/modal/${item.ATITWKF}`}>
+                  <Link to={`/modal/${item.id}`}>
                     <C.InfoIcon onClick={() => getIdByIndex(index)} />
                   </Link>
                 </td>
                 <td>
-                  <input type="radio" name="radio-" />
+                  <input
+                    type="radio"
+                    name={`radio-${item.id}`}
+                    onChange={(e) => {
+                      setOptions((prevOptions) => {
+                        return {
+                          ...prevOptions,
+                          [index]: e.target.checked ? "Aprovado" : "",
+                        };
+                      });
+                    }}
+                  />
                 </td>
                 <td>
-                  <input type="radio" name="radio-" />
+                  <input
+                    type="radio"
+                    name={`radio-${item.id}`}
+                    onChange={(e) => {
+                      setOptions((prevOptions) => {
+                        return {
+                          ...prevOptions,
+                          [index]: e.target.checked ? "Reprovado" : "",
+                        };
+                      });
+                    }}
+                  />
                 </td>
                 <td>
-                  <input type="radio" name="radio-" />
+                  <input
+                    type="radio"
+                    name={`radio-${item.id}`}
+                    onChange={(e) => {
+                      setOptions((prevOptions) => {
+                        return {
+                          ...prevOptions,
+                          [index]: e.target.checked ? "Espera" : "",
+                        };
+                      });
+                    }}
+                  />
                 </td>
                 <td>
-                  <button>Enviar</button>
+                  <button onClick={() => sendOneInfo(index)}>Enviar</button>
                 </td>
               </tr>
             );

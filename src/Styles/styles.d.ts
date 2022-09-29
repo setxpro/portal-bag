@@ -13,6 +13,8 @@ declare module "styled-components" {
       textSidebar: string;
       sidebarLogo: string;
       btnTabs: string;
+      betnTabsBorder: string;
+      btnInfoTab: string;
     };
   }
 }

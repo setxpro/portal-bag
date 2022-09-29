@@ -21,7 +21,7 @@ export default function FirstLogin() {
   const [confirmPass, setConfirmPass] = React.useState("");
   const [err, setErr] = React.useState("");
 
-  const { firstLogin } = React.useContext(AuthContext);
+  const { firstLogin, setMessage } = React.useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -61,6 +61,7 @@ export default function FirstLogin() {
       console.log(messageG);
 
       if (status === "true") {
+        setMessage("");
         toast("Senha atualizada com sucesso!");
         navigate("/");
       }

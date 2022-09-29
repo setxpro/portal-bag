@@ -36,7 +36,7 @@ const Shehrazade: React.FC = () => {
               <input type="radio" name="radio-" />
             </td>
             <td>
-              <button>Send</button>
+              <button>Enviar</button>
             </td>
           </tr>
           <tr>

@@ -1,26 +1,27 @@
-import { ReactNode } from 'react';
-import { HeaderProvider } from '../../Contexts/Header/HeaderContext';
-import { PalletProvider } from '../../Contexts/Pallet/Pallet';
-import Header from '../Header';
-import { Layout } from '../Layout';
-import Sidebar from '../Sidebar';
+import { ReactNode } from "react";
+import { HeaderProvider } from "../../Contexts/Header/HeaderContext";
+import { PalletProvider } from "../../Contexts/Pallet/Pallet";
+import { SendResponseProvider } from "../../Contexts/SendResponse";
+import Header from "../Header";
+import { Layout } from "../Layout";
+import Sidebar from "../Sidebar";
 
-import * as C from './styles';
+import * as C from "./styles";
 
-const Template = ({children}:{children:ReactNode}) => {
+const Template = ({ children }: { children: ReactNode }) => {
   return (
-      <Layout>
-        <HeaderProvider>
+    <Layout>
+      <HeaderProvider>
         <PalletProvider>
-          <Sidebar/>
+          <Sidebar />
         </PalletProvider>
-          <C.Content>
-            <Header/>
-            {children}
-          </C.Content>
-        </HeaderProvider>
-      </Layout>
+        <C.Content>
+          <Header />
+          <SendResponseProvider>{children}</SendResponseProvider>
+        </C.Content>
+      </HeaderProvider>
+    </Layout>
   );
-}
+};
 
 export default Template;

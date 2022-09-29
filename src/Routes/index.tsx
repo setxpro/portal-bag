@@ -12,6 +12,8 @@ import Table from "../Screens/RegisterTarget";
 import Radu from "../Screens/Tables/Radu";
 import Shehrazade from "../Screens/Tables/Shehrazade";
 import SecurityRoutes from "../Security";
+import Option1 from "./../Screens/Tables/SubPages/Option1/index";
+import Option2 from "./../Screens/Tables/SubPages/Option2/index";
 
 const RoutesApp: React.FC = () => {
   return (
@@ -40,6 +42,40 @@ const RoutesApp: React.FC = () => {
           </SecurityRoutes>
         }
       />
+      {/**
+       * Sub Pastas
+       * 1 - Option 1
+       * 2 - Option 2
+       *
+       */}
+      <Route
+        path="/opt1"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <BillsToPay>
+                <Option1 />
+              </BillsToPay>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/opt2"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <BillsToPay>
+                <Option2 />
+              </BillsToPay>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+
+      {/**
+       * Sub Pastas fim
+       */}
       <Route
         path="/modal/:id"
         element={

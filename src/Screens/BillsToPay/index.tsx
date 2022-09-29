@@ -1,14 +1,18 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Content from "../../Components/Page/Content";
 import { LayoutScreen } from "../../Components/Page/Content/styles";
 import { Title } from "../../Components/Page/Title";
+import { SendResponseContext } from "../../Contexts/SendResponse";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 import * as C from "./styles";
-import Shehrazade from "./../Tables/Shehrazade/index";
+import { Link } from "react-router-dom";
 
 const BillsToPay = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
+
+  const { sendAllResp } = useContext(SendResponseContext);
 
   const [shehrazade, setSherazade] = useState(true);
   const [radu, setRadu] = useState(false);
@@ -39,41 +43,41 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
           <Title title="Contas a Pagar" />
           <C.ContentAreabtns>
             <C.BtnTabs>
-              <div
-                className={shehrazade ? "active-tab" : ""}
-                onClick={getPalletByCompanySher}
-              >
-                <span>55</span>
-                <button onClick={() => navigate("/")}>Shehrazade</button>
-              </div>
-              <div
-                className={radu ? "active-tab" : ""}
-                onClick={getPalletByCompanyRad}
-              >
-                <span>300</span>
-                <button onClick={() => navigate("/radu")}>Radu</button>
-              </div>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Fornecedor
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Fornecedor"
+                >
+                  <MenuItem onClick={() => navigate("/")}>Shehrazade</MenuItem>
+                  <MenuItem onClick={() => navigate("/radu")}>Radu</MenuItem>
+                </Select>
+              </FormControl>
             </C.BtnTabs>
             <C.TabsInternal>
-              <span
-                className={opt1 ? "active-sub-tab" : ""}
-                onClick={getPalletByCompanyOption1}
-              >
-                <button>Opção 1</button>
-              </span>
-              <span
-                className={opt2 ? "active-sub-tab" : ""}
-                onClick={getPalletByCompanyOption2}
-              >
-                <button>Opção 2</button>
-              </span>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Centro de Custo
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Centro de Custo"
+                >
+                  <MenuItem onClick={() => navigate("/opt1")}>Opção 1</MenuItem>
+                  <MenuItem onClick={() => navigate("/opt2")}>Opção 2</MenuItem>
+                </Select>
+              </FormControl>
             </C.TabsInternal>
           </C.ContentAreabtns>
         </C.ContentTopArea>
         <Content>
           {children}
           <C.ContentBtnSendAll>
-            <button>Enviar todos</button>
+            <button onClick={sendAllResp}>Enviar todos</button>
           </C.ContentBtnSendAll>
         </Content>
         <C.ContainerAuthors>

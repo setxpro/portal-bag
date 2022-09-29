@@ -2,7 +2,7 @@ export const light = {
   title: "light",
   colors: {
     main: "#ebedef",
-    sidebar: "#3c4b64",
+    sidebar: "#06283D",
     header: "#ffffff",
     text: "#333",
     textSidebar: "#EEE",
@@ -10,5 +10,7 @@ export const light = {
     content: "#FFFF",
     sidebarLogo: "#321fdb",
     btnTabs: "#321fdb",
+    betnTabsBorder: "#999F",
+    btnInfoTab: "#a460ed",
   },
 };

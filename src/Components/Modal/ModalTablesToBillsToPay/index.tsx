@@ -1,15 +1,16 @@
 import React, { useState, useCallback, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
-import { TableProps } from "../../../Types/TableProps";
+// import { TableProps } from "../../../Types/TableProps";
 import { LayoutScreen } from "../../Page/Content/styles";
 import { Title } from "../../Page/Title";
 
 import * as C from "./styles";
+import { SendResponseContext } from "./../../../Contexts/SendResponse/index";
 
 const ModalTablesToBillsToPay: React.FC = () => {
   const history = useNavigate(); // Função nativa do react-router-dom para fazer o goBack
-  const { id } = useParams(); // Pegar o parametro da URL na posição ID
+  // const { id } = useParams(); // Pegar o parametro da URL na posição ID
 
   /**
    *  getAllTable - função da API para obter informações dos títulos
@@ -20,7 +21,7 @@ const ModalTablesToBillsToPay: React.FC = () => {
 
   // State da aplicação passando como parametro a props
   // TableProps para pegar a tipagem do items da tabela
-  const [titles, setTitulo] = useState<TableProps[]>([]);
+  // const [titles] = useState<TableProps[]>([]);
   //
 
   // Estados de cada item da tabela para que seja exibido no modal quando for chamado
@@ -34,6 +35,15 @@ const ModalTablesToBillsToPay: React.FC = () => {
   const [loja, setLoja] = useState("");
   //
 
+  const [option, setOption] = useState("");
+
+  const [choiceApproved, setChoiceApproved] = useState(false);
+  const [choiceReproved, setChoiceReproved] = useState(false);
+  const [choiceWait, setChoiceWait] = useState(false);
+
+  const { mock } = useContext(SendResponseContext);
+  const { id } = useParams();
+
   /**
    * getInfo - função que vai percorrer todo o obj, filtrando cada item pelo numero do titulo
    * e retornará cada item desse obj em cada setState setado a baixo
@@ -43,16 +53,18 @@ const ModalTablesToBillsToPay: React.FC = () => {
    * useCallback -> é uma função que retorna outra função
    */
   const getInfo = useCallback(async () => {
-    const data = await getAllTable(`${user?.ID}`);
-    setFilial(data[0].AFILWKF);
-    setFornecedor(data[0].AFORWKF);
-    setNatureza(data[0].ANATWKF);
-    setParcela(data[0].APARWKF);
-    setPrefixo(data[0].APREWKF);
-    setTipo(data[0].ATIPWKF);
-    setNumTitulo(data[0].ATITWKF);
-    setLoja(data[0].ALOJWKF);
-  }, [id, titles]);
+    // const data = await getAllTable(`${user?.ID}`);
+
+    let info = mock.filter((i) => i.id === id);
+    setFilial(info[0].AFILWKF);
+    setFornecedor(info[0].AFORWKF);
+    setNatureza(info[0].ANATWKF);
+    setParcela(info[0].APARWKF);
+    setPrefixo(info[0].APREWKF);
+    setTipo(info[0].ATIPWKF);
+    setNumTitulo(info[0].ATITWKF);
+    setLoja(info[0].ALOJWKF);
+  }, [getAllTable, user?.ID]);
   //
 
   /**
@@ -63,6 +75,38 @@ const ModalTablesToBillsToPay: React.FC = () => {
     getInfo();
   }, [getInfo]);
   //
+
+  const sendResponse = () => {
+    console.log({
+      filial,
+      fornecedor,
+      loja,
+      natureza,
+      parcela,
+      prefixo,
+      tipo,
+      numTitulo,
+      option,
+    });
+
+    history(-1);
+  };
+
+  function getApproved() {
+    setChoiceApproved(true);
+    setChoiceReproved(false);
+    setChoiceWait(false);
+  }
+  function getReprover() {
+    setChoiceReproved(true);
+    setChoiceApproved(false);
+    setChoiceWait(false);
+  }
+  function getWait() {
+    setChoiceWait(true);
+    setChoiceReproved(false);
+    setChoiceApproved(false);
+  }
 
   return (
     <LayoutScreen>
@@ -80,25 +124,45 @@ const ModalTablesToBillsToPay: React.FC = () => {
       <C.ContentAreaItem>
         <C.ContentAreaTabs>
           <C.AreaTabs>
-            <C.Span>
-              <input type="radio" name="" />
+            <C.Span onClick={getApproved}>
+              {choiceApproved && <C.CheckIcon />}
+              <input
+                type="radio"
+                name="rd"
+                value="Aprovado"
+                onChange={(e) => setOption(e.target.value)}
+              />
             </C.Span>
             Aprovar
           </C.AreaTabs>
           <C.AreaTabs>
-            <C.Span>
-              <input type="radio" name="" />
+            <C.Span onClick={getReprover}>
+              {choiceReproved && <C.CheckIcon />}
+
+              <input
+                type="radio"
+                name="rd"
+                value="Reprovado"
+                onChange={(e) => setOption(e.target.value)}
+              />
             </C.Span>
             Reprovar
           </C.AreaTabs>
           <C.AreaTabs>
-            <C.Span>
-              <input type="radio" name="" />
+            <C.Span onClick={getWait}>
+              {choiceWait && <C.CheckIcon />}
+              <input
+                type="radio"
+                name="rd"
+                value="Espera"
+                onChange={(e) => setOption(e.target.value)}
+              />
             </C.Span>
             Esperar
           </C.AreaTabs>
         </C.ContentAreaTabs>
-        <C.Button>Enviar</C.Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <C.Button onClick={sendResponse}>Enviar</C.Button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <C.Button onClick={() => history(-1)}>Voltar</C.Button>
       </C.ContentAreaItem>
     </LayoutScreen>

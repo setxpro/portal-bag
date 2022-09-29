@@ -33,9 +33,9 @@ export const Container = styled.div`
           button {
             transition: all 1s ease;
             cursor: pointer;
-            border: 1px solid ${(props) => props.theme.colors.btnTabs};
-            background: transparent;
-            color: ${(props) => props.theme.colors.btnTabs};
+            border: none;
+            background: #42855b;
+            color: #fff;
             padding: 5px;
             border-radius: 4px;
           }
@@ -58,5 +58,6 @@ export const Container = styled.div`
 export const InfoIcon = styled(BsInfoCircle)`
   cursor: pointer;
   font-size: 1.5rem;
-  color: ${(props) => props.theme.colors.btnTabs};
+  translate: 1s;
+  color: ${(props) => props.theme.colors.btnInfoTab};
 `;
