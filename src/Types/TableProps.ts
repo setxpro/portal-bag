@@ -1,5 +1,5 @@
 export type TableProps = {
-  AFILWKF: string;
+  AFILWKF: string | undefined;
   AFORWKF: string;
   ALOJWKF: string;
   ANATWKF: string;

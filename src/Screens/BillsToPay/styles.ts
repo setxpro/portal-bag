@@ -34,15 +34,13 @@ export const ContentTopArea = styled.div`
   }
 `;
 export const BtnTabs = styled.div`
+  width: 100%;
+  height: 50px;
+
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
-
-  width: 200px;
-
-  @media (max-width: 428px) {
-    width: 100px;
-  }
 `;
 
 export const ContentBtnSendAll = styled.div`
@@ -63,46 +61,6 @@ export const ContentBtnSendAll = styled.div`
     border-radius: 4px;
   }
 `;
-export const TabsInternal = styled.div`
-  width: 200px;
-
-  button {
-    transition: all 1s ease;
-    cursor: pointer;
-    border: 1px solid ${(props) => props.theme.colors.betnTabsBorder};
-    background: transparent;
-    color: ${(props) => props.theme.colors.text};
-    padding: 5px;
-    border-radius: 4px;
-  }
-
-  .active-sub-tab {
-    span {
-      background: ${(props) => props.theme.colors.main};
-      width: auto;
-      height: 15px;
-      border-radius: 50%;
-      padding: 0 5px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      transition: all 1s ease;
-      color: ${(props) => props.theme.colors.betnTabsBorder};
-      font-weight: 700;
-
-      position: absolute;
-      right: -3px;
-      top: -8px;
-    }
-
-    button {
-      background: #354259;
-      color: #fff;
-    }
-  }
-`;
 
 export const InfoIcon = styled(BsInfoCircle)`
   cursor: pointer;
@@ -117,5 +75,26 @@ export const ContentAreabtns = styled.div`
 
   @media (max-width: 428px) {
     gap: 1rem;
+  }
+`;
+
+export const ContentAreaDropdownCompany = styled.div`
+  cursor: pointer;
+  position: relative;
+  span {
+    border-bottom: 2px solid ${(props) => props.theme.colors.btnInfoTab};
+    color: ${(props) => props.theme.colors.text};
+    user-select: none;
+    font-size: 1rem;
+  }
+`;
+export const ContentAreaDropdownOptions = styled.div`
+  cursor: pointer;
+  position: relative;
+  span {
+    border-bottom: 2px solid ${(props) => props.theme.colors.btnInfoTab};
+    color: ${(props) => props.theme.colors.text};
+    user-select: none;
+    font-size: 1rem;
   }
 `;

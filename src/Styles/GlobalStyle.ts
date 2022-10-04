@@ -14,4 +14,5 @@ export default createGlobalStyle`
         font-family: 'Inter', sans-serif;
     }
     
+    
 `;

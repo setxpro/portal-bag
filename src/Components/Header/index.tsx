@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Contexts/Auth/AuthContext";
 import { useHeader } from "../../Hooks/useHeader";
 import { useTheme } from "../../Hooks/useTheme";
 
@@ -7,21 +8,25 @@ import * as C from "./styles";
 const Header: React.FC = () => {
   const { toggleTheme, theme } = useTheme();
   const { wrapperMenu, openMenuSidebar } = useHeader();
+  const { user } = useContext(AuthContext);
 
-  const [isLogged, setIsLogged] = useState(true);
-  const [notify, setNotify] = useState(1);
+  const [isLogged, setIsLogged] = useState(false);
+  const [notify, setNotify] = useState(5);
 
-  const name = "Patrick Anjos";
+  const name = user?.FULLNAME;
+
+  useEffect(() => {
+    if (user?.ID) {
+      setIsLogged(true);
+      setNotify(5);
+    }
+  }, [user?.ID]);
 
   return (
     <C.Container>
       <C.ContentLeft>
         <C.ContentBtenPc>
-          {openMenuSidebar ? (
-            <C.CloseMenu onClick={wrapperMenu} />
-          ) : (
-            <C.BarsMenu onClick={wrapperMenu} />
-          )}
+          {openMenuSidebar ? "" : <C.BarsMenu onClick={wrapperMenu} />}
         </C.ContentBtenPc>
         <C.ContentBtnMobile>
           {openMenuSidebar ? (

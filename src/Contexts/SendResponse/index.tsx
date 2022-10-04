@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { createContext } from "react";
+import { toast } from "react-toastify";
 import { ChildrenReactNode } from "../../Types/ChildrenProps";
 import { TableProps } from "../../Types/TableProps";
 import { AuthContext } from "../Auth/AuthContext";
+
+// import Logo from "./bag.png";
 
 interface Props {
   setOptions: React.Dispatch<
@@ -15,17 +18,7 @@ interface Props {
     [x: number]: string;
   };
   sendAllResp: () => void;
-  mock: {
-    id: string;
-    AFILWKF: string;
-    AFORWKF: string;
-    ALOJWKF: string;
-    ANATWKF: string;
-    APARWKF: string;
-    APREWKF: string;
-    ATIPWKF: string;
-    ATITWKF: string;
-  }[];
+  titles: TableProps[];
   sendOneInfo: (index: number) => void;
 }
 
@@ -37,51 +30,15 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
   const { user, getAllTable } = useContext(AuthContext);
   const [titles, setTitulo] = useState<TableProps[]>([]);
 
-  const [mock, setMock] = useState([
-    {
-      id: "1",
-      AFILWKF: "AFILWKF 1",
-      AFORWKF: "AFORWKF 1",
-      ALOJWKF: "ALOJWKF 1",
-      ANATWKF: "ANATWKF 1",
-      APARWKF: "APARWKF 1",
-      APREWKF: "APREWKF 1",
-      ATIPWKF: "ATIPWKF 1",
-      ATITWKF: "ATITWKF 1",
-    },
-    {
-      id: "2",
-      AFILWKF: "AFILWKF 2",
-      AFORWKF: "AFORWKF 2",
-      ALOJWKF: "ALOJWKF 2",
-      ANATWKF: "ANATWKF 2",
-      APARWKF: "APARWKF 2",
-      APREWKF: "APREWKF 2",
-      ATIPWKF: "ATIPWKF 2",
-      ATITWKF: "ATITWKF 2",
-    },
-    {
-      id: "3",
-      AFILWKF: "AFILWKF 3",
-      AFORWKF: "AFORWKF 3",
-      ALOJWKF: "ALOJWKF 3",
-      ANATWKF: "ANATWKF 3",
-      APARWKF: "APARWKF 3",
-      APREWKF: "APREWKF 3",
-      ATIPWKF: "ATIPWKF 3",
-      ATITWKF: "ATITWKF 3",
-    },
-  ]);
-
   useEffect(() => {
     (async () => {
-      const data = await getAllTable(`000893`);
+      const data = await getAllTable(`000893`); //000893
       setTitulo(data);
     })();
   }, [getAllTable, user?.ID]);
 
   const sendAllResp = () => {
-    const allOpt = mock.map((item, index) => {
+    const allOpt = titles.map((item, index) => {
       return {
         ...item,
         option: options[index] || "",
@@ -89,6 +46,7 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
     });
 
     console.log(allOpt.filter((x) => x.option));
+    toast("Respostas enviadas com sucesso!");
   };
 
   const sendOneInfo = (index: number) => {
@@ -100,16 +58,51 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
     }
 
     const newObject = {
-      ...mock[index],
+      ...titles[index],
       option: options[index],
     };
 
     console.log(newObject);
+
+    toast(`Resposta enviada com sucesso!`);
   };
+
+  // useEffect(() => {
+  //   function requestPermission() {
+  //     return new Promise((resolve, reject) => {
+  //       const permissionResult = Notification.requestPermission((result) => {
+  //         resolve(result);
+  //       });
+
+  //       if (permissionResult) {
+  //         permissionResult.then(resolve, reject);
+  //       }
+  //     }).then((permissionResult) => {
+  //       if (permissionResult !== "granted") {
+  //         throw new Error("Permissipn not grantes");
+  //       }
+  //     });
+  //   }
+
+  //   Notification.requestPermission();
+  //   function notify() {
+  //     Notification.requestPermission(() => {
+  //       let notification = new Notification("BagWeb", {
+  //         icon: `${Logo}`,
+  //         body: "Chegou uma nova aprovação de despesas. Click aqui para fazer login.",
+  //       });
+  //       notification.onclick = () => {
+  //         window.open("http://localhost:3000");
+  //       };
+  //     });
+  //   }
+
+  //   // notify();
+  // }, [titles, titlesCompare]);
 
   return (
     <SendResponseContext.Provider
-      value={{ options, setOptions, sendAllResp, mock, sendOneInfo }}
+      value={{ options, setOptions, sendAllResp, titles, sendOneInfo }}
     >
       {children}
     </SendResponseContext.Provider>

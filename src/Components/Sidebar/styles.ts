@@ -26,8 +26,10 @@ export const Container = styled.div<{ wrapSidebar: boolean }>`
     position: absolute;
     z-index: 999;
   }
-
   background: ${(props) => props.theme.colors.sidebar};
+
+  position: fixed;
+  z-index: 9999;
 `;
 
 export const ContentLogo = styled.div`
@@ -35,7 +37,7 @@ export const ContentLogo = styled.div`
   height: 65px;
   transition: all 1s ease;
   border-bottom: 1px solid ${(props) => props.theme.colors.borders};
-  background: ${(props) => props.theme.colors.sidebarLogo};
+  background: ${(props) => props.theme.colors.sidebar};
 
   display: flex;
   align-items: center;
@@ -65,6 +67,7 @@ export const ContentNavArea = styled.div`
         padding: 10px;
 
         font-size: 1.2rem;
+
         color: ${(props) => props.theme.colors.textSidebar};
 
         transition: all 1s ease;
@@ -85,11 +88,11 @@ export const ContentNavArea = styled.div`
 `;
 
 export const CloseMenu = styled(MdClose)`
-  display: none;
-
   font-size: 1.3rem;
-  color: ${(props) => props.theme.colors.text};
+  color: #fff;
   animation: 1s rot linear both;
+  cursor: pointer;
+  margin-left: 1.5rem;
 
   @keyframes rot {
     0% {
@@ -98,13 +101,9 @@ export const CloseMenu = styled(MdClose)`
   }
 
   @media (max-width: 884px) {
-    display: inline;
-    font-size: 3rem;
-    margin-left: 0.5rem;
+    font-size: 2rem;
   }
   @media (max-width: 428px) {
-    display: inline;
     font-size: 2rem;
-    margin-left: 1rem;
   }
 `;

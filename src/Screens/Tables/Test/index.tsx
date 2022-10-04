@@ -1,6 +1,6 @@
-import { useContext, memo } from "react";
+import React, { useContext, memo, useState } from "react";
+import { SendResponseContext } from "../../../Contexts/SendResponse";
 import { Link } from "react-router-dom";
-
 import { FormControlLabel, Radio } from "@material-ui/core";
 import CheckboxUnchecked from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckboxChecked from "@material-ui/icons/CheckBox";
@@ -9,18 +9,66 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 
 import * as C from "./styles";
-import { SendResponseContext } from "./../../../Contexts/SendResponse/index";
 
-const Radu = () => {
-  const { setOptions, titles, sendOneInfo, options } =
-    useContext(SendResponseContext);
+const Test: React.FC = () => {
+  const { setOptions, sendOneInfo, options } = useContext(SendResponseContext);
 
-  const getIdByIndex = (index: number) => {
-    console.log({
-      ...titles[0],
-      id: index,
-    });
-  };
+  const [data] = useState([
+    {
+      id: 1,
+      fornecedor: "fornecedor 1",
+      natureza: "natureza 1",
+      parcela: "parcela 1",
+    },
+    {
+      id: 2,
+      fornecedor: "fornecedor 2",
+      natureza: "natureza 2",
+      parcela: "parcela 2",
+    },
+    {
+      id: 3,
+      fornecedor: "fornecedor 3",
+      natureza: "natureza 3",
+      parcela: "parcela 3",
+    },
+    {
+      id: 4,
+      fornecedor: "fornecedor 4",
+      natureza: "natureza 4",
+      parcela: "parcela 4",
+    },
+    {
+      id: 5,
+      fornecedor: "fornecedor 5",
+      natureza: "natureza 5",
+      parcela: "parcela 5",
+    },
+    {
+      id: 6,
+      fornecedor: "fornecedor 6",
+      natureza: "natureza 6",
+      parcela: "parcela 6",
+    },
+    {
+      id: 7,
+      fornecedor: "fornecedor 7",
+      natureza: "natureza 7",
+      parcela: "parcela 7",
+    },
+    {
+      id: 8,
+      fornecedor: "fornecedor 8",
+      natureza: "natureza 8",
+      parcela: "parcela 8",
+    },
+    {
+      id: 9,
+      fornecedor: "fornecedor 9",
+      natureza: "natureza 9",
+      parcela: "parcela 9",
+    },
+  ]);
 
   return (
     <C.Container>
@@ -38,15 +86,15 @@ const Radu = () => {
           </tr>
         </thead>
         <tbody>
-          {titles.map((item, index) => {
+          {data.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.AFORWKF}</td>
-                <td>{item.ANATWKF}</td>
-                <td>{item.APARWKF}</td>
+                <td>{item.fornecedor}</td>
+                <td>{item.natureza}</td>
+                <td>{item.parcela}</td>
                 <td>
-                  <Link to={`/modal/${item.AFILWKF}`}>
-                    <C.InfoIcon onClick={() => getIdByIndex(index)} />
+                  <Link to={`/modal/${item.id}`}>
+                    <C.InfoIcon />
                   </Link>
                 </td>
                 <td>
@@ -55,7 +103,7 @@ const Radu = () => {
                       <FormControlLabel
                         control={
                           <Radio
-                            name={`radio-${item.AFILWKF}`}
+                            name={`radio-${item.id}`}
                             color="primary"
                             checkedIcon={<CheckboxChecked />}
                             icon={<CheckboxUnchecked />}
@@ -80,7 +128,7 @@ const Radu = () => {
                     <FormControlLabel
                       control={
                         <Radio
-                          name={`radio-${item.AFILWKF}`}
+                          name={`radio-${item.id}`}
                           color="primary"
                           checkedIcon={<CancelIcon />}
                           icon={<CheckboxUnchecked />}
@@ -105,7 +153,7 @@ const Radu = () => {
                     <FormControlLabel
                       control={
                         <Radio
-                          name={`radio-${item.AFILWKF}`}
+                          name={`radio-${item.id}`}
                           color="primary"
                           checkedIcon={<AccessTimeFilledIcon />}
                           icon={<CheckboxUnchecked />}
@@ -136,4 +184,4 @@ const Radu = () => {
   );
 };
 
-export default memo(Radu);
+export default memo(Test);

@@ -11,6 +11,6 @@ export const dark = {
     sidebarLogo: "#22222f",
     btnTabs: "#FFF",
     betnTabsBorder: "#FFF",
-    btnInfoTab: "#aaa",
+    btnInfoTab: "#1c6dd0",
   },
 };

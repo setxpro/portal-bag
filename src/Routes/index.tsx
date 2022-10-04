@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ModalTablesToBillsToPay from "../Components/Modal/ModalTablesToBillsToPay";
 import Template from "../Components/Template";
+import { MenuHeaderProvider } from "../Contexts/MenuHeader";
 import BillsToPay from "../Screens/BillsToPay";
 import FirstLogin from "../Screens/Login/FirstLogin";
 import ForgetPassword from "../Screens/Login/ForgetPassword";
@@ -11,9 +12,14 @@ import SignUp from "../Screens/Login/SignUp";
 import Table from "../Screens/RegisterTarget";
 import Radu from "../Screens/Tables/Radu";
 import Shehrazade from "../Screens/Tables/Shehrazade";
+import Test from "../Screens/Tables/Test";
 import SecurityRoutes from "../Security";
 import Option1 from "./../Screens/Tables/SubPages/Option1/index";
 import Option2 from "./../Screens/Tables/SubPages/Option2/index";
+import RelatorioVendas from "./../Screens/Tables/RelatorioVendas/index";
+import { GetInfoSellbieProvider } from "../Contexts/GetInfoSellbie";
+import VendasFlex from "../Screens/Tables/VendasFlex";
+import Home from "../Screens/Home";
 
 const RoutesApp: React.FC = () => {
   return (
@@ -23,9 +29,23 @@ const RoutesApp: React.FC = () => {
         element={
           <SecurityRoutes>
             <Template>
-              <BillsToPay>
-                <Shehrazade />
-              </BillsToPay>
+              <MenuHeaderProvider>
+                <Home />
+              </MenuHeaderProvider>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/shehrazade"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <Shehrazade />
+                </BillsToPay>
+              </MenuHeaderProvider>
             </Template>
           </SecurityRoutes>
         }
@@ -35,9 +55,25 @@ const RoutesApp: React.FC = () => {
         element={
           <SecurityRoutes>
             <Template>
-              <BillsToPay>
-                <Radu />
-              </BillsToPay>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <Radu />
+                </BillsToPay>
+              </MenuHeaderProvider>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/test"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <Test />
+                </BillsToPay>
+              </MenuHeaderProvider>
             </Template>
           </SecurityRoutes>
         }
@@ -53,9 +89,11 @@ const RoutesApp: React.FC = () => {
         element={
           <SecurityRoutes>
             <Template>
-              <BillsToPay>
-                <Option1 />
-              </BillsToPay>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <Option1 />
+                </BillsToPay>
+              </MenuHeaderProvider>
             </Template>
           </SecurityRoutes>
         }
@@ -65,9 +103,11 @@ const RoutesApp: React.FC = () => {
         element={
           <SecurityRoutes>
             <Template>
-              <BillsToPay>
-                <Option2 />
-              </BillsToPay>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <Option2 />
+                </BillsToPay>
+              </MenuHeaderProvider>
             </Template>
           </SecurityRoutes>
         }
@@ -87,12 +127,37 @@ const RoutesApp: React.FC = () => {
         }
       />
 
+      {/** Tabelas normais */}
       <Route
         path="/table"
         element={
           <SecurityRoutes>
             <Template>
               <Table />
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/relatorio-vendas"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <GetInfoSellbieProvider>
+                <RelatorioVendas />
+              </GetInfoSellbieProvider>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/vendas-flex"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <GetInfoSellbieProvider>
+                <VendasFlex />
+              </GetInfoSellbieProvider>
             </Template>
           </SecurityRoutes>
         }
