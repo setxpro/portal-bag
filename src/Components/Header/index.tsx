@@ -13,7 +13,13 @@ const Header: React.FC = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [notify, setNotify] = useState(5);
 
-  const name = user?.FULLNAME;
+  const name = user?.FULLNAME.replace(".", " ");
+
+  let posicao = name as string;
+  let item = posicao.split(" ");
+
+  let firstLetter = item[0].charAt(0).toUpperCase();
+  let secondLetter = item[1].charAt(0).toUpperCase();
 
   useEffect(() => {
     if (user?.ID) {
@@ -54,7 +60,13 @@ const Header: React.FC = () => {
             <h6>Developer</h6>
           </C.ContentNameArea>
           <div className="avatar">
-            <img src="https://github.com/setxpro.png" alt="avatar" />
+            {user?.AVATAR === undefined && (
+              <div className="avatar-notfound">
+                <span>{firstLetter}</span>
+                <span>{secondLetter}</span>
+              </div>
+            )}
+            {user?.AVATAR && <img src={user.AVATAR} alt="avatar" />}
           </div>
         </C.ContentAreaNameAndAvatar>
       </C.ContentRight>

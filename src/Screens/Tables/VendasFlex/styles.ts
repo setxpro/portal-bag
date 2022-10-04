@@ -99,6 +99,14 @@ export const ContentTable = styled.div`
 
   @media (max-width: 428px) {
     height: calc(100vh - 300px);
+
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: transparent;
+    }
   }
 
   table {

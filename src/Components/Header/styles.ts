@@ -168,6 +168,25 @@ export const ContentAreaNameAndAvatar = styled.div<{ isLogged: boolean }>`
       padding: 2px;
     }
 
+    .avatar-notfound {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 3px solid #054845;
+      padding: 2px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-weight: bold;
+        font-size: 1.8rem;
+        transition: all 1s ease;
+        color: ${(props) => props.theme.colors.text};
+      }
+    }
+
     &::before {
       content: "";
       background: ${(props) => (props.isLogged ? "#0f0" : "#f00")};
@@ -196,11 +215,15 @@ export const ContentNameArea = styled.div`
   }
   h4 {
     font-size: 1.1em;
+    text-transform: capitalize;
+    font-weight: 300;
   }
   h6 {
     font-size: 1em;
     margin-left: 30px;
     color: #aaaa;
     font-weight: 500;
+
+    text-align: end;
   }
 `;
