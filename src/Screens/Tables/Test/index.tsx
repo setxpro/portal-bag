@@ -16,54 +16,63 @@ const Test: React.FC = () => {
   const [data] = useState([
     {
       id: 1,
+      filial: "Filial 1",
       fornecedor: "fornecedor 1",
       natureza: "natureza 1",
       parcela: "parcela 1",
     },
     {
       id: 2,
+      filial: "Filial 2",
       fornecedor: "fornecedor 2",
       natureza: "natureza 2",
       parcela: "parcela 2",
     },
     {
       id: 3,
+      filial: "Filial 3",
       fornecedor: "fornecedor 3",
       natureza: "natureza 3",
       parcela: "parcela 3",
     },
     {
       id: 4,
+      filial: "Filial 4",
       fornecedor: "fornecedor 4",
       natureza: "natureza 4",
       parcela: "parcela 4",
     },
     {
       id: 5,
+      filial: "Filial 5",
       fornecedor: "fornecedor 5",
       natureza: "natureza 5",
       parcela: "parcela 5",
     },
     {
       id: 6,
+      filial: "Filial 6",
       fornecedor: "fornecedor 6",
       natureza: "natureza 6",
       parcela: "parcela 6",
     },
     {
       id: 7,
+      filial: "Filial 7",
       fornecedor: "fornecedor 7",
       natureza: "natureza 7",
       parcela: "parcela 7",
     },
     {
       id: 8,
+      filial: "Filial 8",
       fornecedor: "fornecedor 8",
       natureza: "natureza 8",
       parcela: "parcela 8",
     },
     {
       id: 9,
+      filial: "Filial 9",
       fornecedor: "fornecedor 9",
       natureza: "natureza 9",
       parcela: "parcela 9",
@@ -75,9 +84,10 @@ const Test: React.FC = () => {
       <table>
         <thead>
           <tr>
-            <th>fornecedor</th>
-            <th>natureza</th>
-            <th>parcela</th>
+            <th>Filial</th>
+            <th>Fornecedor</th>
+            <th>Natureza</th>
+            <th>Parcela</th>
             <th>+ Info</th>
             <th>A</th>
             <th>R</th>
@@ -89,6 +99,7 @@ const Test: React.FC = () => {
           {data.map((item, index) => {
             return (
               <tr key={index}>
+                <td>{item.filial}</td>
                 <td>{item.fornecedor}</td>
                 <td>{item.natureza}</td>
                 <td>{item.parcela}</td>

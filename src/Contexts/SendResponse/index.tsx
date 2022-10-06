@@ -6,8 +6,6 @@ import { ChildrenReactNode } from "../../Types/ChildrenProps";
 import { TableProps } from "../../Types/TableProps";
 import { AuthContext } from "../Auth/AuthContext";
 
-// import Logo from "./bag.png";
-
 interface Props {
   setOptions: React.Dispatch<
     React.SetStateAction<{
@@ -30,6 +28,8 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
   const { user, getAllTable } = useContext(AuthContext);
   const [titles, setTitulo] = useState<TableProps[]>([]);
 
+  // const [loadNotify, setLoadNotify] = useState(false);
+
   useEffect(() => {
     (async () => {
       const data = await getAllTable(`000893`); //000893
@@ -38,6 +38,17 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
   }, [getAllTable, user?.ID]);
 
   const sendAllResp = () => {
+    if (!options) {
+      toast("Você deve ao menos selecionar uma opção!");
+      return;
+    }
+
+    let conf = window.confirm("Deseja Realmente enviar essa esposta ?");
+    if (!conf) {
+      toast("Abortadas pelo aprovador!");
+      return;
+    }
+
     const allOpt = titles.map((item, index) => {
       return {
         ...item,
@@ -50,7 +61,16 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
   };
 
   const sendOneInfo = (index: number) => {
-    if (!options[index]) return;
+    if (!options[index]) {
+      toast("Você deve ao menos selecionar uma opção!");
+      return;
+    }
+
+    let conf = window.confirm("Deseja Realmente enviar todas as respostas ?");
+    if (!conf) {
+      toast("Abortada pelo aprovador!");
+      return;
+    }
 
     if (!options[index]) {
       alert("Você esqueceu de selecionar uma opção.");
@@ -97,12 +117,24 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
   //     });
   //   }
 
-  //   // notify();
-  // }, [titles, titlesCompare]);
+  //   if (titles.length > 0) {
+  //     setLoadNotify(true);
+  //     if (loadNotify) {
+  //       notify();
+  //     }
+  //     setLoadNotify(false);
+  //   }
+  // }, [titles]);
 
   return (
     <SendResponseContext.Provider
-      value={{ options, setOptions, sendAllResp, titles, sendOneInfo }}
+      value={{
+        options,
+        setOptions,
+        sendAllResp,
+        titles,
+        sendOneInfo,
+      }}
     >
       {children}
     </SendResponseContext.Provider>

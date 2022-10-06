@@ -104,6 +104,7 @@ export const ContentTable = styled.div`
   table {
     width: 100%;
     position: relative;
+    user-select: none;
     thead {
       tr {
         th {

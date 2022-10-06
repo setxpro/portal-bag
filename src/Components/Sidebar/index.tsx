@@ -20,8 +20,6 @@ const Sidebar: React.FC = () => {
   const { signout, user } = useContext(AuthContext);
   const { openMenuSidebar, wrapperMenu } = useHeader();
 
-  console.log();
-
   const cPagar = user?.ASSIGNMENTS[0];
   const cEtiquetas = user?.ASSIGNMENTS[1];
   const cRelatoryVendas = user?.ASSIGNMENTS[3];
@@ -36,7 +34,7 @@ const Sidebar: React.FC = () => {
       <C.ContentNavArea>
         <nav>
           <ul>
-            <Link to="/" className="active">
+            <Link to="/" className="home-active">
               Home
             </Link>
             {cPagar === "001" && (

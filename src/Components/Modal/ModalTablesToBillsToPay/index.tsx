@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 // import { TableProps } from "../../../Types/TableProps";
 import { LayoutScreen } from "../../Page/Content/styles";
@@ -73,6 +74,11 @@ const ModalTablesToBillsToPay: React.FC = () => {
   //
 
   const sendResponse = () => {
+    let conf = window.confirm("Deseja Realmente enviar essa esposta ?");
+    if (!conf) {
+      toast("Resposta abortada pelo aprovador!");
+      return;
+    }
     console.log({
       filial,
       fornecedor,
@@ -84,6 +90,7 @@ const ModalTablesToBillsToPay: React.FC = () => {
       numTitulo,
       option,
     });
+    toast("Resposta enviada com sucesso!");
 
     history(-1);
   };

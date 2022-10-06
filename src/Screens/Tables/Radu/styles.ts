@@ -14,6 +14,8 @@ export const Container = styled.div`
     }
   }
 
+  width: 100%;
+
   .MuiFormControlLabel-root {
     margin-left: 20px; /** OBS */
   }
@@ -21,6 +23,7 @@ export const Container = styled.div`
 
   table {
     width: 100%;
+    user-select: none;
 
     thead {
       tr {

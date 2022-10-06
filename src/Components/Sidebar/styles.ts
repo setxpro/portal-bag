@@ -83,6 +83,10 @@ export const ContentNavArea = styled.div`
         background: rgba(0, 255, 255, 0.1);
         color: #fff;
       }
+
+      .home-active {
+        background: #058;
+      }
     }
   }
 `;

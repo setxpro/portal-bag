@@ -7,7 +7,6 @@ export const Container = styled.div`
       color: ${(props) => props.theme.colors.btnInfoTab} !important;
     }
     &:nth-child(3) {
-      color: red !important;
     }
     &:nth-child(1) {
       color: ${(props) => props.theme.colors.btnInfoTab} !important;
@@ -31,6 +30,9 @@ export const Container = styled.div`
           background: ${(props) => props.theme.colors.main};
 
           @media (max-width: 428px) {
+            &:nth-child(1) {
+              display: none;
+            }
             &:nth-child(3) {
               display: none;
             }
@@ -45,6 +47,7 @@ export const Container = styled.div`
           text-align: center;
           transition: all 1s ease;
           color: ${(props) => props.theme.colors.text};
+          /* background: red; */
           button {
             transition: all 1s ease;
             cursor: pointer;
@@ -56,6 +59,9 @@ export const Container = styled.div`
           }
 
           @media (max-width: 428px) {
+            &:nth-child(1) {
+              display: none;
+            }
             &:nth-child(3) {
               display: none;
             }
