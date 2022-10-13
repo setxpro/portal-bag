@@ -94,7 +94,7 @@ export default function SignInSide() {
 
   // ---------------- Efeitos colaterais
   React.useEffect(() => {
-    console.log(message);
+    console.log(err);
     // Verifico se a mensagem esta como senha Atualizada
     if (message === "Senha Atualizada") {
       setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
@@ -196,7 +196,7 @@ export default function SignInSide() {
                 autoComplete="login"
                 autoFocus
                 value={login}
-                onChange={(e) => [setLogin(e.target.value), setErr("")]}
+                onChange={(e) => [setLogin(e.target.value)]}
               />
               <TextField
                 margin="normal"
@@ -208,7 +208,7 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
                 value={password}
-                onChange={(e) => [setPassword(e.target.value), setErr("")]}
+                onChange={(e) => [setPassword(e.target.value)]}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
