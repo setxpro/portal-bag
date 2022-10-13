@@ -26,16 +26,20 @@ const Radu = () => {
     <C.Container>
       <table>
         <thead>
-          <tr>
-            <th>fornecedor</th>
-            <th>natureza</th>
-            <th>parcela</th>
-            <th>+ Info</th>
-            <th>A</th>
-            <th>R</th>
-            <th>E</th>
-            <th>Enviar</th>
-          </tr>
+          {titles.length <= 0 ? (
+            ""
+          ) : (
+            <tr>
+              <th>fornecedor</th>
+              <th>natureza</th>
+              <th>parcela</th>
+              <th>+ Info</th>
+              <th>A</th>
+              <th>R</th>
+              <th>E</th>
+              <th>Enviar</th>
+            </tr>
+          )}
         </thead>
         <tbody>
           {titles.map((item, index) => {

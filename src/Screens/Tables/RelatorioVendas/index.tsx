@@ -17,6 +17,7 @@ import { RelatorioCC } from "../../../Types/RelatorioDeVendas";
 import axios from "axios";
 import * as XLSX from "xlsx";
 import CircularStatic from "../../../Components/utils/SpinnTable";
+import SpinnerTableEmpty from "../../../Components/utils/SpinnerTableEmpty";
 
 const RelatorioVendas: React.FC = () => {
   const [initialDate, setInitialDate] = useState<Date | null>(new Date());
@@ -110,47 +111,57 @@ const RelatorioVendas: React.FC = () => {
         </C.ContentTitle>
         <Content>
           <C.ContentTable>
-            <table id="Table2XLSX">
-              <thead>
-                <tr>
-                  <th>Loja_Compra</th>
-                  <th>Vendedor_Compra</th>
-                  <th>Data_Compra</th>
-                  <th>Nome_Cliente</th>
-                  <th>CPF_Cliente</th>
-                  <th>Telefone_Contato</th>
-                  <th>Vendedor_Contato</th>
-                  <th>Vendedor_Contato_Matricula</th>
-                  <th>Loja_Vendedor_Contato</th>
-                  <th>Data_Contato</th>
-                  <th>ComprasTotais</th>
-                </tr>
-              </thead>
-              <tbody>
-                {infoTable.map((relatory, indice) => {
-                  return (
-                    <tr key={indice}>
-                      <td>{relatory.Loja_Compra}</td>
-                      <td>{relatory.Vendedor_Compra}</td>
-                      <td>{relatory.Data_Compra}</td>
-                      <td>{relatory.Nome_Cliente}</td>
-                      <td>{relatory.CPF_Cliente}</td>
-                      <td>{relatory.Telefone_Contato}</td>
-                      <td>{relatory.Vendedor_Contato}</td>
-                      <td>{relatory.Vendedor_Contato_Matricula}</td>
-                      <td>{relatory.Loja_Vendedor_Contato}</td>
-                      <td>{relatory.Data_Contato}</td>
-                      <td>{relatory.ComprasTotais}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            {infoTable.length === 0 && (
+            {loading ? (
               <div className="message">
-                <label>Não há registros para a mensionada data.</label>
+                <SpinnerTableEmpty />
               </div>
+            ) : (
+              <table id="Table2XLSX">
+                <thead>
+                  {infoTable.length <= 0 ? (
+                    ""
+                  ) : (
+                    <tr>
+                      <th>Loja_Compra</th>
+                      <th>Vendedor_Compra</th>
+                      <th>Data_Compra</th>
+                      <th>Nome_Cliente</th>
+                      <th>CPF_Cliente</th>
+                      <th>Telefone_Contato</th>
+                      <th>Vendedor_Contato</th>
+                      <th>Vendedor_Contato_Matricula</th>
+                      <th>Loja_Vendedor_Contato</th>
+                      <th>Data_Contato</th>
+                      <th>ComprasTotais</th>
+                    </tr>
+                  )}
+                </thead>
+                <tbody>
+                  {infoTable.map((relatory, indice) => {
+                    return (
+                      <tr key={indice}>
+                        <td>{relatory.Loja_Compra}</td>
+                        <td>{relatory.Vendedor_Compra}</td>
+                        <td>{relatory.Data_Compra}</td>
+                        <td>{relatory.Nome_Cliente}</td>
+                        <td>{relatory.CPF_Cliente}</td>
+                        <td>{relatory.Telefone_Contato}</td>
+                        <td>{relatory.Vendedor_Contato}</td>
+                        <td>{relatory.Vendedor_Contato_Matricula}</td>
+                        <td>{relatory.Loja_Vendedor_Contato}</td>
+                        <td>{relatory.Data_Contato}</td>
+                        <td>{relatory.ComprasTotais}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             )}
+            {/* {infoTable.length === 0 && (
+              <div className="message">
+                <SpinnerTableEmpty />
+              </div>
+            )} */}
           </C.ContentTable>
         </Content>
       </C.Container>
