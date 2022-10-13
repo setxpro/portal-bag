@@ -20,7 +20,6 @@ export default function ForgetPassword() {
 
   const [login, setLogin] = React.useState("");
   const [phone, setPhone] = React.useState("");
-  const [err, setErr] = React.useState("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,23 +28,26 @@ export default function ForgetPassword() {
     let number = phone;
 
     if (!login) {
-      setErr("Por favor, insira ao menos um login.");
+      toast.error("Por favor, insira ao menos um login.");
       return;
     }
 
     if (!phone) {
-      setErr("Por favor, insira ao menos um numero de telefone.");
+      toast.error("Por favor, insira ao menos um numero de telefone.");
       return;
     }
 
     if (login && phone) {
       const data = await forgotPassword(user, number);
-      setErr(data[0].MESSAGE);
+
+      if (data[0].MESSAGE !== "Senha Enviado para Email") {
+        toast.error(data[0].MESSAGE);
+      }
+
       if (data[0].STATUS === "true") {
         toast(
           "Senha temporária enviada com sucesso! Por favor, verifique o seu e-mail."
         );
-        setErr("");
 
         navigate("/update-pass");
       }
@@ -73,15 +75,6 @@ export default function ForgetPassword() {
           >
             Esqueci minha senha
           </Typography>
-          <Typography
-            component="h1"
-            variant="h6"
-            sx={{
-              marginTop: 1,
-            }}
-          >
-            <Error error={err} />
-          </Typography>
 
           <Box
             component="form"
@@ -99,7 +92,7 @@ export default function ForgetPassword() {
                   name="login"
                   autoComplete="login"
                   value={login}
-                  onChange={(e) => [setLogin(e.target.value), setErr("")]}
+                  onChange={(e) => [setLogin(e.target.value)]}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -112,7 +105,7 @@ export default function ForgetPassword() {
                   id="phone"
                   autoComplete="new-phone"
                   value={phone}
-                  onChange={(e) => [setPhone(e.target.value), setErr("")]}
+                  onChange={(e) => [setPhone(e.target.value)]}
                 />
               </Grid>
             </Grid>

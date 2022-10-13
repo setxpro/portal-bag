@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Error } from "../../../Components/Messages/Error";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -19,9 +18,8 @@ export default function SignUp() {
   const [passwordEmail, setEmailPassword] = React.useState("");
   const [newPass, setNewPass] = React.useState("");
   const [confirmPass, setConfirmPass] = React.useState("");
-  const [err, setErr] = React.useState("");
 
-  const { updatePassword } = React.useContext(AuthContext);
+  const { updatePassword, setMessage } = React.useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -29,23 +27,25 @@ export default function SignUp() {
     event.preventDefault();
 
     if (!login) {
-      setErr("Insira ao menos um nome.");
+      toast.error("Insira ao menos um nome.");
       return;
     }
     if (!passwordEmail) {
-      setErr("Por favor, insira a senha que foi enviada para o seu e-mail.");
+      toast.error(
+        "Por favor, insira a senha que foi enviada para o seu e-mail."
+      );
       return;
     }
     if (!newPass) {
-      setErr("Insira ao menos uma nova senha.");
+      toast.error("Insira ao menos uma nova senha.");
       return;
     }
     if (!confirmPass) {
-      setErr("Insira a confirmação da nova senha.");
+      toast.error("Insira a confirmação da nova senha.");
       return;
     }
     if (newPass !== confirmPass) {
-      setErr("As senhas não são iguais.");
+      toast.error("As senhas não são iguais.");
       return;
     }
 
@@ -59,17 +59,18 @@ export default function SignUp() {
       let messageG = data[0].MESSAGE;
 
       if (status === "true") {
+        setMessage("");
         toast("Senha atualizada com sucesso!");
         navigate("/");
       }
 
       if (messageG === "Usuario Inexistente") {
-        setErr("Usuário não encontrado!");
+        toast.error("Usuário não encontrado!");
         return;
       }
 
       if (messageG === "Senha Inavalida") {
-        setErr("A senha do e-mail é inválida!");
+        toast.error("A senha do e-mail é inválida!");
         return;
       }
     }
@@ -103,10 +104,7 @@ export default function SignUp() {
             sx={{
               marginTop: 3,
             }}
-          >
-            <Error error={err} />
-            {/* <Error error={message} /> */}
-          </Typography>
+          ></Typography>
           <Box
             component="form"
             noValidate

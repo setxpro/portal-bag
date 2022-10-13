@@ -58,8 +58,6 @@ export default function FirstLogin() {
       let status = data[0].STATUS;
       let messageG = data[0].MESSAGE;
 
-      console.log(messageG);
-
       if (status === "true") {
         setMessage("");
         toast("Senha atualizada com sucesso!");

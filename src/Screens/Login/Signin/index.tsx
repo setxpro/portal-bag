@@ -10,7 +10,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Error } from "../../../Components/Messages/Error";
 
 import thumbnail from "../../../images/thumbnail.jpg";
 import { useNavigate } from "react-router-dom";
@@ -60,14 +59,14 @@ export default function SignInSide() {
 
     // Verifico se o campo de login foi preenchido
     if (!login) {
-      setErr("Por favor, insira ao menos um login.");
+      toast.error("Por favor, insira ao menos um login.");
       return;
     }
     //
 
     // Verifico se o campo de senha foi preenchido
     if (!password) {
-      setErr("Por favor, insira ao menos uma senha.");
+      toast.error("Por favor, insira ao menos uma senha.");
       return;
     }
     //
@@ -85,16 +84,17 @@ export default function SignInSide() {
         return navigate("/");
       }
 
-      // Caso seja false
-      if (status === "false") {
-      }
-      //
+      // // Caso seja false
+      // if (status === "false") {
+      // }
+      // //
     }
     //
   };
 
   // ---------------- Efeitos colaterais
   React.useEffect(() => {
+    console.log(message);
     // Verifico se a mensagem esta como senha Atualizada
     if (message === "Senha Atualizada") {
       setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
@@ -105,12 +105,14 @@ export default function SignInSide() {
     // Verifico se a mensagem esta como Usuário inexistente
     if (message === "Usuario Inexistente" && status === "false") {
       // setErr("Usuário não encontrado!"); -> testing
+      toast.error("Usuário inexistente!");
       return;
     }
     //
 
     // Verifico se a mensagem está como senha inválida
     if (message === "Senha Invalida") {
+      toast.error(message);
       // seto no state error a mensagem vindo do servidor, mas paddando um novo valor
       // setErr("Senha incorreta"); -> testing
       return; // return para parar o fluxo de leitura do código
@@ -118,7 +120,7 @@ export default function SignInSide() {
     //
 
     //  Verifico se a mensagem esta como Esqueceu a senha
-    if (message === "Esqueceu Senha" && status === "false") {
+    if (message === "Esqueceu Senha") {
       // Mensagem para orientar o usuário para que ele deve ir até o e-mail e pegar a senha temporária
       toast(
         "Você está em um proceso de redefinição de senha. Será redirecionado para a tela de esqueci minha senha."
@@ -133,7 +135,7 @@ export default function SignInSide() {
     //
 
     //  Verifico se a mensagem esta como Primeiro login
-    if (message === "Primeiro Login" && status === "false") {
+    if (message === "Primeiro Login") {
       toast(
         "Você será levado para uma página de atualização de senha por conta do seu primeiro login no sistema."
       );
@@ -178,10 +180,6 @@ export default function SignInSide() {
               alignItems: "center",
             }}
           >
-            <Typography component="h1" variant="h5">
-              <Error error={message} />
-              <Error error={err} />
-            </Typography>
             <Box
               component="form"
               noValidate
