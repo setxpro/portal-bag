@@ -94,7 +94,6 @@ export default function SignInSide() {
 
   // ---------------- Efeitos colaterais
   React.useEffect(() => {
-    console.log(err);
     // Verifico se a mensagem esta como senha Atualizada
     if (message === "Senha Atualizada") {
       setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
