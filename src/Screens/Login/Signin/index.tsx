@@ -41,7 +41,7 @@ const theme = createTheme();
 export default function SignInSide() {
   const [login, setLogin] = React.useState(""); // State do login
   const [password, setPassword] = React.useState(""); // state da senha
-  const [err, setErr] = React.useState(""); // State das mensagens de erro da aplicação
+  // const [err, setErr] = React.useState(""); // State das mensagens de erro da aplicação
 
   const navigate = useNavigate(); // Função nativa do react-router-dom para trabalhar com rotas
 
@@ -96,7 +96,7 @@ export default function SignInSide() {
   React.useEffect(() => {
     // Verifico se a mensagem esta como senha Atualizada
     if (message === "Senha Atualizada") {
-      setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
+      // setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
       return;
     }
     //
