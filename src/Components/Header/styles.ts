@@ -5,11 +5,34 @@ import { MdOutlineNightlight } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import { AiOutlineBell } from "react-icons/ai";
 
-export const Container = styled.div`
+export const Container = styled.div<{
+  blue: boolean;
+  red: boolean;
+  green: boolean;
+  purple: boolean;
+  gray: boolean;
+  palletDGrayContainer?: boolean;
+  orange: boolean;
+}>`
   width: 100%;
   height: 65px;
   transition: all 1s ease;
-  background: ${(props) => props.theme.colors.header};
+  background: ${(props) =>
+    props.blue === true
+      ? props.theme.colors.blueHeader
+      : props.red === true
+      ? props.theme.colors.redHeader
+      : props.green === true
+      ? props.theme.colors.greenHeader
+      : props.purple === true
+      ? props.theme.colors.purpleHeader
+      : props.gray === true
+      ? props.theme.colors.grayHeader
+      : props.palletDGrayContainer === true
+      ? props.theme.colors.darkGrayHeader
+      : props.orange === true
+      ? props.theme.colors.orangeHeader
+      : props.theme.colors.header};
   border: 1px solid ${(props) => props.theme.colors.borders};
   border-top: 0;
   border-left: 0;
@@ -28,7 +51,6 @@ export const Container = styled.div`
 
 export const ContentBtnMobile = styled.div`
   display: none;
-
   @media (max-width: 800px) {
     display: inline;
   }
@@ -74,7 +96,6 @@ export const BellIcon = styled(AiOutlineBell)`
   cursor: pointer;
   font-size: 1.6rem;
   color: ${(props) => props.theme.colors.text};
-
   @media (max-width: 428px) {
     font-size: 2rem;
   }
@@ -83,7 +104,6 @@ export const Dark = styled(MdOutlineNightlight)`
   cursor: pointer;
   font-size: 1.6rem;
   color: ${(props) => props.theme.colors.text};
-
   animation: 1s rot linear both;
 
   @keyframes rot {
@@ -122,7 +142,16 @@ export const ContentRight = styled.div`
   align-items: center;
   gap: 2rem;
 `;
-export const ContentAreaNotify = styled.div<{ notify: number }>`
+export const ContentAreaNotify = styled.div<{
+  notify: number;
+  blue: boolean;
+  red: boolean;
+  green: boolean;
+  purple: boolean;
+  gray: boolean;
+  palletDGrayNotify?: boolean;
+  orange: boolean;
+}>`
   .notification {
     position: relative;
 
@@ -130,7 +159,7 @@ export const ContentAreaNotify = styled.div<{ notify: number }>`
       width: 55px;
       height: 55px;
       border-radius: 50%;
-      border: 3px solid #054845;
+      border: 3px solid #fff;
       padding: 2px;
     }
 
@@ -145,7 +174,23 @@ export const ContentAreaNotify = styled.div<{ notify: number }>`
       right: 0;
 
       transition: all 1s ease;
-      border: 2px solid ${(props) => props.theme.colors.header};
+      border: 2px solid
+        ${(props) =>
+          props.blue === true
+            ? props.theme.colors.blueHeader
+            : props.red === true
+            ? props.theme.colors.redHeader
+            : props.green === true
+            ? props.theme.colors.greenHeader
+            : props.purple === true
+            ? props.theme.colors.purpleHeader
+            : props.gray === true
+            ? props.theme.colors.grayHeader
+            : props.palletDGrayNotify === true
+            ? props.theme.colors.darkGrayHeader
+            : props.orange === true
+            ? props.theme.colors.orangeHeader
+            : props.theme.colors.header};
       border-radius: 50%;
 
       display: ${(props) => (props.notify <= 0 ? "none" : "inline")};
@@ -153,7 +198,16 @@ export const ContentAreaNotify = styled.div<{ notify: number }>`
   }
 `;
 export const ContentAreaToggleTheme = styled.div``;
-export const ContentAreaNameAndAvatar = styled.div<{ isLogged: boolean }>`
+export const ContentAreaNameAndAvatar = styled.div<{
+  isLogged: boolean;
+  blue: boolean;
+  red: boolean;
+  green: boolean;
+  purple: boolean;
+  gray: boolean;
+  palletDGrayContentNameAvatar?: boolean;
+  orange: boolean;
+}>`
   display: flex;
   align-items: center;
   gap: 4px;
@@ -202,20 +256,37 @@ export const ContentAreaNameAndAvatar = styled.div<{ isLogged: boolean }>`
       bottom: 5px;
 
       transition: all 1s ease;
-      border: 2px solid ${(props) => props.theme.colors.header};
+      border: 2px solid
+        ${(props) =>
+          props.blue === true
+            ? props.theme.colors.blueHeader
+            : props.red === true
+            ? props.theme.colors.redHeader
+            : props.green === true
+            ? props.theme.colors.greenHeader
+            : props.purple === true
+            ? props.theme.colors.purpleHeader
+            : props.gray === true
+            ? props.theme.colors.grayHeader
+            : props.palletDGrayContentNameAvatar === true
+            ? props.theme.colors.darkGrayHeader
+            : props.orange === true
+            ? props.theme.colors.orangeHeader
+            : props.theme.colors.header};
       border-radius: 50%;
     }
   }
 `;
 
-export const ContentNameArea = styled.div`
+export const ContentNameArea = styled.div<{ palletDGrayContentName: boolean }>`
   display: flex;
   flex-direction: column;
 
   h4,
   h6 {
     transition: all 1s ease;
-    color: ${(props) => props.theme.colors.text};
+    color: ${(props) =>
+      props.palletDGrayContentName === true ? "#FFF" : props.theme.colors.text};
   }
   h4 {
     font-size: 1.1em;
@@ -225,7 +296,8 @@ export const ContentNameArea = styled.div`
   h6 {
     font-size: 1em;
     margin-left: 30px;
-    color: #aaaa;
+    color: ${(props) =>
+      props.palletDGrayContentName === true ? "#FFF" : props.theme.colors.text};
     font-weight: 500;
 
     text-align: end;

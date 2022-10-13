@@ -35,48 +35,6 @@ const Test: React.FC = () => {
       natureza: "natureza 3",
       parcela: "parcela 3",
     },
-    {
-      id: 4,
-      filial: "Filial 4",
-      fornecedor: "fornecedor 4",
-      natureza: "natureza 4",
-      parcela: "parcela 4",
-    },
-    {
-      id: 5,
-      filial: "Filial 5",
-      fornecedor: "fornecedor 5",
-      natureza: "natureza 5",
-      parcela: "parcela 5",
-    },
-    {
-      id: 6,
-      filial: "Filial 6",
-      fornecedor: "fornecedor 6",
-      natureza: "natureza 6",
-      parcela: "parcela 6",
-    },
-    {
-      id: 7,
-      filial: "Filial 7",
-      fornecedor: "fornecedor 7",
-      natureza: "natureza 7",
-      parcela: "parcela 7",
-    },
-    {
-      id: 8,
-      filial: "Filial 8",
-      fornecedor: "fornecedor 8",
-      natureza: "natureza 8",
-      parcela: "parcela 8",
-    },
-    {
-      id: 9,
-      filial: "Filial 9",
-      fornecedor: "fornecedor 9",
-      natureza: "natureza 9",
-      parcela: "parcela 9",
-    },
   ]);
 
   return (

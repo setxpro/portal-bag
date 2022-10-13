@@ -42,8 +42,8 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       toast("Você deve ao menos selecionar uma opção!");
       return;
     }
+    let conf = window.confirm("Deseja Realmente enviar todas as respostas ?");
 
-    let conf = window.confirm("Deseja Realmente enviar essa esposta ?");
     if (!conf) {
       toast("Abortadas pelo aprovador!");
       return;
@@ -65,8 +65,8 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       toast("Você deve ao menos selecionar uma opção!");
       return;
     }
+    let conf = window.confirm("Deseja Realmente enviar essa resposta ?");
 
-    let conf = window.confirm("Deseja Realmente enviar todas as respostas ?");
     if (!conf) {
       toast("Abortada pelo aprovador!");
       return;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import Content from "../../../Components/Page/Content";
 import { LayoutScreen } from "../../../Components/Page/Content/styles";
 import { Title } from "../../../Components/Page/Title";
@@ -99,7 +99,7 @@ const RelatorioVendas: React.FC = () => {
                 endIcon={<SearchIcon />}
                 onClick={() => handleDate()}
               >
-                Search
+                Buscar
               </Button>
             )}
 
@@ -158,4 +158,4 @@ const RelatorioVendas: React.FC = () => {
   );
 };
 
-export default RelatorioVendas;
+export default memo(RelatorioVendas);

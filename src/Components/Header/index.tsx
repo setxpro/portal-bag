@@ -7,11 +7,22 @@ import * as C from "./styles";
 
 const Header: React.FC = () => {
   const { toggleTheme, theme } = useTheme();
-  const { wrapperMenu, openMenuSidebar } = useHeader();
+  const {
+    wrapperMenu,
+    openMenuSidebar,
+    blueHeader,
+    redHeader,
+    darkGrayHeader,
+    grayHeader,
+    greenHeader,
+    orangeHeader,
+    purpleHeader,
+  } = useHeader();
   const { user } = useContext(AuthContext);
 
   const [isLogged, setIsLogged] = useState(false);
   const [notify, setNotify] = useState(5);
+  const [avatar, setAvatar] = useState("");
 
   const name = user?.FULLNAME.replace(".", " ");
 
@@ -28,8 +39,21 @@ const Header: React.FC = () => {
     }
   }, [user?.ID]);
 
+  useEffect(() => {
+    const storageDb = localStorage.getItem("avatar");
+    setAvatar(`${storageDb}`);
+  }, []);
+
   return (
-    <C.Container>
+    <C.Container
+      blue={blueHeader}
+      red={redHeader}
+      green={greenHeader}
+      purple={purpleHeader}
+      gray={grayHeader}
+      palletDGrayContainer={darkGrayHeader}
+      orange={orangeHeader}
+    >
       <C.ContentLeft>
         <C.ContentBtenPc>
           {openMenuSidebar ? "" : <C.BarsMenu onClick={wrapperMenu} />}
@@ -43,7 +67,16 @@ const Header: React.FC = () => {
         </C.ContentBtnMobile>
       </C.ContentLeft>
       <C.ContentRight>
-        <C.ContentAreaNotify notify={notify}>
+        <C.ContentAreaNotify
+          notify={notify}
+          blue={blueHeader}
+          red={redHeader}
+          green={greenHeader}
+          purple={purpleHeader}
+          gray={grayHeader}
+          palletDGrayNotify={darkGrayHeader}
+          orange={orangeHeader}
+        >
           <div className="notification">
             <C.BellIcon />
           </div>
@@ -54,19 +87,29 @@ const Header: React.FC = () => {
             (theme.title === "dark" && <C.Light onClick={toggleTheme} />)}
         </C.ContentAreaToggleTheme>
 
-        <C.ContentAreaNameAndAvatar isLogged={isLogged}>
-          <C.ContentNameArea>
+        <C.ContentAreaNameAndAvatar
+          isLogged={isLogged}
+          blue={blueHeader}
+          red={redHeader}
+          green={greenHeader}
+          purple={purpleHeader}
+          gray={grayHeader}
+          palletDGrayContentNameAvatar={darkGrayHeader}
+          orange={orangeHeader}
+        >
+          <C.ContentNameArea palletDGrayContentName={darkGrayHeader}>
             <h4>{name}</h4>
             <h6>Developer</h6>
           </C.ContentNameArea>
           <div className="avatar">
-            {user?.AVATAR === undefined && (
+            {avatar !== "null" && <img src={avatar} alt="avatar" />}
+
+            {avatar === "null" && (
               <div className="avatar-notfound">
                 <span>{firstLetter}</span>
                 <span>{secondLetter}</span>
               </div>
             )}
-            {user?.AVATAR && <img src={user.AVATAR} alt="avatar" />}
           </div>
         </C.ContentAreaNameAndAvatar>
       </C.ContentRight>

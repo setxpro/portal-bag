@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import Content from "../../../Components/Page/Content";
 import { LayoutScreen } from "../../../Components/Page/Content/styles";
 import { Title } from "../../../Components/Page/Title";
@@ -63,7 +63,7 @@ const VendasFlex: React.FC = () => {
   const handleExport = () => {
     const table = document.getElementById("Table2XLSX");
     const wb = XLSX.utils.table_to_book(table);
-    XLSX.writeFile(wb, "Relatorios_de_Compras_e_Conversão.xlsx");
+    XLSX.writeFile(wb, "Vendas_do_Flex.xlsx");
   };
   return (
     <LayoutScreen>
@@ -99,7 +99,7 @@ const VendasFlex: React.FC = () => {
                 endIcon={<SearchIcon />}
                 onClick={() => handleDate()}
               >
-                Search
+                Buscar
               </Button>
             )}
             <button className="btn-excel" onClick={handleExport}>
@@ -147,7 +147,13 @@ const VendasFlex: React.FC = () => {
                         return (
                           <tr key={index}>
                             <td>{item.CPFCliente}</td>
-                            <td>{item.DataPagamentoAprovado}</td>
+                            <td>
+                              {format(
+                                new Date(item.DataPagamentoAprovado),
+                                "dd/MM/yyyy",
+                                { locale: ptBR }
+                              )}
+                            </td>
                             <td>{item.Desconto}</td>
                             <td>{item.Endereco.Logradouro_Entrega}</td>
                             <td>{item.Endereco.Complemento_Entrega}</td>
@@ -189,4 +195,4 @@ const VendasFlex: React.FC = () => {
   );
 };
 
-export default VendasFlex;
+export default memo(VendasFlex);

@@ -74,12 +74,15 @@ const Sidebar: React.FC = () => {
                 Relatório de Vendas
               </Link>
             )}
-            <Link to="#" onClick={() => signout()}>
-              Logout
-            </Link>
           </ul>
         </nav>
       </C.ContentNavArea>
+      <C.ContentAreaSettings>
+        <C.LogoutIcon onClick={() => signout()} />
+        <Link to="/settings">
+          <C.SettingsIcon onClick={wrapperMenu} />
+        </Link>
+      </C.ContentAreaSettings>
     </C.Container>
   );
 };

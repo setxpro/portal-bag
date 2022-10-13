@@ -15,6 +15,13 @@ declare module "styled-components" {
       btnTabs: string;
       betnTabsBorder: string;
       btnInfoTab: string;
+      purpleHeader: string;
+      grayHeader: string;
+      greenHeader: string;
+      redHeader: string;
+      blueHeader: string;
+      orangeHeader: string;
+      darkGrayHeader: string;
     };
   }
 }

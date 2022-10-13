@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { MdClose } from "react-icons/md";
+import { AiOutlineLogout } from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
 
 export const Container = styled.div<{ wrapSidebar: boolean }>`
   height: 100vh;
@@ -17,14 +19,14 @@ export const Container = styled.div<{ wrapSidebar: boolean }>`
   border-left: 0;
 
   @media (max-width: 884px) {
-    width: ${(props) => (props.wrapSidebar ? "220px" : "0px")};
+    width: ${(props) => (props.wrapSidebar ? "250px" : "0px")};
     position: absolute;
-    z-index: 999;
+    z-index: 9999;
   }
   @media (max-width: 428px) {
     width: ${(props) => (props.wrapSidebar ? "200px" : "0px")};
     position: absolute;
-    z-index: 999;
+    z-index: 9999;
   }
   background: ${(props) => props.theme.colors.sidebar};
 
@@ -53,7 +55,6 @@ export const ContentLogo = styled.div`
 
 export const ContentNavArea = styled.div`
   width: 100%;
-
   nav {
     width: inherit;
 
@@ -110,4 +111,29 @@ export const CloseMenu = styled(MdClose)`
   @media (max-width: 428px) {
     font-size: 2rem;
   }
+`;
+
+export const LogoutIcon = styled(AiOutlineLogout)`
+  font-size: 1.9rem;
+  color: #fff;
+  cursor: pointer;
+`;
+export const SettingsIcon = styled(FiSettings)`
+  font-size: 1.9rem;
+  color: #fff;
+  cursor: pointer;
+`;
+
+export const ContentAreaSettings = styled.div`
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  position: absolute;
+  bottom: 0;
+
+  border-top: 1px solid #555;
 `;

@@ -20,6 +20,7 @@ import RelatorioVendas from "./../Screens/Tables/RelatorioVendas/index";
 import { GetInfoSellbieProvider } from "../Contexts/GetInfoSellbie";
 import VendasFlex from "../Screens/Tables/VendasFlex";
 import Home from "../Screens/Home";
+import Settings from "../Screens/settings";
 
 const RoutesApp: React.FC = () => {
   return (
@@ -134,6 +135,16 @@ const RoutesApp: React.FC = () => {
           <SecurityRoutes>
             <Template>
               <Table />
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <Settings />
             </Template>
           </SecurityRoutes>
         }
