@@ -11,6 +11,6 @@ export const Container = styled.div`
 
 export const LayoutScreen = styled.div`
   width: 100%;
-  height: calc(100vh - 35px);
+  height: calc(100vh - 65px);
   padding: 5px 10px;
 `;

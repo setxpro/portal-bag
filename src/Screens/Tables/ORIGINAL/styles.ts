@@ -14,6 +14,8 @@ export const Container = styled.div`
     }
   }
 
+  width: 100%;
+
   .MuiFormControlLabel-root {
     margin-left: 20px; /** OBS */
   }
@@ -28,9 +30,9 @@ export const Container = styled.div`
       tr {
         th {
           transition: all 1s ease;
-          padding: 0.5rem;
           color: ${(props) => props.theme.colors.text};
           background: ${(props) => props.theme.colors.main};
+          padding: 0.5rem;
 
           @media (max-width: 428px) {
             &:nth-child(3) {

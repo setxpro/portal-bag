@@ -1,6 +1,6 @@
-import React, { useContext, memo } from "react";
-import { SendResponseContext } from "../../../Contexts/SendResponse";
+import { useContext, memo } from "react";
 import { Link } from "react-router-dom";
+
 import { FormControlLabel, Radio } from "@material-ui/core";
 import CheckboxUnchecked from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckboxChecked from "@material-ui/icons/CheckBox";
@@ -9,33 +9,43 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 
 import * as C from "./styles";
+import { SendResponseContext } from "./../../../Contexts/SendResponse/index";
 
-const Shehrazade: React.FC = () => {
+const OriginalCompany = () => {
   const { setOptions, titles, sendOneInfo, options } =
     useContext(SendResponseContext);
+
+  const getIdByIndex = (index: number) => {
+    console.log({
+      ...titles[0],
+      id: index,
+    });
+  };
 
   return (
     <C.Container>
       <table>
         <thead>
-          <tr>
-            <th>Empresa</th>
-            <th>Filial</th>
-            <th>fornecedor</th>
-            <th>natureza</th>
-            <th>parcela</th>
-            <th>+ Info</th>
-            <th>A</th>
-            <th>R</th>
-            <th>E</th>
-            <th>Enviar</th>
-          </tr>
+          {titles.length <= 0 ? (
+            ""
+          ) : (
+            <tr>
+              <th>Empresa</th>
+              <th>Filial</th>
+              <th>fornecedor</th>
+              <th>natureza</th>
+              <th>parcela</th>
+              <th>+ Info</th>
+              <th>A</th>
+              <th>R</th>
+              <th>E</th>
+              <th>Enviar</th>
+            </tr>
+          )}
         </thead>
         <tbody>
           {titles.map((item, index) => {
-            let company = item.ADFIWKF.replace("     ", "");
-
-            if (company === "SHEHRAZADE")
+            if (item.ADFIWKF === "ORIGINAL")
               return (
                 <tr key={index}>
                   <td>{item.ADFIWKF}</td>
@@ -45,7 +55,7 @@ const Shehrazade: React.FC = () => {
                   <td>{item.APARWKF}</td>
                   <td>
                     <Link to={`/modal/${item.ANTIWKF}`}>
-                      <C.InfoIcon />
+                      <C.InfoIcon onClick={() => getIdByIndex(index)} />
                     </Link>
                   </td>
                   <td>
@@ -137,4 +147,4 @@ const Shehrazade: React.FC = () => {
   );
 };
 
-export default memo(Shehrazade);
+export default memo(OriginalCompany);

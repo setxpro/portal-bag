@@ -1,27 +1,27 @@
 import React, { useState, useCallback, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../../Contexts/Auth/AuthContext";
-// import { TableProps } from "../../../Types/TableProps";
+// import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 import { LayoutScreen } from "../../Page/Content/styles";
 import { Title } from "../../Page/Title";
 
 import * as C from "./styles";
+import { SendResponseContext } from "./../../../Contexts/SendResponse/index";
 
 const ModalTablesToBillsToPay: React.FC = () => {
   const history = useNavigate(); // Função nativa do react-router-dom para fazer o goBack
-  // const { id } = useParams(); // Pegar o parametro da URL na posição ID
+  const { id } = useParams(); // Pegar o parametro da URL na posição ID
 
   /**
    *  getAllTable - função da API para obter informações dos títulos
    *  user - para pegar o parametro na posição ID do usuário para atribuir a URL
    */
-  const { getAllTable, user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   //
 
   // State da aplicação passando como parametro a props
   // TableProps para pegar a tipagem do items da tabela
-  // const [titles] = useState<TableProps[]>([]);
+  const { titles } = useContext(SendResponseContext);
   //
 
   // Estados de cada item da tabela para que seja exibido no modal quando for chamado
@@ -32,7 +32,15 @@ const ModalTablesToBillsToPay: React.FC = () => {
   const [prefixo, setPrefixo] = useState("");
   const [tipo, setTipo] = useState("");
   const [numTitulo, setNumTitulo] = useState("");
-  const [loja, setLoja] = useState("");
+
+  // const [cdCeo, setCdCeo] = useState("");
+  // const [ceo, setCeo] = useState("");
+  const [descCeo, setDescCeo] = useState("");
+  const [descNatu, setDescNatu] = useState("");
+  const [historyCeo, setHistoryName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [fornecedorName, setFornecedorName] = useState("");
+
   //
 
   const [option, setOption] = useState("");
@@ -49,29 +57,31 @@ const ModalTablesToBillsToPay: React.FC = () => {
    *
    * useCallback -> é uma função que retorna outra função
    */
-  const getInfo = useCallback(async () => {
-    const data = await getAllTable(`000893`); //000893
-    console.log(user?.ID);
-    console.log(data[0].AFILWKF);
-    setFilial(data[0].AFILWKF);
-    setFornecedor(data[0].AFORWKF);
-    setNatureza(data[0].ANATWKF);
-    setParcela(data[0].APARWKF);
-    setPrefixo(data[0].APREWKF);
-    setTipo(data[0].ATIPWKF);
-    setNumTitulo(data[0].ATITWKF);
-    setLoja(data[0].ALOJWKF);
-  }, [getAllTable, user?.ID]);
+
   //
 
-  /**
-   * useEffect -> sempre que o componente for montado ele vai executar a função getInfo para obter
-   * todas os states setados
-   */
+  const dataTitles = useCallback(() => {
+    const data = titles.filter((i) => i.ANTIWKF === id);
+    setCompanyName(data[0]?.ADFIWKF);
+    setFilial(data[0]?.AFILWKF);
+    setFornecedor(data[0]?.AFORWKF);
+    setNatureza(data[0]?.ANATWKF);
+    setPrefixo(data[0]?.APREWKF);
+    setParcela(data[0]?.APARWKF);
+    setTipo(data[0]?.ATIPWKF);
+    setNumTitulo(data[0]?.ATITWKF);
+
+    // setCdCeo(data[0]?.ACUSWKF);
+    // setCeo(data[0]?.ADCCWKF);
+    setDescCeo(data[0]?.ADNAWKF);
+    setDescNatu(data[0]?.ANFOWKF);
+    setHistoryName(data[0]?.AHISWKF);
+    setFornecedorName(data[0]?.AFORWKF);
+  }, [id, titles]);
+
   useEffect(() => {
-    getInfo();
-  }, [getInfo]);
-  //
+    dataTitles();
+  }, [dataTitles]);
 
   const sendResponse = () => {
     let conf = window.confirm("Deseja Realmente enviar essa esposta ?");
@@ -82,7 +92,6 @@ const ModalTablesToBillsToPay: React.FC = () => {
     console.log({
       filial,
       fornecedor,
-      loja,
       natureza,
       parcela,
       prefixo,
@@ -114,15 +123,58 @@ const ModalTablesToBillsToPay: React.FC = () => {
   return (
     <LayoutScreen>
       <Title title="Mais Informações" />
+
       <C.Container>
-        <C.ContentAreaItem>Filial : {filial}</C.ContentAreaItem>
-        <C.ContentAreaItem>Fornecedor : {fornecedor}</C.ContentAreaItem>
-        <C.ContentAreaItem>Loja : {loja}</C.ContentAreaItem>
-        <C.ContentAreaItem>Natureza : {natureza}</C.ContentAreaItem>
-        <C.ContentAreaItem>Parcela : {parcela} </C.ContentAreaItem>
-        <C.ContentAreaItem>Prefixo : {prefixo}</C.ContentAreaItem>
-        <C.ContentAreaItem>Tipo : {tipo}</C.ContentAreaItem>
-        <C.ContentAreaItem>N° do Título : {numTitulo}</C.ContentAreaItem>
+        <div className="area-title">
+          <Title title={companyName} />
+        </div>
+
+        <C.ContentAreaItem>
+          <h4>Filial</h4>
+          <span></span>
+          <p>{filial}</p>
+        </C.ContentAreaItem>
+
+        <C.ContentAreaItem>
+          <h4>Nome do Fornecedor</h4>
+          <span></span>
+          <p>{fornecedorName}</p>
+        </C.ContentAreaItem>
+
+        <C.ContentAreaItem>
+          <h4>Natureza</h4>
+          <span></span>
+          <p>{natureza}</p> <div className="bar-h">|</div>{" "}
+          <h4>Descrição da Natureza</h4>
+          <span></span>
+          <p>{descNatu}</p>
+        </C.ContentAreaItem>
+
+        <C.ContentAreaItem>
+          <h4>Numero do Título</h4>
+          <span></span>
+          <p>{numTitulo}</p> <div className="bar-h">|</div> <h4>Parcela</h4>
+          <span></span>
+          <p>{parcela}</p> <div className="bar-h">|</div> <h4>Prefixo</h4>
+          <span></span>
+          <p>{prefixo}</p> <div className="bar-h">|</div> <h4>Tipo</h4>
+          <span></span>
+          <p>{tipo}</p>
+        </C.ContentAreaItem>
+        <div className="area-title">
+          <Title title="Centro de Custo" />
+        </div>
+
+        <C.ContentAreaItem>
+          <h4>Descrição</h4>
+          <span></span>
+          <p>{descCeo}</p>
+        </C.ContentAreaItem>
+        <C.ContentAreaItem>
+          <h4>Histórico</h4>
+          <span></span>
+          <p>{historyCeo}</p>
+        </C.ContentAreaItem>
       </C.Container>
       <C.ContentAreaItem>
         <C.ContentAreaTabs>

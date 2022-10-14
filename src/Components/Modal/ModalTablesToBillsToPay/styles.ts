@@ -9,6 +9,13 @@ export const Container = styled.div`
 
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  .area-title {
+    margin-top: 1rem;
+
+    border-bottom: 4px solid #0538;
+    width: 200px;
+  }
 `;
 
 export const ContentAreaItem = styled.div`
@@ -16,10 +23,30 @@ export const ContentAreaItem = styled.div`
   background: ${(props) => props.theme.colors.content};
   padding: 0.5rem;
   border-radius: 8px;
-  color: ${(props) => props.theme.colors.text};
 
   display: flex;
   align-items: center;
+
+  h4 {
+    font-weight: 500;
+    margin-right: 5px;
+    color: #888;
+  }
+
+  span {
+    width: 8px;
+    border: 1px solid ${(props) => props.theme.colors.text};
+  }
+
+  p {
+    margin-left: 5px;
+    color: ${(props) => props.theme.colors.text};
+  }
+
+  .bar-h {
+    margin: 0 10px;
+    color: ${(props) => props.theme.colors.text};
+  }
 `;
 export const ContentAreaTabs = styled.div`
   padding: 0.5rem;

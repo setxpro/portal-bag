@@ -1,55 +1,62 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { MenuHeaderContext } from "../../Contexts/MenuHeader";
 
 import * as C from "./styles";
-
-const company = [
-  { title: "Shehrazade", link: "/shehrazade" },
-  { title: "Radu", link: "/radu" },
-  { title: "Mockados", link: "/test" },
-];
-const center = [
-  { title: "Centro de custo 1", link: "/opt1" },
-  { title: "Centro de custo 2", link: "/opt2" },
-];
+import { SendResponseContext } from "./../../Contexts/SendResponse";
+import { MenuHeaderContext } from "./../../Contexts/MenuHeader";
 
 export const HeaderDropdownCompanies: React.FC = () => {
+  const { titles } = useContext(SendResponseContext);
   const { wrapperCompany } = useContext(MenuHeaderContext);
 
-  let count = company.length;
+  const [countItems] = useState(2); // Alter when insert company
+  const company = titles[0]?.ADFIWKF.replace("     ", "");
+  const centerCust = titles[0]?.ADCCWKF.replace(
+    "                                                         ",
+    ""
+  );
+
+  let count = countItems;
+
+  const [ceoC, setCeoC] = useState(false);
+  const wrapperCeo = () => {
+    setCeoC(!ceoC);
+    setCeoB(false);
+  };
+
+  const [ceoB, setCeoB] = useState(false);
+  const wrapperCeo2 = () => {
+    setCeoB(!ceoB);
+    setCeoC(false);
+  };
 
   return (
-    <>
-      {wrapperCompany && (
-        <C.ContainerCompany item={count}>
-          {company.map((item, indice) => (
-            <Link key={indice} to={item.link}>
-              {item.title}
-            </Link>
-          ))}
-        </C.ContainerCompany>
+    <C.ContainerCompany item={count} wr={ceoC} wr2={ceoB} open={wrapperCompany}>
+      <Link to="#" onClick={wrapperCeo}>
+        Shehrazade <C.ArrowDown />
+      </Link>
+      {company === "SHEHRAZADE" && centerCust === "CEO" ? (
+        <Link to="/opt1" className="drop1">
+          CEO
+        </Link>
+      ) : (
+        ""
       )}
-    </>
+
+      <Link to="#" onClick={wrapperCeo2}>
+        Original <C.ArrowDown />
+      </Link>
+      {company === "SHEHRAZADE" && centerCust === "CEO" ? (
+        <Link to="/original" className="drop2">
+          CEO
+        </Link>
+      ) : (
+        ""
+      )}
+    </C.ContainerCompany>
   );
 };
 
-export const HeaderDropdownOptions: React.FC = () => {
-  const { wrapperOptions } = useContext(MenuHeaderContext);
-
-  let count = center.length;
-
-  return (
-    <>
-      {wrapperOptions && (
-        <C.ContainerOption item={count}>
-          {center.map((item, index) => (
-            <Link key={index} to={item.link}>
-              {item.title}
-            </Link>
-          ))}
-        </C.ContainerOption>
-      )}
-    </>
-  );
+export const HeaderDropDownCoe = () => {
+  return <></>;
 };

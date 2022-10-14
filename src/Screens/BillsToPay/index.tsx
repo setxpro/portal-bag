@@ -5,16 +5,12 @@ import { Title } from "../../Components/Page/Title";
 import { SendResponseContext } from "../../Contexts/SendResponse";
 
 import * as C from "./styles";
-import {
-  HeaderDropdownCompanies,
-  HeaderDropdownOptions,
-} from "../../Components/HeaderDropdownTabs";
+import { HeaderDropdownCompanies } from "../../Components/HeaderDropdownTabs";
 import { MenuHeaderContext } from "../../Contexts/MenuHeader";
 
 const BillsToPay = ({ children }: { children: ReactNode }) => {
-  const { sendAllResp } = useContext(SendResponseContext);
-  const { wrapperMenuCompany, wrapperMenuOptions } =
-    useContext(MenuHeaderContext);
+  const { sendAllResp, titles } = useContext(SendResponseContext);
+  const { wrapperMenuCompany } = useContext(MenuHeaderContext);
   return (
     <LayoutScreen>
       <C.Container>
@@ -22,22 +18,25 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
           <Title title="Contas a Pagar" />
           <C.ContentAreabtns>
             <C.BtnTabs>
-              <C.ContentAreaDropdownCompany onClick={wrapperMenuCompany}>
-                <span>Empresas</span>
+              <C.ContentAreaDropdownCompany>
+                <span onClick={wrapperMenuCompany}>Empresas</span>
                 <HeaderDropdownCompanies />
               </C.ContentAreaDropdownCompany>
-              <C.ContentAreaDropdownOptions onClick={wrapperMenuOptions}>
-                <span>Centro de Custo</span>
-                <HeaderDropdownOptions />
-              </C.ContentAreaDropdownOptions>
             </C.BtnTabs>
           </C.ContentAreabtns>
         </C.ContentTopArea>
         <Content>
-          {children}
-          <C.ContentBtnSendAll>
-            <button onClick={sendAllResp}>Enviar todos</button>
-          </C.ContentBtnSendAll>
+          {titles.length <= 0 ? (
+            ""
+          ) : (
+            <>
+              <>{children}</>
+
+              <C.ContentBtnSendAll>
+                <button onClick={sendAllResp}>Enviar todos</button>
+              </C.ContentBtnSendAll>
+            </>
+          )}
         </Content>
         <C.ContainerAuthors>
           <p>

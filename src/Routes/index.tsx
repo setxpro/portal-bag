@@ -11,6 +11,7 @@ import SignInSide from "../Screens/Login/Signin";
 import SignUp from "../Screens/Login/SignUp";
 import Table from "../Screens/RegisterTarget";
 import Radu from "../Screens/Tables/Radu";
+import OriginalCompany from "../Screens/Tables/ORIGINAL";
 import Shehrazade from "../Screens/Tables/Shehrazade";
 import Test from "../Screens/Tables/Test";
 import SecurityRoutes from "../Security";
@@ -59,6 +60,20 @@ const RoutesApp: React.FC = () => {
               <MenuHeaderProvider>
                 <BillsToPay>
                   <Radu />
+                </BillsToPay>
+              </MenuHeaderProvider>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/original"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <OriginalCompany />
                 </BillsToPay>
               </MenuHeaderProvider>
             </Template>

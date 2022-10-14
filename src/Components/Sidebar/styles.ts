@@ -25,7 +25,7 @@ export const Container = styled.div<{ wrapSidebar: boolean }>`
   }
   @media (max-width: 428px) {
     width: ${(props) => (props.wrapSidebar ? "200px" : "0px")};
-    position: absolute;
+    position: fixed;
     z-index: 9999;
   }
   background: ${(props) => props.theme.colors.sidebar};

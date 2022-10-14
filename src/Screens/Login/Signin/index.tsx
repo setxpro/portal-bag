@@ -15,6 +15,7 @@ import thumbnail from "../../../images/thumbnail.jpg";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/Auth/AuthContext";
 import { toast } from "react-toastify";
+import { Error } from "../../../Components/Messages/Error";
 
 // Função nativa do material ui que vai gerar um component informando a empresa e o Copyright
 function Copyright(props: any) {
@@ -41,7 +42,7 @@ const theme = createTheme();
 export default function SignInSide() {
   const [login, setLogin] = React.useState(""); // State do login
   const [password, setPassword] = React.useState(""); // state da senha
-  // const [err, setErr] = React.useState(""); // State das mensagens de erro da aplicação
+  const [err, setErr] = React.useState(""); // State das mensagens de erro da aplicação
 
   const navigate = useNavigate(); // Função nativa do react-router-dom para trabalhar com rotas
 
@@ -96,24 +97,24 @@ export default function SignInSide() {
   React.useEffect(() => {
     // Verifico se a mensagem esta como senha Atualizada
     if (message === "Senha Atualizada") {
-      // setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
+      setErr(""); // Na intenção de limpar o "Senha Atualizada vindo do resultado do registrar uma nova senha"
       return;
     }
     //
 
     // Verifico se a mensagem esta como Usuário inexistente
     if (message === "Usuario Inexistente" && status === "false") {
+      setErr("Usuário não encontrado!");
       // setErr("Usuário não encontrado!"); -> testing
-      toast.error("Usuário inexistente!");
+      toast.error("Por favor, verifique o seu login.");
       return;
     }
     //
 
     // Verifico se a mensagem está como senha inválida
     if (message === "Senha Invalida") {
-      toast.error(message);
-      // seto no state error a mensagem vindo do servidor, mas paddando um novo valor
-      // setErr("Senha incorreta"); -> testing
+      toast.error("Por favor, verifique a sua senha.");
+      setErr("Senha inválida!");
       return; // return para parar o fluxo de leitura do código
     }
     //
@@ -185,6 +186,15 @@ export default function SignInSide() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
+              <Typography
+                component="h1"
+                variant="h6"
+                sx={{
+                  marginTop: 3,
+                }}
+              >
+                <Error error={err} />
+              </Typography>
               <TextField
                 margin="normal"
                 required
@@ -195,7 +205,7 @@ export default function SignInSide() {
                 autoComplete="login"
                 autoFocus
                 value={login}
-                onChange={(e) => [setLogin(e.target.value)]}
+                onChange={(e) => [setLogin(e.target.value), setErr("")]}
               />
               <TextField
                 margin="normal"
@@ -207,7 +217,7 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
                 value={password}
-                onChange={(e) => [setPassword(e.target.value)]}
+                onChange={(e) => [setPassword(e.target.value), setErr("")]}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}

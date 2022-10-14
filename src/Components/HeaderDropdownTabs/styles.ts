@@ -1,49 +1,56 @@
 import styled from "styled-components";
 
-export const ContainerCompany = styled.div<{ item: number }>`
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+
+export const ContainerCompany = styled.div<{
+  item: number;
+  wr: boolean;
+  wr2: boolean;
+  open: boolean;
+}>`
   position: absolute;
   top: 25px;
-  left: -45px;
-  height: calc(29px * item);
+  left: -75px;
+  height: ${(props) => (props.open ? "calc(29px * item)" : "0px")};
   display: flex;
   flex-direction: column;
   transition: all 1s ease;
   background: ${(props) => props.theme.colors.content};
   box-shadow: 1px 3px 10px #000;
   z-index: 99;
+  overflow: hidden;
 
   a {
     transition: all 1s ease;
     color: ${(props) => props.theme.colors.text};
     text-decoration: none;
-    padding: 0.5em 1rem;
+    padding: 0.5em 1.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
 
     &:hover {
       background: #aaaa;
     }
+  }
+
+  .drop1 {
+    overflow: hidden;
+    transition: all 1s ease;
+    color: ${(props) => props.theme.colors.text};
+
+    display: ${(props) => (props.wr ? "inline" : "none")};
+  }
+  .drop2 {
+    overflow: hidden;
+    transition: all 1s ease;
+    color: ${(props) => props.theme.colors.text};
+
+    display: ${(props) => (props.wr2 ? "inline" : "none")};
   }
 `;
-export const ContainerOption = styled.div<{ item: number }>`
-  position: absolute;
-  top: 25px;
-  right: 0;
-  height: calc(29px * item);
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  transition: all 1s ease;
-  background: ${(props) => props.theme.colors.content};
-  box-shadow: 1px 3px 10px #000;
-  z-index: 99;
 
-  a {
-    transition: all 1s ease;
-    color: ${(props) => props.theme.colors.text};
-    text-decoration: none;
-    padding: 0.5em 1rem;
-
-    &:hover {
-      background: #aaaa;
-    }
-  }
+export const ArrowDown = styled(MdOutlineKeyboardArrowDown)`
+  font-size: 1.3rem;
 `;
