@@ -139,7 +139,7 @@ const Radu = () => {
                 </tr>
               );
 
-            // return null;
+            return null;
           })}
         </tbody>
       </table>
