@@ -25,21 +25,21 @@ const ModalTablesToBillsToPay: React.FC = () => {
   //
 
   // Estados de cada item da tabela para que seja exibido no modal quando for chamado
-  const [filial, setFilial] = useState("");
-  const [fornecedor, setFornecedor] = useState("");
-  const [natureza, setNatureza] = useState("");
-  const [parcela, setParcela] = useState("");
-  const [prefixo, setPrefixo] = useState("");
-  const [tipo, setTipo] = useState("");
-  const [numTitulo, setNumTitulo] = useState("");
+  const [filial, setFilial] = useState(""); // AFILWKF
+  const [fornecedor, setFornecedor] = useState(""); // AFORWKF
+  const [natureza, setNatureza] = useState(""); // ANATWKF
+  const [parcela, setParcela] = useState(""); // APARWKF
+  const [prefixo, setPrefixo] = useState(""); // APREWKF
+  const [tipo, setTipo] = useState(""); // ATIPWKF
+  const [numTitulo, setNumTitulo] = useState(""); // ATITWKF
 
-  // const [cdCeo, setCdCeo] = useState("");
-  // const [ceo, setCeo] = useState("");
-  const [descCeo, setDescCeo] = useState("");
-  const [descNatu, setDescNatu] = useState("");
-  const [historyCeo, setHistoryName] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [fornecedorName, setFornecedorName] = useState("");
+  const [cdCeo, setCdCeo] = useState(""); // ACUSWKF
+  const [loja, setLoja] = useState(""); // ALOJWKF
+  const [descCeo, setDescCeo] = useState(""); // ADCCWKF
+  const [descNatu, setDescNatu] = useState(""); // ADNAWKF
+  const [historyCeo, setHistoryName] = useState(""); // AHISWKF
+  const [companyName, setCompanyName] = useState(""); // ADFIWKF
+  const [fornecedorName, setFornecedorName] = useState(""); // ANFOWKF
 
   //
 
@@ -63,6 +63,8 @@ const ModalTablesToBillsToPay: React.FC = () => {
   const dataTitles = useCallback(() => {
     const data = titles.filter((i) => i.ANTIWKF === id);
     setCompanyName(data[0]?.ADFIWKF);
+    setFornecedorName(data[0]?.ANFOWKF);
+
     setFilial(data[0]?.AFILWKF);
     setFornecedor(data[0]?.AFORWKF);
     setNatureza(data[0]?.ANATWKF);
@@ -70,13 +72,12 @@ const ModalTablesToBillsToPay: React.FC = () => {
     setParcela(data[0]?.APARWKF);
     setTipo(data[0]?.ATIPWKF);
     setNumTitulo(data[0]?.ATITWKF);
+    setLoja(data[0]?.ALOJWKF);
 
-    // setCdCeo(data[0]?.ACUSWKF);
-    // setCeo(data[0]?.ADCCWKF);
-    setDescCeo(data[0]?.ADNAWKF);
-    setDescNatu(data[0]?.ANFOWKF);
+    setCdCeo(data[0]?.ACUSWKF);
+    setDescCeo(data[0]?.ADCCWKF);
+    setDescNatu(data[0]?.ADNAWKF);
     setHistoryName(data[0]?.AHISWKF);
-    setFornecedorName(data[0]?.AFORWKF);
   }, [id, titles]);
 
   useEffect(() => {
@@ -90,13 +91,19 @@ const ModalTablesToBillsToPay: React.FC = () => {
       return;
     }
     console.log({
-      filial,
-      fornecedor,
-      natureza,
-      parcela,
-      prefixo,
-      tipo,
-      numTitulo,
+      AFILWKF: filial,
+      AFORWKF: fornecedor,
+      ALOJWKF: loja,
+      ANATWKF: natureza,
+      APARWKF: parcela,
+      APREWKF: prefixo,
+      ATIPWKF: tipo,
+      ATITWKF: numTitulo,
+      ADCCWKF: descCeo,
+      ADNAWKF: descNatu,
+      AHISWKF: historyCeo,
+      ADFIWKF: companyName,
+      ANFOWKF: fornecedorName,
       option,
     });
     toast("Resposta enviada com sucesso!");
@@ -161,17 +168,21 @@ const ModalTablesToBillsToPay: React.FC = () => {
           <span></span>
           <p>{tipo}</p>
         </C.ContentAreaItem>
-        <div className="area-title">
-          <Title title="Centro de Custo" />
-        </div>
 
         <C.ContentAreaItem>
-          <h4>Descrição</h4>
+          <h4>Código do CEO</h4>
+          <span></span>
+          <p>{cdCeo}</p>
+        </C.ContentAreaItem>
+
+        <C.ContentAreaItem>
+          <h4>Descrição doi CEO</h4>
           <span></span>
           <p>{descCeo}</p>
         </C.ContentAreaItem>
+
         <C.ContentAreaItem>
-          <h4>Histórico</h4>
+          <h4>Histórico do CEO</h4>
           <span></span>
           <p>{historyCeo}</p>
         </C.ContentAreaItem>

@@ -10,7 +10,8 @@ export const ContainerCompany = styled.div<{
 }>`
   position: absolute;
   top: 25px;
-  left: -75px;
+  left: 0;
+  right: 0;
   height: ${(props) => (props.open ? "calc(29px * item)" : "0px")};
   display: flex;
   flex-direction: column;

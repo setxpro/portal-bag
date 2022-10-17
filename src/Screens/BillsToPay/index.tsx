@@ -19,7 +19,9 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
           <C.ContentAreabtns>
             <C.BtnTabs>
               <C.ContentAreaDropdownCompany>
-                <span onClick={wrapperMenuCompany}>Empresas</span>
+                <span onClick={wrapperMenuCompany}>
+                  Empresas | Centro de Custo
+                </span>
                 <HeaderDropdownCompanies />
               </C.ContentAreaDropdownCompany>
             </C.BtnTabs>

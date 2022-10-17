@@ -3,6 +3,3 @@
 # Bag Web
 
 # Tabela
-
-histórico
-descrição Natureza

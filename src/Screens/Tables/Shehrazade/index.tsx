@@ -124,7 +124,7 @@ const Shehrazade: React.FC = () => {
                     </div>
                   </td>
                   <td>
-                    <button onClick={() => sendOneInfo(index)}>Enviar</button>
+                    <button onClick={() => [sendOneInfo(index)]}>Enviar</button>
                   </td>
                 </tr>
               );

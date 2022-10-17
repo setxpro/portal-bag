@@ -18,6 +18,7 @@ interface Props {
   sendAllResp: () => void;
   titles: TableProps[];
   sendOneInfo: (index: number) => void;
+  removeOnTheList: (id: string) => void;
 }
 
 export const SendResponseContext = createContext({} as Props);
@@ -36,6 +37,11 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       setTitulo(data);
     })();
   }, [getAllTable, user?.ID]);
+
+  const removeOnTheList = (id: string) => {
+    let remove = titles.filter((i) => i.ANTIWKF !== id);
+    setTitulo(remove);
+  };
 
   const sendAllResp = () => {
     if (!options) {
@@ -130,6 +136,7 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
     <SendResponseContext.Provider
       value={{
         options,
+        removeOnTheList,
         setOptions,
         sendAllResp,
         titles,
