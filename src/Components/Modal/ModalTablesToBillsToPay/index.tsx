@@ -21,7 +21,7 @@ const ModalTablesToBillsToPay: React.FC = () => {
 
   // State da aplicação passando como parametro a props
   // TableProps para pegar a tipagem do items da tabela
-  const { titles, sendOneInfo } = useContext(SendResponseContext);
+  const { titles } = useContext(SendResponseContext);
   //
 
   // Estados de cada item da tabela para que seja exibido no modal quando for chamado
