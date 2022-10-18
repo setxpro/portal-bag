@@ -21,7 +21,7 @@ const ModalTablesToBillsToPay: React.FC = () => {
 
   // State da aplicação passando como parametro a props
   // TableProps para pegar a tipagem do items da tabela
-  const { titles } = useContext(SendResponseContext);
+  const { titles, sendOneInfo } = useContext(SendResponseContext);
   //
 
   // Estados de cada item da tabela para que seja exibido no modal quando for chamado
@@ -85,11 +85,17 @@ const ModalTablesToBillsToPay: React.FC = () => {
   }, [dataTitles]);
 
   const sendResponse = () => {
+    if (!option) {
+      toast.error("Você deve ao menos selecionar uma resposta.");
+      return;
+    }
+
     let conf = window.confirm("Deseja Realmente enviar essa esposta ?");
     if (!conf) {
       toast("Resposta abortada pelo aprovador!");
       return;
     }
+
     console.log({
       AFILWKF: filial,
       AFORWKF: fornecedor,

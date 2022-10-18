@@ -15,20 +15,18 @@ const Radu = () => {
   const { setOptions, titles, sendOneInfo, options } =
     useContext(SendResponseContext);
 
-  const getIdByIndex = (index: number) => {
-    console.log({
-      ...titles[0],
-      id: index,
-    });
-  };
+  // const getIdByIndex = (index: number) => {
+  //   console.log({
+  //     ...titles[0],
+  //     id: index,
+  //   });
+  // };
 
   return (
     <C.Container>
       <table>
         <thead>
-          {titles.length <= 0 ? (
-            ""
-          ) : (
+          {titles.length <= 0 ? null : (
             <tr>
               <th>Empresa</th>
               <th>fornecedor</th>
@@ -55,7 +53,7 @@ const Radu = () => {
                   <td>{item.APARWKF}</td>
                   <td>
                     <Link to={`/modal/${item.ANTIWKF}`}>
-                      <C.InfoIcon onClick={() => getIdByIndex(index)} />
+                      <C.InfoIcon />
                     </Link>
                   </td>
                   <td>

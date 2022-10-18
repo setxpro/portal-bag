@@ -15,17 +15,6 @@ const OriginalCompany = () => {
   const { setOptions, titles, sendOneInfo, options } =
     useContext(SendResponseContext);
 
-  const getIdByIndex = (index: number) => {
-    console.log({
-      ...titles[0],
-      id: index,
-    });
-  };
-
-  useEffect(() => {
-    console.log("Original CEO");
-  }, []);
-
   return (
     <C.Container>
       <table>
@@ -59,7 +48,7 @@ const OriginalCompany = () => {
                   <td>{item.APARWKF}</td>
                   <td>
                     <Link to={`/modal/${item.ANTIWKF}`}>
-                      <C.InfoIcon onClick={() => getIdByIndex(index)} />
+                      <C.InfoIcon />
                     </Link>
                   </td>
                   <td>

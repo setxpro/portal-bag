@@ -197,7 +197,9 @@ export const ContentAreaNotify = styled.div<{
     }
   }
 `;
+
 export const ContentAreaToggleTheme = styled.div``;
+
 export const ContentAreaNameAndAvatar = styled.div<{
   isLogged: boolean;
   blue: boolean;
