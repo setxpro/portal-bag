@@ -16,8 +16,10 @@ const Template = ({ children }: { children: ReactNode }) => {
           <Sidebar />
         </PalletProvider>
         <C.Content>
-          <Header />
-          <SendResponseProvider>{children}</SendResponseProvider>
+          <SendResponseProvider>
+            <Header />
+            {children}
+          </SendResponseProvider>
         </C.Content>
       </HeaderProvider>
     </Layout>

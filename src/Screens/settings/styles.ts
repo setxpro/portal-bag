@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { MdOutlineNightlight } from "react-icons/md";
-import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineNightlight, MdOutlineLightMode } from "react-icons/md";
+import { BsCloudUpload } from "react-icons/bs";
 
 export const Container = styled.div`
   padding: 10px 0.5rem;
@@ -122,6 +122,20 @@ export const Light = styled(MdOutlineLightMode)`
   }
 `;
 
+export const CheckOky = styled(BsCloudUpload)`
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: #28c76f;
+
+  animation: 1s rot linear both;
+
+  @keyframes rot {
+    0% {
+      transform: rotate(90deg);
+    }
+  }
+`;
+
 export const ContentToggleAvatar = styled.div`
   margin-top: 1rem;
   padding: 1rem 0.5rem;
@@ -155,5 +169,13 @@ export const ContentToggleAvatar = styled.div`
       font-weight: 600;
       cursor: pointer;
     }
+  }
+
+  .message-register-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #28c76f;
   }
 `;

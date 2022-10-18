@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/Auth/AuthContext";
+import { SendResponseContext } from "../../Contexts/SendResponse";
 import { useHeader } from "../../Hooks/useHeader";
 import { useTheme } from "../../Hooks/useTheme";
 
@@ -7,6 +8,7 @@ import * as C from "./styles";
 
 const Header: React.FC = () => {
   const { toggleTheme, theme } = useTheme();
+  const { titles } = useContext(SendResponseContext);
   const {
     wrapperMenu,
     openMenuSidebar,
@@ -21,7 +23,7 @@ const Header: React.FC = () => {
   const { user } = useContext(AuthContext);
 
   const [isLogged, setIsLogged] = useState(false);
-  const [notify, setNotify] = useState(5);
+  const [notify, setNotify] = useState(0);
   const [avatar, setAvatar] = useState("");
 
   const name = user?.FULLNAME.replace(".", " ");
@@ -35,9 +37,9 @@ const Header: React.FC = () => {
   useEffect(() => {
     if (user?.ID) {
       setIsLogged(true);
-      setNotify(5);
+      setNotify(titles.length);
     }
-  }, [user?.ID]);
+  }, [user?.ID, titles.length]);
 
   useEffect(() => {
     const storageDb = localStorage.getItem("avatar");
@@ -102,14 +104,14 @@ const Header: React.FC = () => {
             <h6>Developer</h6>
           </C.ContentNameArea>
           <div className="avatar">
-            {avatar !== "null" && <img src={avatar} alt="avatar" />}
-
-            {avatar === "null" && (
-              <div className="avatar-notfound">
-                <span>{firstLetter}</span>
-                <span>{secondLetter}</span>
-              </div>
-            )}
+            {avatar !== "" && <img src={avatar} alt="avatar" />}
+            {avatar === "null" ||
+              (avatar === "" && (
+                <div className="avatar-notfound">
+                  <span>{firstLetter}</span>
+                  <span>{secondLetter}</span>
+                </div>
+              ))}
           </div>
         </C.ContentAreaNameAndAvatar>
       </C.ContentRight>

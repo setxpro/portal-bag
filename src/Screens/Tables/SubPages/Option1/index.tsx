@@ -13,7 +13,6 @@ import * as C from "./styles";
 const Option1: React.FC = () => {
   const { setOptions, titles, sendOneInfo, options } =
     useContext(SendResponseContext);
-
   return (
     <C.Container>
       <table>

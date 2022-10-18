@@ -8,6 +8,7 @@ import { useTheme } from "./../../Hooks/useTheme";
 
 const Settings = () => {
   const [newPicture, setNewPicture] = useState<string | ArrayBuffer | null>("");
+  const [loading, setLoading] = useState(false);
 
   const {
     rootPalletBlue,
@@ -40,16 +41,13 @@ const Settings = () => {
 
   const handleBase64 = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
+    setLoading(true);
     const storageData = localStorage.setItem("avatar", `${newPicture}`);
 
     if (!newPicture) {
       alert("Você deve ao menos importar uma imagem antes de cadastrar...");
       return;
     }
-
-    console.log({
-      avatar: newPicture,
-    });
     return storageData;
   };
 
@@ -94,7 +92,14 @@ const Settings = () => {
                 accept="image/*"
                 onChange={(e) => handleProfile(e)}
               />
-              <button onClick={handleBase64}>Cadastrar imagem</button>
+              {loading && (
+                <div className="message-register-avatar">
+                  <C.CheckOky /> Imagem Registrada com Sucesso!
+                </div>
+              )}
+              {!loading && (
+                <button onClick={handleBase64}>Cadastrar imagem</button>
+              )}
             </div>
           </C.ContentToggleAvatar>
         </Content>

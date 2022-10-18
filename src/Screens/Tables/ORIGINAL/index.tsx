@@ -1,4 +1,4 @@
-import { useContext, memo } from "react";
+import { useContext, memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { FormControlLabel, Radio } from "@material-ui/core";
@@ -21,6 +21,10 @@ const OriginalCompany = () => {
       id: index,
     });
   };
+
+  useEffect(() => {
+    console.log("Original CEO");
+  }, []);
 
   return (
     <C.Container>

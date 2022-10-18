@@ -117,9 +117,7 @@ const VendasFlex: React.FC = () => {
             ) : (
               <table id="Table2XLSX">
                 <thead>
-                  {infoTable.length <= 0 ? (
-                    ""
-                  ) : (
+                  {infoTable.length <= 0 ? null : (
                     <tr>
                       <th>CPFCliente</th>
                       <th>DataPagamentoAprovado</th>
