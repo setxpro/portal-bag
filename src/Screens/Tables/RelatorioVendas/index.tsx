@@ -142,14 +142,26 @@ const RelatorioVendas: React.FC = () => {
                       <tr key={indice}>
                         <td>{relatory.Loja_Compra}</td>
                         <td>{relatory.Vendedor_Compra}</td>
-                        <td>{relatory.Data_Compra}</td>
+                        <td>
+                          {format(
+                            new Date(relatory.Data_Compra),
+                            "dd/MM/yyyy",
+                            { locale: ptBR }
+                          )}
+                        </td>
                         <td>{relatory.Nome_Cliente}</td>
                         <td>{relatory.CPF_Cliente}</td>
                         <td>{relatory.Telefone_Contato}</td>
                         <td>{relatory.Vendedor_Contato}</td>
                         <td>{relatory.Vendedor_Contato_Matricula}</td>
                         <td>{relatory.Loja_Vendedor_Contato}</td>
-                        <td>{relatory.Data_Contato}</td>
+                        <td>
+                          {format(
+                            new Date(relatory.Data_Contato),
+                            "dd/MM/yyyy",
+                            { locale: ptBR }
+                          )}
+                        </td>
                         <td>{relatory.ComprasTotais}</td>
                       </tr>
                     );

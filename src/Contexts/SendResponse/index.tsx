@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { ChildrenReactNode } from "../../Types/ChildrenProps";
 import { TableProps } from "../../Types/TableProps";
 import { AuthContext } from "../Auth/AuthContext";
+import axios from "axios";
 
 interface Props {
   setOptions: React.Dispatch<
@@ -43,7 +44,7 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
     setTitulo(remove);
   };
 
-  const sendAllResp = () => {
+  const sendAllResp = async () => {
     if (!options) {
       toast("Você deve ao menos selecionar uma opção!");
       return;
@@ -62,11 +63,16 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       };
     });
 
-    console.log(allOpt.filter((x) => x.option));
+    const { data } = await axios.post(
+      "/send-all",
+      allOpt.filter((x) => x.option)
+    );
     toast("Respostas enviadas com sucesso!");
+
+    return data;
   };
 
-  const sendOneInfo = (index: number) => {
+  const sendOneInfo = async (index: number) => {
     if (!options[index]) {
       toast("Você deve ao menos selecionar uma opção!");
       return;
@@ -88,9 +94,11 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       option: options[index],
     };
 
-    console.log(newObject);
+    const { data } = await axios.post("/send-all", newObject);
 
     toast(`Resposta enviada com sucesso!`);
+
+    return data;
   };
 
   // useEffect(() => {

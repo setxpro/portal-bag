@@ -151,7 +151,7 @@ const VendasFlex: React.FC = () => {
                 </thead>
                 <tbody>
                   {infoTable.map((item, id) => (
-                    <tr key={id}>
+                    <React.Fragment key={id}>
                       {item.Produtos.map((i, index) => {
                         if (item.Produtos.length >= 1) {
                           return (
@@ -194,7 +194,7 @@ const VendasFlex: React.FC = () => {
                         }
                         return null;
                       })}
-                    </tr>
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
