@@ -100,12 +100,6 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
 
   const forgotPassword = async (user: string, number: string) => {
     const data = await api.forgotPassword(user, number);
-    // let mess = data[0].MESSAGE;
-    // let sts = data[0].STATUS;
-
-    // setStatus(sts);
-    // // Cancela o loading
-    // setMessage(mess);
     return data;
   };
   const updatePassword = async (
@@ -114,23 +108,10 @@ export const AuthProvider = ({ children }: ChildrenReactNode) => {
     newPass: string
   ) => {
     const data = await api.updatePassword(user, passEmail, newPass);
-
-    // let mess = data[0].MESSAGE;
-    // let sts = data[0].STATUS;
-    // setStatus(sts);
-    // Cancela o loading
-    // setMessage(mess);
     return data;
   };
   const firstLogin = async (user: string, pass: string, newPass: string) => {
     const data = await api.firstLogin(user, pass, newPass);
-
-    // let mess = data[0].MESSAGE;
-    // let sts = data[0].STATUS;
-    // console.log(mess);
-    // setStatus(sts);
-    // // Cancela o loading
-    // setMessage(mess);
     return data;
   };
 
