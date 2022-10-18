@@ -151,7 +151,7 @@ const VendasFlex: React.FC = () => {
                 </thead>
                 <tbody>
                   {infoTable.map((item, id) => (
-                    <>
+                    <tr key={id}>
                       {item.Produtos.map((i, index) => {
                         if (item.Produtos.length >= 1) {
                           return (
@@ -180,10 +180,10 @@ const VendasFlex: React.FC = () => {
                               <td>{item.Observacao}</td>
 
                               <td>{item.Parcelas}</td>
-                              <td key={id}>{`${i.NomeProduto}`}</td>
-                              <td key={id}>{`${i.Descricao}`}</td>
-                              <td key={id}>{`${i.ValorItem}`}</td>
-                              <td key={id}>{`${i.Quantidade}`}</td>
+                              <td>{`${i.NomeProduto}`}</td>
+                              <td>{`${i.Descricao}`}</td>
+                              <td>{`${i.ValorItem}`}</td>
+                              <td>{`${i.Quantidade}`}</td>
 
                               <td>{item.ValorTotal}</td>
                               <td>{item.authorizationCode}</td>
@@ -194,7 +194,7 @@ const VendasFlex: React.FC = () => {
                         }
                         return null;
                       })}
-                    </>
+                    </tr>
                   ))}
                 </tbody>
               </table>

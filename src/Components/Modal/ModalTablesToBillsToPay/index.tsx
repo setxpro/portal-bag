@@ -176,7 +176,7 @@ const ModalTablesToBillsToPay: React.FC = () => {
         </C.ContentAreaItem>
 
         <C.ContentAreaItem>
-          <h4>Descrição doi CEO</h4>
+          <h4>Descrição do CEO</h4>
           <span></span>
           <p>{descCeo}</p>
         </C.ContentAreaItem>

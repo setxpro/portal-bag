@@ -25,6 +25,8 @@ export const Container = styled.div`
     width: 100%;
     user-select: none;
 
+    position: relative;
+
     thead {
       tr {
         th {
@@ -32,6 +34,10 @@ export const Container = styled.div`
           color: ${(props) => props.theme.colors.text};
           background: ${(props) => props.theme.colors.main};
           padding: 0.5rem;
+
+          position: sticky;
+          top: 0;
+          z-index: 9;
 
           @media (max-width: 428px) {
             &:nth-child(3) {

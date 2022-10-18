@@ -157,11 +157,6 @@ const RelatorioVendas: React.FC = () => {
                 </tbody>
               </table>
             )}
-            {/* {infoTable.length === 0 && (
-              <div className="message">
-                <SpinnerTableEmpty />
-              </div>
-            )} */}
           </C.ContentTable>
         </Content>
       </C.Container>
