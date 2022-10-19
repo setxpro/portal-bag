@@ -21,7 +21,7 @@ export default function FirstLogin() {
   const [confirmPass, setConfirmPass] = React.useState("");
   const [err, setErr] = React.useState("");
 
-  const { firstLogin, setMessage } = React.useContext(AuthContext);
+  const { firstLogin, setMessage, message } = React.useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -106,7 +106,7 @@ export default function FirstLogin() {
             }}
           >
             <Error error={err} />
-            {/* <Error error={message} /> */}
+            <Error error={message} />
           </Typography>
           <Box
             component="form"

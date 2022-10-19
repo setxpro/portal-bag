@@ -118,9 +118,7 @@ const RelatorioVendas: React.FC = () => {
             ) : (
               <table id="Table2XLSX">
                 <thead>
-                  {infoTable.length <= 0 ? (
-                    ""
-                  ) : (
+                  {infoTable.length <= 0 ? null : (
                     <tr>
                       <th>Loja_Compra</th>
                       <th>Vendedor_Compra</th>
@@ -156,10 +154,14 @@ const RelatorioVendas: React.FC = () => {
                         <td>{relatory.Vendedor_Contato_Matricula}</td>
                         <td>{relatory.Loja_Vendedor_Contato}</td>
                         <td>
-                          {format(
-                            new Date(relatory.Data_Contato),
-                            "dd/MM/yyyy",
-                            { locale: ptBR }
+                          {relatory.Data_Contato === null ? null : (
+                            <>
+                              {format(
+                                new Date(relatory.Data_Contato),
+                                "dd/MM/yyyy",
+                                { locale: ptBR }
+                              )}
+                            </>
                           )}
                         </td>
                         <td>{relatory.ComprasTotais}</td>

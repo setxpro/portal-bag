@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
               </Link>
             )}
 
-            {cVendasFlex !== "003" && (
+            {cVendasFlex === "003" && (
               <Link
                 to="/vendas-flex"
                 onClick={getFlex}
@@ -65,7 +65,7 @@ const Sidebar: React.FC = () => {
                 Vendas do Flex
               </Link>
             )}
-            {cRelatoryVendas !== "031" && (
+            {cRelatoryVendas === "031" && (
               <Link
                 to="/relatorio-vendas"
                 onClick={getRelatory}
