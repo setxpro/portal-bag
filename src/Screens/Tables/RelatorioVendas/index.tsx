@@ -154,15 +154,8 @@ const RelatorioVendas: React.FC = () => {
                         <td>{relatory.Vendedor_Contato_Matricula}</td>
                         <td>{relatory.Loja_Vendedor_Contato}</td>
                         <td>
-                          {relatory.Data_Contato === null ? null : (
-                            <>
-                              {format(
-                                new Date(relatory.Data_Contato),
-                                "dd/MM/yyyy",
-                                { locale: ptBR }
-                              )}
-                            </>
-                          )}
+                          {/* {relatory.Data_Contato === null ? null : ( */}
+                          {relatory.Data_Contato}
                         </td>
                         <td>{relatory.ComprasTotais}</td>
                       </tr>

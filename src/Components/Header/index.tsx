@@ -99,9 +99,16 @@ const Header: React.FC = () => {
           palletDGrayContentNameAvatar={darkGrayHeader}
           orange={orangeHeader}
         >
-          <C.ContentNameArea palletDGrayContentName={darkGrayHeader}>
+          <C.ContentNameArea
+            palletDGrayContentName={darkGrayHeader}
+            palletBlueContentName={blueHeader}
+            palletReadContentName={redHeader}
+            palletGreenContentName={greenHeader}
+            palletPurpleContentName={purpleHeader}
+            palletGrayContentName={grayHeader}
+          >
             <h4>{name}</h4>
-            <h6>Developer</h6>
+            <h6>{user?.CARGO}</h6>
           </C.ContentNameArea>
           <div className="avatar">
             {avatar !== "" && <img src={avatar} alt="avatar" />}

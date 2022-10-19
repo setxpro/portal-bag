@@ -243,7 +243,22 @@ export const ContentAreaNameAndAvatar = styled.div<{
         font-weight: bold;
         font-size: 1.8rem;
         transition: all 1s ease;
-        color: ${(props) => props.theme.colors.text};
+        color: ${(props) =>
+          props.blue === true
+            ? "#FFF"
+            : props.red === true
+            ? "#FFF"
+            : props.green === true
+            ? "#FFF"
+            : props.purple === true
+            ? "#FFF"
+            : props.gray === true
+            ? "#FFF"
+            : props.palletDGrayContentNameAvatar === true
+            ? "#FFF"
+            : props.orange === true
+            ? "#FFF"
+            : props.theme.colors.text};
       }
     }
 
@@ -280,7 +295,14 @@ export const ContentAreaNameAndAvatar = styled.div<{
   }
 `;
 
-export const ContentNameArea = styled.div<{ palletDGrayContentName: boolean }>`
+export const ContentNameArea = styled.div<{
+  palletDGrayContentName: boolean;
+  palletBlueContentName: boolean;
+  palletReadContentName: boolean;
+  palletGreenContentName: boolean;
+  palletPurpleContentName: boolean;
+  palletGrayContentName: boolean;
+}>`
   display: flex;
   flex-direction: column;
 
@@ -288,20 +310,30 @@ export const ContentNameArea = styled.div<{ palletDGrayContentName: boolean }>`
   h6 {
     transition: all 1s ease;
     color: ${(props) =>
-      props.palletDGrayContentName === true ? "#FFF" : props.theme.colors.text};
+      props.palletDGrayContentName === true
+        ? "#FFF"
+        : props.palletBlueContentName === true
+        ? "#FFF"
+        : props.palletReadContentName === true
+        ? "#FFF"
+        : props.palletGreenContentName === true
+        ? "#FFF"
+        : props.palletPurpleContentName === true
+        ? "#FFF"
+        : props.palletGrayContentName === true
+        ? "#FFF"
+        : props.theme.colors.text};
   }
   h4 {
     font-size: 1.1em;
     text-transform: capitalize;
     font-weight: 300;
+    text-align: end;
   }
   h6 {
     font-size: 1em;
     margin-left: 30px;
-    color: ${(props) =>
-      props.palletDGrayContentName === true ? "#FFF" : props.theme.colors.text};
     font-weight: 500;
-
     text-align: end;
   }
 `;

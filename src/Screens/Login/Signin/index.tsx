@@ -85,10 +85,10 @@ export default function SignInSide() {
         return navigate("/");
       }
 
-      // // Caso seja false
-      // if (status === "false") {
-      // }
-      // //
+      if (message === "Senha Invalida") {
+        toast.error("Por favor, verifique a sua senha.");
+        return; // return para parar o fluxo de leitura do código
+      }
     }
     //
   };

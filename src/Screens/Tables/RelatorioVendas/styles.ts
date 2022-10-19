@@ -33,8 +33,7 @@ export const ContentTitle = styled.div`
     cursor: pointer;
 
     &:hover {
-      border: 3px solid #053;
-      background: transparent;
+      opacity: 0.56;
     }
   }
 `;

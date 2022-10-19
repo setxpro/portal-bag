@@ -20,10 +20,10 @@ const Sidebar: React.FC = () => {
   const { signout, user } = useContext(AuthContext);
   const { openMenuSidebar, wrapperMenu } = useHeader();
 
-  const cPagar = user?.ASSIGNMENTS[0];
-  const cEtiquetas = user?.ASSIGNMENTS[1];
-  const cRelatoryVendas = user?.ASSIGNMENTS[3];
-  const cVendasFlex = user?.ASSIGNMENTS[4];
+  const cPagar = user?.ASSIGNMENTS.includes("001");
+  const cEtiquetas = user?.ASSIGNMENTS.includes("002");
+  const cRelatoryVendas = user?.ASSIGNMENTS.includes("003");
+  const cVendasFlex = user?.ASSIGNMENTS.includes("031");
 
   return (
     <C.Container wrapSidebar={openMenuSidebar}>
@@ -37,7 +37,8 @@ const Sidebar: React.FC = () => {
             <Link to="/" className="home-active">
               Home
             </Link>
-            {cPagar === "001" && (
+
+            {cPagar && (
               <Link
                 to="/shehrazade"
                 onClick={getHome}
@@ -46,7 +47,8 @@ const Sidebar: React.FC = () => {
                 Contas a Pagar
               </Link>
             )}
-            {cEtiquetas === "002" && (
+
+            {cEtiquetas && (
               <Link
                 to="/table"
                 onClick={getTable}
@@ -56,7 +58,7 @@ const Sidebar: React.FC = () => {
               </Link>
             )}
 
-            {cVendasFlex === "003" && (
+            {cVendasFlex && (
               <Link
                 to="/vendas-flex"
                 onClick={getFlex}
@@ -65,7 +67,8 @@ const Sidebar: React.FC = () => {
                 Vendas do Flex
               </Link>
             )}
-            {cRelatoryVendas === "031" && (
+
+            {cRelatoryVendas && (
               <Link
                 to="/relatorio-vendas"
                 onClick={getRelatory}
