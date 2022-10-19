@@ -37,3 +37,5 @@
 # Teste de aceitação [ 2 8 / 1 0 ][em espera]
 
     verificar se o produto de software está pronto para ser entregue ao cliente
+
+# Corrigir scroll das tabelas de venda do flex e relatório de vendas
