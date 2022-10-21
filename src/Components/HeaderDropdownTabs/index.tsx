@@ -56,7 +56,3 @@ export const HeaderDropdownCompanies: React.FC = () => {
     </C.ContainerCompany>
   );
 };
-
-export const HeaderDropDownCoe = () => {
-  return <></>;
-};

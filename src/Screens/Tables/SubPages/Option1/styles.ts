@@ -17,7 +17,21 @@ export const Container = styled.div`
   .MuiFormControlLabel-root {
     margin-left: 20px; /** OBS */
   }
-  overflow: scroll;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    transition: all 1s ease;
+    background: ${(props) => props.theme.colors.borders};
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
   max-height: calc(100vh - 220px);
 
   table {

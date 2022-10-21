@@ -2,7 +2,10 @@ import { createContext, ReactNode, useState } from "react";
 
 interface Props {
   openMenuSidebar: boolean;
+  openNotify: boolean;
   wrapperMenu: () => void;
+  wrapperNotify: () => void;
+
   setOpenMenuSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 
   purpleHeader: boolean;
@@ -26,6 +29,7 @@ export const HeaderContext = createContext({} as Props);
 
 export const HeaderProvider = ({ children }: { children: ReactNode }) => {
   const [openMenuSidebar, setOpenMenuSidebar] = useState(false);
+  const [openNotify, setOpenNotify] = useState(false);
 
   const [purpleHeader, setPurpleHeader] = useState(false);
   const [grayHeader, setGrayHeader] = useState(false);
@@ -37,6 +41,9 @@ export const HeaderProvider = ({ children }: { children: ReactNode }) => {
 
   const wrapperMenu = () => {
     setOpenMenuSidebar(!openMenuSidebar);
+  };
+  const wrapperNotify = () => {
+    setOpenNotify(!openNotify);
   };
 
   const rootPalletPurple = () => {
@@ -124,6 +131,8 @@ export const HeaderProvider = ({ children }: { children: ReactNode }) => {
         rootPalletBlue,
         rootPalletOrange,
         rootPalletDarkGray,
+        openNotify,
+        wrapperNotify,
       }}
     >
       {children}

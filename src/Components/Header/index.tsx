@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/Auth/AuthContext";
+import { HeaderContext } from "../../Contexts/Header/HeaderContext";
 import { SendResponseContext } from "../../Contexts/SendResponse";
 import { useHeader } from "../../Hooks/useHeader";
 import { useTheme } from "../../Hooks/useTheme";
+import DropDownHeaderNotify from "../DropDownHeaderNotify";
 
 import * as C from "./styles";
 
@@ -25,6 +27,7 @@ const Header: React.FC = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [notify, setNotify] = useState(0);
   const [avatar, setAvatar] = useState("");
+  const { wrapperNotify } = useContext(HeaderContext);
 
   const name = user?.FULLNAME.replace(".", " ");
 
@@ -79,9 +82,10 @@ const Header: React.FC = () => {
           palletDGrayNotify={darkGrayHeader}
           orange={orangeHeader}
         >
-          <div className="notification">
+          <div className="notification" onClick={wrapperNotify}>
             <C.BellIcon />
           </div>
+          <DropDownHeaderNotify />
         </C.ContentAreaNotify>
 
         <C.ContentAreaToggleTheme>
@@ -111,14 +115,13 @@ const Header: React.FC = () => {
             <h6>{user?.CARGO}</h6>
           </C.ContentNameArea>
           <div className="avatar">
-            {avatar !== "" && <img src={avatar} alt="avatar" />}
-            {avatar === "null" ||
-              (avatar === "" && (
-                <div className="avatar-notfound">
-                  <span>{firstLetter}</span>
-                  <span>{secondLetter}</span>
-                </div>
-              ))}
+            {(avatar === "null" && (
+              <div className="avatar-notfound">
+                <span>{firstLetter}</span>
+                <span>{secondLetter}</span>
+              </div>
+            )) ||
+              (avatar !== "" && <img src={avatar} alt="avatar" />)}
           </div>
         </C.ContentAreaNameAndAvatar>
       </C.ContentRight>

@@ -86,7 +86,7 @@ export const ContentTable = styled.div`
   overflow: scroll;
 
   ::-webkit-scrollbar {
-    width: 3px;
+    width: 5px;
   }
   ::-webkit-scrollbar-thumb {
     transition: all 1s ease;
@@ -95,16 +95,14 @@ export const ContentTable = styled.div`
   ::-webkit-scrollbar-track {
     background: transparent;
   }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 
-  @media (max-width: 428px) {
+  @media (max-width: 429px) {
     height: calc(100vh - 300px);
-
     ::-webkit-scrollbar {
-      width: 0px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: transparent;
+      display: none;
     }
   }
 
@@ -112,6 +110,7 @@ export const ContentTable = styled.div`
     width: 100%;
     position: relative;
     user-select: none;
+
     thead {
       tr {
         th {

@@ -4,10 +4,10 @@ import { Title } from "../../Components/Page/Title";
 
 import * as C from "./styles";
 
-const RegisterTarget = () => {
+const EtiquetasDeConserto = () => {
   return (
     <LayoutScreen>
-      <Title title="Cadastro de Etiquetas" />
+      <Title title="Aprovação Etiquetas de Conserto" />
       <Content> </Content>
       <C.ContainerAuthors>
         <p>
@@ -26,4 +26,4 @@ const RegisterTarget = () => {
   );
 };
 
-export default RegisterTarget;
+export default EtiquetasDeConserto;

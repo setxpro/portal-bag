@@ -9,7 +9,7 @@ import ForgetPassword from "../Screens/Login/ForgetPassword";
 import PageProps from "../Screens/Login/PageProps";
 import SignInSide from "../Screens/Login/Signin";
 import SignUp from "../Screens/Login/SignUp";
-import Table from "../Screens/RegisterTarget";
+import EtiquetasDeConserto from "../Screens/EtiquetasDeConserto";
 import Radu from "../Screens/Tables/Radu";
 import OriginalCompany from "../Screens/Tables/ORIGINAL";
 import Shehrazade from "../Screens/Tables/Shehrazade";
@@ -145,11 +145,11 @@ const RoutesApp: React.FC = () => {
 
       {/** Tabelas normais */}
       <Route
-        path="/table"
+        path="/etiquetasDeConserto"
         element={
           <SecurityRoutes>
             <Template>
-              <Table />
+              <EtiquetasDeConserto />
             </Template>
           </SecurityRoutes>
         }

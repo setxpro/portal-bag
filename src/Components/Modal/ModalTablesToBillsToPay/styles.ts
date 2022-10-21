@@ -36,16 +36,19 @@ export const ContentAreaItem = styled.div`
   span {
     width: 8px;
     border: 1px solid ${(props) => props.theme.colors.text};
+    transition: all 1s ease;
   }
 
   p {
     margin-left: 5px;
     color: ${(props) => props.theme.colors.text};
+    transition: all 1s ease;
   }
 
   .bar-h {
     margin: 0 10px;
     color: ${(props) => props.theme.colors.text};
+    transition: all 1s ease;
   }
 `;
 export const ContentAreaTabs = styled.div`

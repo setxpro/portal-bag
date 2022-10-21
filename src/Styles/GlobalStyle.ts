@@ -14,7 +14,5 @@ export default createGlobalStyle`
         font-family: 'Inter', sans-serif;
     }
     
-    ::-webkit-scrollbar {
-        display: none;
-    }
+   
 `;

@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 import Content from "../../Components/Page/Content";
 import { LayoutScreen } from "../../Components/Page/Content/styles";
 import { Title } from "../../Components/Page/Title";
@@ -15,7 +15,7 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
     <LayoutScreen>
       <C.Container>
         <C.ContentTopArea>
-          <Title title="Contas a Pagar" />
+          <Title title="Aprovação de despesas" />
           <C.ContentAreabtns>
             <C.BtnTabs>
               <C.ContentAreaDropdownCompany>
@@ -31,13 +31,13 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
           {titles.length <= 0 ? (
             ""
           ) : (
-            <>
-              <>{children}</>
+            <React.Fragment>
+              <React.Fragment>{children}</React.Fragment>
 
               <C.ContentBtnSendAll>
                 <button onClick={sendAllResp}>Enviar todos</button>
               </C.ContentBtnSendAll>
-            </>
+            </React.Fragment>
           )}
         </Content>
         <C.ContainerAuthors>

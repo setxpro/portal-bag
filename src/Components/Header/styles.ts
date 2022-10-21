@@ -94,7 +94,7 @@ export const CloseMenu = styled(MdClose)`
 `;
 export const BellIcon = styled(AiOutlineBell)`
   cursor: pointer;
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: ${(props) => props.theme.colors.text};
   @media (max-width: 428px) {
     font-size: 2rem;
@@ -154,6 +154,7 @@ export const ContentAreaNotify = styled.div<{
 }>`
   .notification {
     position: relative;
+    cursor: pointer;
 
     img {
       width: 55px;
@@ -163,17 +164,24 @@ export const ContentAreaNotify = styled.div<{
       padding: 2px;
     }
 
-    &::before {
-      content: "";
+    &::after {
+      content: "${(props) => props.notify && props.notify}";
       background: #059;
-      width: 10px;
-      height: 10px;
+      width: auto;
+      height: 18px;
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
 
       position: absolute;
-      top: 2px;
-      right: 0;
+      top: -8px;
+      right: -5px;
+      color: #fff;
+      border-radius: 30%;
 
       transition: all 1s ease;
+      display: ${(props) => (props.notify === 0 ? "none" : "inline")};
+
       border: 2px solid
         ${(props) =>
           props.blue === true
@@ -191,9 +199,6 @@ export const ContentAreaNotify = styled.div<{
             : props.orange === true
             ? props.theme.colors.orangeHeader
             : props.theme.colors.header};
-      border-radius: 50%;
-
-      display: ${(props) => (props.notify <= 0 ? "none" : "inline")};
     }
   }
 `;

@@ -50,7 +50,7 @@ const Sidebar: React.FC = () => {
 
             {cEtiquetas && (
               <Link
-                to="/table"
+                to="/etiquetasDeConserto"
                 onClick={getTable}
                 className={cTable ? "active" : ""}
               >
