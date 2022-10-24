@@ -18,9 +18,9 @@
 
 # Teste de performance [ 2 6 / 1 0 ][em espera]
 
-    * Teste de carga [26/10][]
-    * Teste de estresse [26/10][]
-    * Teste de estabilidade [26/10][]
+    * Teste de carga [26/10]
+    * Teste de estresse [26/10]
+    * Teste de estabilidade [26/10]
 
 # Teste funcional ou de funcionalidade [ 2 7 / 1 0 ][em espera]
 

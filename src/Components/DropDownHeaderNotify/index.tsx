@@ -11,32 +11,44 @@ const DropDownHeaderNotify: React.FC = () => {
 
   return (
     <C.Container isOpen={openNotify}>
-      <div className="header">Fornecedor | Natureza</div>
-      <div className="content-tabs">
-        {titles.map((item, index) => {
-          if (item.ADFIWKF === "SHEHRAZADE     ")
-            return (
-              <React.Fragment key={index}>
-                <Link to={`/modal/${item.ANTIWKF}`}>
-                  {item.ADFIWKF} | Natureza : {item.ANATWKF}
-                </Link>
-              </React.Fragment>
-            );
-        })}
-      </div>
-      <div className="header">Fornecedor | Natureza</div>
-      <div className="content-tabs">
-        {titles.map((item, index) => {
-          if (item.ADFIWKF === "ORIGINAL")
-            return (
-              <React.Fragment key={index}>
-                <Link to={`/modal/${item.ANTIWKF}`}>
-                  {item.ADFIWKF} | Natureza : {item.ANATWKF}
-                </Link>
-              </React.Fragment>
-            );
-        })}
-      </div>
+      {titles.length === 0 ? (
+        <div className="empty-titles">
+          <span>Não há títulos para aprovar</span>
+        </div>
+      ) : (
+        <React.Fragment>
+          <div className="header">Fornecedor | Natureza</div>
+          <div className="content-tabs">
+            {titles.map((item, index) => {
+              if (item.ADFIWKF === "SHEHRAZADE     ")
+                return (
+                  <React.Fragment key={index}>
+                    <Link to={`/modal/${item.ANTIWKF}`}>
+                      {item.ADFIWKF} | Natureza : {item.ANATWKF}
+                    </Link>
+                  </React.Fragment>
+                );
+
+              return null;
+            })}
+          </div>
+          <div className="header">Fornecedor | Natureza</div>
+          <div className="content-tabs">
+            {titles.map((item, index) => {
+              if (item.ADFIWKF === "ORIGINAL")
+                return (
+                  <React.Fragment key={index}>
+                    <Link to={`/modal/${item.ANTIWKF}`}>
+                      {item.ADFIWKF} | Natureza : {item.ANATWKF}
+                    </Link>
+                  </React.Fragment>
+                );
+
+              return null;
+            })}
+          </div>
+        </React.Fragment>
+      )}
     </C.Container>
   );
 };

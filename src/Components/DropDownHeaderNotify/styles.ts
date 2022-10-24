@@ -27,6 +27,20 @@ export const Container = styled.div<{ isOpen: boolean }>`
     background: #aaaa;
   }
 
+  .empty-titles {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-size: 2em;
+      color: #999;
+      border-bottom: 2px solid #0fff;
+      padding-bottom: 5px;
+    }
+  }
+
   .header {
     padding: 10px 1rem;
     color: #999;
