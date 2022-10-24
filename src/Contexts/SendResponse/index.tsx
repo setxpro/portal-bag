@@ -7,6 +7,8 @@ import { TableProps } from "../../Types/TableProps";
 import { AuthContext } from "../Auth/AuthContext";
 import axios from "axios";
 
+import Logo from "./bag.png";
+
 interface Props {
   setOptions: React.Dispatch<
     React.SetStateAction<{
@@ -30,7 +32,7 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
   const { user, getAllTable } = useContext(AuthContext);
   const [titles, setTitulo] = useState<TableProps[]>([]);
 
-  // const [loadNotify, setLoadNotify] = useState(false);
+  const [countItems, setCountItems] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -101,44 +103,42 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
     return data;
   };
 
-  // useEffect(() => {
-  //   function requestPermission() {
-  //     return new Promise((resolve, reject) => {
-  //       const permissionResult = Notification.requestPermission((result) => {
-  //         resolve(result);
-  //       });
+  useEffect(() => {
+    function requestPermission() {
+      return new Promise((resolve, reject) => {
+        const permissionResult = Notification.requestPermission((result) => {
+          resolve(result);
+        });
 
-  //       if (permissionResult) {
-  //         permissionResult.then(resolve, reject);
-  //       }
-  //     }).then((permissionResult) => {
-  //       if (permissionResult !== "granted") {
-  //         throw new Error("Permissipn not grantes");
-  //       }
-  //     });
-  //   }
+        if (permissionResult) {
+          permissionResult.then(resolve, reject);
+        }
+      }).then((permissionResult) => {
+        if (permissionResult !== "granted") {
+          throw new Error("Permissipn not grantes");
+        }
+      });
+    }
 
-  //   Notification.requestPermission();
-  //   function notify() {
-  //     Notification.requestPermission(() => {
-  //       let notification = new Notification("BagWeb", {
-  //         icon: `${Logo}`,
-  //         body: "Chegou uma nova aprovação de despesas. Click aqui para fazer login.",
-  //       });
-  //       notification.onclick = () => {
-  //         window.open("http://localhost:3000");
-  //       };
-  //     });
-  //   }
+    requestPermission();
+    function notify() {
+      Notification.requestPermission(() => {
+        let notification = new Notification("BagWeb", {
+          icon: `${Logo}`,
+          body: "Chegou uma nova aprovação de despesas. Click aqui para fazer login.",
+        });
+        notification.onclick = () => {
+          window.open("http://localhost:3000");
+        };
+      });
+    }
+    setCountItems(titles.length);
 
-  //   if (titles.length > 0) {
-  //     setLoadNotify(true);
-  //     if (loadNotify) {
-  //       notify();
-  //     }
-  //     setLoadNotify(false);
-  //   }
-  // }, [titles]);
+    if (titles.length > countItems) {
+      notify();
+      return;
+    }
+  }, [titles, countItems]);
 
   return (
     <SendResponseContext.Provider
