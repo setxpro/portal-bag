@@ -40,7 +40,7 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
             </React.Fragment>
           )}
         </Content>
-        <C.ContainerAuthors>
+        {/* <C.ContainerAuthors>
           <p>
             © Copyright{" "}
             <a
@@ -52,7 +52,7 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
             </a>{" "}
             2022
           </p>
-        </C.ContainerAuthors>
+        </C.ContainerAuthors> */}
       </C.Container>
     </LayoutScreen>
   );

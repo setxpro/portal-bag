@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div<{ isOpen: boolean }>`
   position: absolute;
   right: 100px;
-  height: ${(props) => (props.isOpen ? "200px" : "0")};
+  height: ${(props) => (props.isOpen ? "300px" : "0")};
   top: 65px;
   display: flex;
   flex-direction: column;
