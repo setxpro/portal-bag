@@ -121,6 +121,7 @@ const RelatorioVendas: React.FC = () => {
                   {infoTable.length <= 0 ? null : (
                     <tr>
                       <th>Loja_Compra</th>
+                      <th>Tipo_de_Loja</th>
                       <th>Vendedor_Compra</th>
                       <th>Data_Compra</th>
                       <th>Nome_Cliente</th>
@@ -130,6 +131,8 @@ const RelatorioVendas: React.FC = () => {
                       <th>Vendedor_Contato_Matricula</th>
                       <th>Loja_Vendedor_Contato</th>
                       <th>Data_Contato</th>
+                      <th>Nome_Acao</th>
+                      <th>Nome_Campanha</th>
                       <th>ComprasTotais</th>
                     </tr>
                   )}
@@ -139,6 +142,7 @@ const RelatorioVendas: React.FC = () => {
                     return (
                       <tr key={indice}>
                         <td>{relatory.Loja_Compra}</td>
+                        <td>{relatory.Tipo_de_Loja}</td>
                         <td>{relatory.Vendedor_Compra}</td>
                         <td>{relatory.Data_Compra}</td>
                         <td>{relatory.Nome_Cliente}</td>
@@ -147,10 +151,9 @@ const RelatorioVendas: React.FC = () => {
                         <td>{relatory.Vendedor_Contato}</td>
                         <td>{relatory.Vendedor_Contato_Matricula}</td>
                         <td>{relatory.Loja_Vendedor_Contato}</td>
-                        <td>
-                          {/* {relatory.Data_Contato === null ? null : ( */}
-                          {relatory.Data_Contato}
-                        </td>
+                        <td>{relatory.Data_Contato}</td>
+                        <td>{relatory.Nome_Acao}</td>
+                        <td>{relatory.Nome_Campanha}</td>
                         <td>{relatory.ComprasTotais}</td>
                       </tr>
                     );
