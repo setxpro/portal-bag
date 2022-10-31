@@ -166,12 +166,14 @@ export const ContentAreaNotify = styled.div<{
 
     &::after {
       content: "${(props) => props.notify && props.notify}";
-      background: #059;
+      background: #f00;
       width: auto;
       height: 18px;
-      padding: 0 4px;
+      padding: 0 2px;
       display: flex;
       align-items: center;
+
+      font-size: 12px;
 
       position: absolute;
       top: -8px;

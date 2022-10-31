@@ -22,6 +22,7 @@ import { GetInfoSellbieProvider } from "../Contexts/GetInfoSellbie";
 import VendasFlex from "../Screens/Tables/VendasFlex";
 import Home from "../Screens/Home";
 import Settings from "../Screens/settings";
+import Todo from "../Screens/Todo";
 
 const RoutesApp: React.FC = () => {
   return (
@@ -160,6 +161,16 @@ const RoutesApp: React.FC = () => {
           <SecurityRoutes>
             <Template>
               <Settings />
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+      <Route
+        path="/todo"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <Todo />
             </Template>
           </SecurityRoutes>
         }

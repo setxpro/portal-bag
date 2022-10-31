@@ -10,12 +10,14 @@ const Sidebar: React.FC = () => {
   const {
     cHome,
     cTable,
+    cTodo,
     cFlex,
     cRelatory,
     getHome,
     getTable,
     getFlex,
     getRelatory,
+    getTodo,
   } = useContext(PalletContext);
   const { signout, user } = useContext(AuthContext);
   const { openMenuSidebar, wrapperMenu } = useHeader();
@@ -77,6 +79,13 @@ const Sidebar: React.FC = () => {
                 Relatório de Vendas
               </Link>
             )}
+            <Link
+              to="/todo"
+              onClick={getTodo}
+              className={cTodo ? "active" : ""}
+            >
+              Todo
+            </Link>
           </ul>
         </nav>
       </C.ContentNavArea>

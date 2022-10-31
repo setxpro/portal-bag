@@ -39,6 +39,12 @@ export const Container = styled.div`
           top: 0;
           z-index: 9;
 
+          @media (max-width: 834px) {
+            &:nth-child(2) {
+              display: none;
+            }
+          }
+
           @media (max-width: 428px) {
             &:nth-child(3) {
               display: none;
@@ -74,6 +80,12 @@ export const Container = styled.div`
           .area {
             width: 5px;
             margin-left: 8px;
+          }
+        }
+
+        @media (max-width: 834px) {
+          &:nth-child(2) {
+            display: none;
           }
         }
 
