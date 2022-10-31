@@ -1,35 +1,34 @@
-## FASE DE TESTES
+<h1 align="center">
+ Sistema BAGWEB
+</h1>
+<p align="center">Click <a href="https://master--majestic-trifle-5601b1.netlify.app/">here</a> to the Deploy.</p>
+<p>
+    <strong>Projeto de estágio</strong> - 
+    Bagweb é um sistema web onde os usuários cadastrados no ERP PROTHEUS da TOTVS, possam acessar suas rotinas diárias, por exemplo, aprovações de despesas, consultas a API da 
+    Sellbie (Empresa de software que nos fornece o CRM), assim obtendo os relatórios de vendas da empresa pela BagOnline (E-Commerce da empresa).
+    
+    Bagweb veio para trazer uma cara nova para a empresa, sendo o primeiro sistema web a ser implantado pela empresa, no momento está em processo de desenvolvimento, mas 
+    já estou ansioso para levar o sistema para o próximo nível 🚀.
+</p>
 
-# Teste unitário [ 2 4 / 1 0 ][ok]
+<hr>
 
-    Analisar de maneira isolada as demais partes do sistema
+## Participants
 
-# Teste de caixa branca [ 2 4 / 1 0 ][ok]
+[<img src="https://avatars.githubusercontent.com/u/69186374?v=4" width="75px;"/>](https://github.com/setxpro)
 
-    Identificar problemas na lógica e também na estrutura do programa
+[Patrick Anjos](https://github.com/setxpro)
 
-# Teste de regressão OBS.: Aqui pode ser sempre quando uma nova implementação for implementada.
+## Techs
 
-    testar cada nova versão do software toda vez que uma funcionalidade for modificada.
+- [x] React
+- [x] TypeScript
 
-# Teste de volume [ 2 5 / 1 0 ][em espera]
+## Starting Dev Environment
 
-    Limite de utilização ao mesmo tempo, ou seja, qual é o seu limite de suporte a informações ou tráfego sem que apresente nenhum problema
+1. Run `npm install` or `yarn install`.<br />
+2. Run `yarn start`.<br />
 
-# Teste funcional ou de funcionalidade [ 2 7 / 1 0 ][ok]
+<!-- # Teste de usabilidade [ 2 8 / 1 0 ][em espera] Feito por um usuário com o manual -->
 
-    verificar o software como um todo, bem como cada parte dele, faz exatamente o que deveria fazer, ou seja, se os casos de uso foram corretamente descritos e desenvolvidos.
-
-# Teste de segurança [ 2 7 / 1 0 ][ok]
-
-    verificar se o software permite que os dados sejam acessados somente pelos perfis determinados para cada parte específica do sistema ou para cada funcionalidade.
-
-<-!- Testes Com usuários ->
-
-# Teste de usabilidade [ 2 8 / 1 0 ][em espera]
-
-    realizado por usuários
-
-# Teste de aceitação [ 2 8 / 1 0 ][em espera]
-
-    verificar se o produto de software está pronto para ser entregue ao cliente
+<!-- # Teste de aceitação [ 2 8 / 1 0 ][em espera] verificar se o produto de software está pronto para ser entregue ao cliente -->
