@@ -6,7 +6,8 @@
     <strong>Projeto de estágio</strong> - 
     Bagweb é um sistema web onde os usuários cadastrados no ERP PROTHEUS da TOTVS, possam acessar suas rotinas diárias, por exemplo, aprovações de despesas, consultas a API da 
     Sellbie (Empresa de software que nos fornece o CRM), assim obtendo os relatórios de vendas da empresa pela BagOnline (E-Commerce da empresa).
-    
+</p>
+<p>
     Bagweb veio para trazer uma cara nova para a empresa, sendo o primeiro sistema web a ser implantado pela empresa, no momento está em processo de desenvolvimento, mas 
     já estou ansioso para levar o sistema para o próximo nível 🚀.
 </p>
