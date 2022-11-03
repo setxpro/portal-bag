@@ -43,7 +43,7 @@ const VendasFlex: React.FC = () => {
       setLoading(true);
       setMessage("");
       const { data } = await axios.get(
-        `https://bi.sellbie.com.br/api/flex?idEmpresa=67&dataInicio=${dataInicial}&dataFim=${dataFinal}`,
+        `${process.env.REACT_APP_SELLBIE}/flex?idEmpresa=${process.env.REACT_APP_NUM_BAGAGGIO}&dataInicio=${dataInicial}&dataFim=${dataFinal}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
         }
@@ -155,13 +155,7 @@ const VendasFlex: React.FC = () => {
                           return (
                             <tr key={index}>
                               <td>{item.CPFCliente}</td>
-                              <td>
-                                {format(
-                                  new Date(item.DataPagamentoAprovado),
-                                  "dd/MM/yyyy",
-                                  { locale: ptBR }
-                                )}
-                              </td>
+                              <td>{item.DataPagamentoAprovado}</td>
                               <td>{item.Desconto}</td>
                               <td>{item.Endereco.Logradouro_Entrega}</td>
                               <td>{item.Endereco.Complemento_Entrega}</td>
@@ -176,13 +170,11 @@ const VendasFlex: React.FC = () => {
                               <td>{item.NomeBandeira}</td>
                               <td>{item.NomeCliente}</td>
                               <td>{item.Observacao}</td>
-
                               <td>{item.Parcelas}</td>
                               <td>{`${i.NomeProduto}`}</td>
                               <td>{`${i.Descricao}`}</td>
                               <td>{`${i.ValorItem}`}</td>
                               <td>{`${i.Quantidade}`}</td>
-
                               <td>{item.ValorTotal}</td>
                               <td>{item.authorizationCode}</td>
                               <td>{item.nsu}</td>

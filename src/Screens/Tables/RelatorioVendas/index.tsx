@@ -42,7 +42,7 @@ const RelatorioVendas: React.FC = () => {
       setLoading(true);
       setMessage("");
       const { data } = await axios.get(
-        `https://bi.sellbie.com.br/api/bi/comprasconversao?idEmpresa=67&dataInicio=${dataInicial}&dataFim=${dataFinal}`,
+        `${process.env.REACT_APP_SELLBIE}/bi/comprasconversao?idEmpresa=${process.env.REACT_APP_NUM_BAGAGGIO}&dataInicio=${dataInicial}&dataFim=${dataFinal}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
         }
