@@ -133,7 +133,7 @@ const RelatorioVendas: React.FC = () => {
                       <th>Data_Contato</th>
                       <th>Nome_Acao</th>
                       <th>Nome_Campanha</th>
-                      <th>ComprasTotais</th>
+                      {/* <th>ComprasTotais</th> */}
                     </tr>
                   )}
                 </thead>
@@ -154,7 +154,7 @@ const RelatorioVendas: React.FC = () => {
                         <td>{relatory.Data_Contato}</td>
                         <td>{relatory.Nome_Acao}</td>
                         <td>{relatory.Nome_Campanha}</td>
-                        <td>{relatory.ComprasTotais}</td>
+                        {/* <td>{relatory.ComprasTotais}</td> */}
                       </tr>
                     );
                   })}

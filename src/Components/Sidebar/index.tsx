@@ -84,7 +84,7 @@ const Sidebar: React.FC = () => {
               onClick={getTodo}
               className={cTodo ? "active" : ""}
             >
-              Todo
+              TO-DO
             </Link>
           </ul>
         </nav>

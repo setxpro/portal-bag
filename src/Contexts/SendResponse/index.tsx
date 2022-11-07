@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { ChildrenReactNode } from "../../Types/ChildrenProps";
 import { TableProps } from "../../Types/TableProps";
 import { AuthContext } from "../Auth/AuthContext";
-import axios from "axios";
+// import axios from "axios";
 
 import Logo from "./bag.png";
 
@@ -36,7 +36,7 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getAllTable(`000893`); //000893
+      const data = await getAllTable(`${user?.ID}`); //000893
       setTitulo(data);
     })();
   }, [getAllTable, user?.ID]);
@@ -57,21 +57,24 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       toast("Abortadas pelo aprovador!");
       return;
     }
-
+    let ID = user?.ID;
     const allOpt = titles.map((item, index) => {
       return {
         ...item,
         option: options[index] || "",
+        ID,
       };
     });
 
-    const { data } = await axios.post(
-      "/send-all",
-      allOpt.filter((x) => x.option)
-    );
+    // const { data } = await axios.post(
+    //   "/send-all",
+    //   allOpt.filter((x) => x.option)
+    // );
     toast("Respostas enviadas com sucesso!");
 
-    return data;
+    console.log(allOpt.filter((x) => x.option));
+
+    // return data;
   };
 
   const sendOneInfo = async (index: number) => {
@@ -91,16 +94,20 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
       return;
     }
 
+    let ID = user?.ID;
+
     const newObject = {
       ...titles[index],
       option: options[index],
+      ID,
     };
 
-    const { data } = await axios.post("/send-all", newObject);
+    console.log(newObject);
 
-    toast(`Resposta enviada com sucesso!`);
+    // const { data } = await axios.post("/send-all", newObject);
+    // toast(`Resposta enviada com sucesso!`);
 
-    return data;
+    // return data;
   };
 
   useEffect(() => {
