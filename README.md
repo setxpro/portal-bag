@@ -25,11 +25,3 @@
 - [x] React
 - [x] TypeScript
 
-## Starting Dev Environment
-
-1. Run `npm install` or `yarn install`.<br />
-2. Run `yarn start`.<br />
-
-<!-- # Teste de usabilidade [ 2 8 / 1 0 ][em espera] Feito por um usuário com o manual -->
-
-<!-- # Teste de aceitação [ 2 8 / 1 0 ][em espera] verificar se o produto de software está pronto para ser entregue ao cliente -->
