@@ -1,23 +1,23 @@
-import React, { useContext, memo } from "react";
-import { SendResponseContext } from "../../../Contexts/SendResponse";
-import { Link } from "react-router-dom";
-import { FormControlLabel, Radio } from "@material-ui/core";
-import CheckboxUnchecked from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckboxChecked from "@material-ui/icons/CheckBox";
+// import React, { useContext, memo } from "react";
+// import { SendResponseContext } from "../../../Contexts/SendResponse";
+// import { Link } from "react-router-dom";
+// import { FormControlLabel, Radio } from "@material-ui/core";
+// import CheckboxUnchecked from "@material-ui/icons/CheckBoxOutlineBlank";
+// import CheckboxChecked from "@material-ui/icons/CheckBox";
 
-import CancelIcon from "@mui/icons-material/Cancel";
-import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+// import CancelIcon from "@mui/icons-material/Cancel";
+// import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 
-import * as C from "./styles";
-import { Title } from "./../../../Components/Page/Title/index";
+// import * as C from "./styles";
+// import { Title } from "./../../../Components/Page/Title/index";
 
-const Original: React.FC = () => {
-  const { setOptions, titles, sendOneInfo, options } =
-    useContext(SendResponseContext);
+const Original = () => {
+  // const { setOptions, titles, sendOneInfo, options } =
+  //   useContext(SendResponseContext);
 
   return (
     <>
-      <C.ContentTopArea>
+      {/* <C.ContentTopArea>
         <Title title="Aprovação de despesas - ORIGINAL" />
       </C.ContentTopArea>
       <C.Container>
@@ -141,9 +141,10 @@ const Original: React.FC = () => {
             })}
           </tbody>
         </table>
-      </C.Container>
+      </C.Container> */}
     </>
   );
 };
 
-export default memo(Original);
+export default Original;
+// export default memo(Original);
