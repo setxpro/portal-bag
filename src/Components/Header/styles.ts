@@ -340,7 +340,7 @@ export const ContentNameArea = styled.div<{
   h6 {
     font-size: 1em;
     margin-left: 30px;
-    font-weight: 500;
+    font-weight: 200;
     text-align: end;
   }
 `;

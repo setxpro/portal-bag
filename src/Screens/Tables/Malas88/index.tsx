@@ -11,14 +11,14 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import * as C from "./styles";
 import { Title } from "../../../Components/Page/Title";
 
-const Radu: React.FC = () => {
+const Malas88: React.FC = () => {
   const { setOptions, titles, sendOneInfo, options } =
     useContext(SendResponseContext);
 
   return (
     <>
       <C.ContentTopArea>
-        <Title title="Aprovação de despesas - RADU" />
+        <Title title="Aprovação de despesas - Malas 88" />
       </C.ContentTopArea>
       <C.Container>
         <table>
@@ -38,7 +38,7 @@ const Radu: React.FC = () => {
           </thead>
           <tbody>
             {titles.map((item, index) => {
-              if (item.ADFIWKF === "RADU" && item.ALBLWKF === "CC")
+              if (item.ADFIWKF === "MALAS 88" && item.ALBLWKF === "CC")
                 return (
                   <tr key={index}>
                     <td>{item.ADFIWKF}</td>
@@ -146,4 +146,4 @@ const Radu: React.FC = () => {
   );
 };
 
-export default memo(Radu);
+export default memo(Malas88);

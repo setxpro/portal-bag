@@ -10,19 +10,18 @@ import PageProps from "../Screens/Login/PageProps";
 import SignInSide from "../Screens/Login/Signin";
 import SignUp from "../Screens/Login/SignUp";
 import EtiquetasDeConserto from "../Screens/EtiquetasDeConserto";
-import Radu from "../Screens/Tables/Radu";
-import OriginalCompany from "../Screens/Tables/ORIGINAL";
 import Shehrazade from "../Screens/Tables/Shehrazade";
-import Test from "../Screens/Tables/Test";
 import SecurityRoutes from "../Security";
-import Option1 from "./../Screens/Tables/SubPages/Option1/index";
-import Option2 from "./../Screens/Tables/SubPages/Option2/index";
+import Option1 from "../Screens/Tables/Option1/index";
 import RelatorioVendas from "./../Screens/Tables/RelatorioVendas/index";
 import { GetInfoSellbieProvider } from "../Contexts/GetInfoSellbie";
 import VendasFlex from "../Screens/Tables/VendasFlex";
 import Home from "../Screens/Home";
 import Settings from "../Screens/settings";
-import Todo from "../Screens/Todo";
+import Original from "../Screens/Tables/Original";
+import Radu from "../Screens/Tables/Radu";
+import Malas88 from "../Screens/Tables/Malas88";
+// import Todo from "../Screens/Todo";
 
 const RoutesApp: React.FC = () => {
   return (
@@ -39,6 +38,10 @@ const RoutesApp: React.FC = () => {
           </SecurityRoutes>
         }
       />
+
+      {/**
+       * Name's Company
+       */}
       <Route
         path="/shehrazade"
         element={
@@ -47,6 +50,21 @@ const RoutesApp: React.FC = () => {
               <MenuHeaderProvider>
                 <BillsToPay>
                   <Shehrazade />
+                </BillsToPay>
+              </MenuHeaderProvider>
+            </Template>
+          </SecurityRoutes>
+        }
+      />
+
+      <Route
+        path="/original"
+        element={
+          <SecurityRoutes>
+            <Template>
+              <MenuHeaderProvider>
+                <BillsToPay>
+                  <Original />
                 </BillsToPay>
               </MenuHeaderProvider>
             </Template>
@@ -68,39 +86,24 @@ const RoutesApp: React.FC = () => {
         }
       />
       <Route
-        path="/original"
+        path="/malas88"
         element={
           <SecurityRoutes>
             <Template>
               <MenuHeaderProvider>
                 <BillsToPay>
-                  <OriginalCompany />
+                  <Malas88 />
                 </BillsToPay>
               </MenuHeaderProvider>
             </Template>
           </SecurityRoutes>
         }
       />
-      <Route
-        path="/test"
-        element={
-          <SecurityRoutes>
-            <Template>
-              <MenuHeaderProvider>
-                <BillsToPay>
-                  <Test />
-                </BillsToPay>
-              </MenuHeaderProvider>
-            </Template>
-          </SecurityRoutes>
-        }
-      />
+
       {/**
-       * Sub Pastas
-       * 1 - Option 1
-       * 2 - Option 2
-       *
+       * End Name's Company
        */}
+
       <Route
         path="/opt1"
         element={
@@ -109,20 +112,6 @@ const RoutesApp: React.FC = () => {
               <MenuHeaderProvider>
                 <BillsToPay>
                   <Option1 />
-                </BillsToPay>
-              </MenuHeaderProvider>
-            </Template>
-          </SecurityRoutes>
-        }
-      />
-      <Route
-        path="/opt2"
-        element={
-          <SecurityRoutes>
-            <Template>
-              <MenuHeaderProvider>
-                <BillsToPay>
-                  <Option2 />
                 </BillsToPay>
               </MenuHeaderProvider>
             </Template>
@@ -165,7 +154,7 @@ const RoutesApp: React.FC = () => {
           </SecurityRoutes>
         }
       />
-      <Route
+      {/* <Route
         path="/todo"
         element={
           <SecurityRoutes>
@@ -174,7 +163,7 @@ const RoutesApp: React.FC = () => {
             </Template>
           </SecurityRoutes>
         }
-      />
+      /> */}
       <Route
         path="/relatorio-vendas"
         element={

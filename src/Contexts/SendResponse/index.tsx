@@ -36,8 +36,9 @@ export const SendResponseProvider = ({ children }: ChildrenReactNode) => {
 
   useEffect(() => {
     (async () => {
-      const data = await getAllTable(`${user?.ID}`); //000893
+      const data = await getAllTable(`${user?.ID}`);
       setTitulo(data);
+      console.log(data);
     })();
   }, [getAllTable, user?.ID]);
 

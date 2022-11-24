@@ -14,12 +14,26 @@ export const Container = styled.div`
     }
   }
 
-  width: 100%;
-
   .MuiFormControlLabel-root {
     margin-left: 20px; /** OBS */
   }
-  overflow-y: scrol;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    transition: all 1s ease;
+    background: ${(props) => props.theme.colors.borders};
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  max-height: calc(100vh - 220px);
 
   table {
     width: 100%;
@@ -31,9 +45,9 @@ export const Container = styled.div`
       tr {
         th {
           transition: all 1s ease;
+          padding: 0.5rem;
           color: ${(props) => props.theme.colors.text};
           background: ${(props) => props.theme.colors.main};
-          padding: 0.5rem;
 
           position: sticky;
           top: 0;
@@ -46,7 +60,13 @@ export const Container = styled.div`
           }
 
           @media (max-width: 428px) {
+            &:nth-child(1) {
+              display: none;
+            }
             &:nth-child(3) {
+              display: none;
+            }
+            &:nth-child(2) {
               display: none;
             }
           }
@@ -70,8 +90,19 @@ export const Container = styled.div`
             border-radius: 4px;
           }
 
+          @media (max-width: 834px) {
+            &:nth-child(2) {
+              display: none;
+            }
+          }
           @media (max-width: 428px) {
+            &:nth-child(1) {
+              display: none;
+            }
             &:nth-child(3) {
+              display: none;
+            }
+            &:nth-child(2) {
               display: none;
             }
           }
@@ -80,12 +111,6 @@ export const Container = styled.div`
           .area {
             width: 5px;
             margin-left: 8px;
-          }
-        }
-
-        @media (max-width: 834px) {
-          &:nth-child(2) {
-            display: none;
           }
         }
 
@@ -108,4 +133,18 @@ export const InfoIcon = styled(BsInfoCircle)`
   font-size: 1.5rem;
   translate: 1s;
   color: ${(props) => props.theme.colors.btnInfoTab};
+`;
+
+export const ContentTopArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 428px) {
+    gap: 1rem;
+    flex-direction: column;
+  }
 `;

@@ -9,7 +9,7 @@ export const HeaderDropdownCompanies: React.FC = () => {
   const { titles } = useContext(SendResponseContext);
   const { wrapperCompany } = useContext(MenuHeaderContext);
 
-  const [countItems] = useState(2); // Alter when insert company
+  const [countItems] = useState(3); // Alter when insert company
   const company = titles[0]?.ADFIWKF.replace("     ", "");
   const centerCust = titles[0]?.ADCCWKF.replace(
     "                                                         ",
@@ -35,6 +35,7 @@ export const HeaderDropdownCompanies: React.FC = () => {
       <Link to="#" onClick={wrapperCeo}>
         Shehrazade <C.ArrowDown />
       </Link>
+
       {company === "SHEHRAZADE" && centerCust === "CEO" ? (
         <Link to="/opt1" className="drop1">
           CEO
@@ -46,6 +47,7 @@ export const HeaderDropdownCompanies: React.FC = () => {
       <Link to="#" onClick={wrapperCeo2}>
         Original <C.ArrowDown />
       </Link>
+
       {company === "SHEHRAZADE" && centerCust === "CEO" ? (
         <Link to="/original" className="drop2">
           CEO

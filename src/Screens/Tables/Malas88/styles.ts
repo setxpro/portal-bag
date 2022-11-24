@@ -127,14 +127,6 @@ export const Container = styled.div`
     }
   }
 `;
-
-export const InfoIcon = styled(BsInfoCircle)`
-  cursor: pointer;
-  font-size: 1.5rem;
-  translate: 1s;
-  color: ${(props) => props.theme.colors.btnInfoTab};
-`;
-
 export const ContentTopArea = styled.div`
   display: flex;
   align-items: center;
@@ -147,4 +139,10 @@ export const ContentTopArea = styled.div`
     gap: 1rem;
     flex-direction: column;
   }
+`;
+export const InfoIcon = styled(BsInfoCircle)`
+  cursor: pointer;
+  font-size: 1.5rem;
+  translate: 1s;
+  color: ${(props) => props.theme.colors.btnInfoTab};
 `;

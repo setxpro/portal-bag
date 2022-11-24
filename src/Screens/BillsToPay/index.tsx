@@ -1,35 +1,38 @@
 import React, { ReactNode, useContext } from "react";
 import Content from "../../Components/Page/Content";
 import { LayoutScreen } from "../../Components/Page/Content/styles";
-import { Title } from "../../Components/Page/Title";
+// import { Title } from "../../Components/Page/Title";
 import { SendResponseContext } from "../../Contexts/SendResponse";
 
 import * as C from "./styles";
-import { HeaderDropdownCompanies } from "../../Components/HeaderDropdownTabs";
-import { MenuHeaderContext } from "../../Contexts/MenuHeader";
+
+function GetMEssage() {
+  return (
+    <div
+      style={{
+        height: "calc(100vh - 200px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <h1>Não há títulos para determinada rotina.</h1>
+    </div>
+  );
+}
 
 const BillsToPay = ({ children }: { children: ReactNode }) => {
   const { sendAllResp, titles } = useContext(SendResponseContext);
-  const { wrapperMenuCompany } = useContext(MenuHeaderContext);
+
   return (
     <LayoutScreen>
       <C.Container>
-        <C.ContentTopArea>
+        {/* <C.ContentTopArea>
           <Title title="Aprovação de despesas" />
-          <C.ContentAreabtns>
-            <C.BtnTabs>
-              <C.ContentAreaDropdownCompany>
-                <span onClick={wrapperMenuCompany}>
-                  Empresas | Centro de Custo
-                </span>
-                <HeaderDropdownCompanies />
-              </C.ContentAreaDropdownCompany>
-            </C.BtnTabs>
-          </C.ContentAreabtns>
-        </C.ContentTopArea>
+        </C.ContentTopArea> */}
         <Content>
           {titles.length <= 0 ? (
-            ""
+            <GetMEssage />
           ) : (
             <React.Fragment>
               <React.Fragment>{children}</React.Fragment>
@@ -40,19 +43,6 @@ const BillsToPay = ({ children }: { children: ReactNode }) => {
             </React.Fragment>
           )}
         </Content>
-        {/* <C.ContainerAuthors>
-          <p>
-            © Copyright{" "}
-            <a
-              href="https://www.bagaggio.com.br"
-              target="_blank"
-              rel="noreferrer"
-            >
-              BAGAGGIO
-            </a>{" "}
-            2022
-          </p>
-        </C.ContainerAuthors> */}
       </C.Container>
     </LayoutScreen>
   );

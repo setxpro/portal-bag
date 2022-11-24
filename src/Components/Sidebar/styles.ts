@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { MdClose } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 export const Container = styled.div<{ wrapSidebar: boolean }>`
   height: 100vh;
@@ -85,9 +86,17 @@ export const ContentNavArea = styled.div`
         color: #fff;
       }
 
+      .cta {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        white-space: nowrap;
+      }
+      /* 
       .home-active {
         background: #058;
-      }
+      } */
     }
   }
 `;
@@ -136,4 +145,10 @@ export const ContentAreaSettings = styled.div`
   bottom: 0;
 
   border-top: 1px solid #555;
+`;
+
+export const ArrowIcon = styled(MdOutlineKeyboardArrowDown)`
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: #eee;
 `;

@@ -1,6 +1,6 @@
-import { useContext, memo } from "react";
+import React, { useContext, memo } from "react";
+import { SendResponseContext } from "../../../Contexts/SendResponse";
 import { Link } from "react-router-dom";
-
 import { FormControlLabel, Radio } from "@material-ui/core";
 import CheckboxUnchecked from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckboxChecked from "@material-ui/icons/CheckBox";
@@ -9,19 +9,20 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 
 import * as C from "./styles";
-import { SendResponseContext } from "./../../../Contexts/SendResponse/index";
+import { Title } from "./../../../Components/Page/Title/index";
 
-const OriginalCompany = () => {
+const Original: React.FC = () => {
   const { setOptions, titles, sendOneInfo, options } =
     useContext(SendResponseContext);
 
   return (
-    <C.Container>
-      <table>
-        <thead>
-          {titles.length <= 0 ? (
-            ""
-          ) : (
+    <>
+      <C.ContentTopArea>
+        <Title title="Aprovação de despesas - ORIGINAL" />
+      </C.ContentTopArea>
+      <C.Container>
+        <table>
+          <thead>
             <tr>
               <th>Empresa</th>
               <th>Filial</th>
@@ -34,39 +35,67 @@ const OriginalCompany = () => {
               <th>E</th>
               <th>Enviar</th>
             </tr>
-          )}
-        </thead>
-        <tbody>
-          {titles.map((item, index) => {
-            if (item.ADFIWKF === "ORIGINAL")
-              return (
-                <tr key={index}>
-                  <td>{item.ADFIWKF}</td>
-                  <td>{item.AFILWKF}</td>
-                  <td>{item.AFORWKF}</td>
-                  <td>{item.ANATWKF}</td>
-                  <td>{item.APARWKF}</td>
-                  <td>
-                    <Link to={`/modal/${item.ANTIWKF}`}>
-                      <C.InfoIcon />
-                    </Link>
-                  </td>
-                  <td>
-                    <div className="area">
-                      <div>
+          </thead>
+          <tbody>
+            {titles.map((item, index) => {
+              if (item.ADFIWKF === "ORIGINAL" && item.ALBLWKF === "CC")
+                return (
+                  <tr key={index}>
+                    <td>{item.ADFIWKF}</td>
+                    <td>{item.AFILWKF}</td>
+                    <td>{item.AFORWKF}</td>
+                    <td>{item.ANATWKF}</td>
+                    <td>{item.APARWKF}</td>
+                    <td>
+                      <Link to={`/modal/${item.ANTIWKF}`}>
+                        <C.InfoIcon />
+                      </Link>
+                    </td>
+                    <td>
+                      <div className="area">
+                        <div>
+                          <FormControlLabel
+                            control={
+                              <Radio
+                                name={`radio-${item.AFILWKF}`}
+                                color="primary"
+                                checkedIcon={<CheckboxChecked />}
+                                icon={<CheckboxUnchecked />}
+                                checked={options[index] === "Aprovado"}
+                                onChange={(e) => {
+                                  setOptions((prevOptions) => {
+                                    return {
+                                      ...prevOptions,
+                                      [index]: e.target.checked
+                                        ? "Aprovado"
+                                        : "",
+                                    };
+                                  });
+                                }}
+                              />
+                            }
+                            label=""
+                          />
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="area">
                         <FormControlLabel
                           control={
                             <Radio
                               name={`radio-${item.AFILWKF}`}
                               color="primary"
-                              checkedIcon={<CheckboxChecked />}
+                              checkedIcon={<CancelIcon />}
                               icon={<CheckboxUnchecked />}
-                              checked={options[index] === "Aprovado"}
+                              checked={options[index] === "Reprovado"}
                               onChange={(e) => {
                                 setOptions((prevOptions) => {
                                   return {
                                     ...prevOptions,
-                                    [index]: e.target.checked ? "Aprovado" : "",
+                                    [index]: e.target.checked
+                                      ? "Reprovado"
+                                      : "",
                                   };
                                 });
                               }}
@@ -75,69 +104,46 @@ const OriginalCompany = () => {
                           label=""
                         />
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="area">
-                      <FormControlLabel
-                        control={
-                          <Radio
-                            name={`radio-${item.AFILWKF}`}
-                            color="primary"
-                            checkedIcon={<CancelIcon />}
-                            icon={<CheckboxUnchecked />}
-                            checked={options[index] === "Reprovado"}
-                            onChange={(e) => {
-                              setOptions((prevOptions) => {
-                                return {
-                                  ...prevOptions,
-                                  [index]: e.target.checked ? "Reprovado" : "",
-                                };
-                              });
-                            }}
-                          />
-                        }
-                        label=""
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="area">
-                      {" "}
-                      <FormControlLabel
-                        control={
-                          <Radio
-                            name={`radio-${item.AFILWKF}`}
-                            color="primary"
-                            checkedIcon={<AccessTimeFilledIcon />}
-                            icon={<CheckboxUnchecked />}
-                            checked={options[index] === "Espera"}
-                            onChange={(e) => {
-                              setOptions((prevOptions) => {
-                                return {
-                                  ...prevOptions,
-                                  [index]: e.target.checked ? "Espera" : "",
-                                };
-                              });
-                            }}
-                          />
-                        }
-                        label=""
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <button onClick={() => sendOneInfo(index)}>Enviar</button>
-                  </td>
-                </tr>
-              );
-
-            return null;
-          })}
-        </tbody>
-      </table>
-    </C.Container>
+                    </td>
+                    <td>
+                      <div className="area">
+                        {" "}
+                        <FormControlLabel
+                          control={
+                            <Radio
+                              name={`radio-${item.AFILWKF}`}
+                              color="primary"
+                              checkedIcon={<AccessTimeFilledIcon />}
+                              icon={<CheckboxUnchecked />}
+                              checked={options[index] === "Espera"}
+                              onChange={(e) => {
+                                setOptions((prevOptions) => {
+                                  return {
+                                    ...prevOptions,
+                                    [index]: e.target.checked ? "Espera" : "",
+                                  };
+                                });
+                              }}
+                            />
+                          }
+                          label=""
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <button onClick={() => [sendOneInfo(index)]}>
+                        Enviar
+                      </button>
+                    </td>
+                  </tr>
+                );
+              return null;
+            })}
+          </tbody>
+        </table>
+      </C.Container>
+    </>
   );
 };
 
-export default memo(OriginalCompany);
+export default memo(Original);

@@ -18,13 +18,13 @@ import axios from "axios";
 import * as XLSX from "xlsx";
 import CircularStatic from "../../../Components/utils/SpinnTable";
 import SpinnerTableEmpty from "../../../Components/utils/SpinnerTableEmpty";
+import { toast } from "react-toastify";
 
 const RelatorioVendas: React.FC = () => {
   const [initialDate, setInitialDate] = useState<Date | null>(new Date());
   const [lastDate, setLastDate] = useState<Date | null>(new Date());
 
   const [infoTable, setInfoTable] = useState<RelatorioCC[]>([]);
-  const [message, setMessage] = useState("");
 
   const [loading, setLoading] = useState(false);
   const { accessToken } = useContext(GetInfoSellbieContext);
@@ -40,7 +40,6 @@ const RelatorioVendas: React.FC = () => {
 
     try {
       setLoading(true);
-      setMessage("");
       const { data } = await axios.get(
         `${process.env.REACT_APP_SELLBIE}/bi/comprasconversao?idEmpresa=${process.env.REACT_APP_NUM_BAGAGGIO}&dataInicio=${dataInicial}&dataFim=${dataFinal}`,
         {
@@ -51,12 +50,8 @@ const RelatorioVendas: React.FC = () => {
       setInfoTable(data.resultado);
       return data;
     } catch (error: any) {
-      if (message === "Verifique os dados informados.") {
-        setMessage(error.response.data.mensagem);
-        setLoading(false);
-      }
-
-      return;
+      toast.error(error.response.data.mensagem);
+      setLoading(false);
     }
   };
 

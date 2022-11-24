@@ -14,4 +14,5 @@ export type TableProps = {
   APREWKF: string; // Prefixo
   ATIPWKF: string; // Tipo
   ATITWKF: string; // Numero do Título
+  ALBLWKF: string; // Setor
 };

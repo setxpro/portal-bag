@@ -134,3 +134,17 @@ export const InfoIcon = styled(BsInfoCircle)`
   translate: 1s;
   color: ${(props) => props.theme.colors.btnInfoTab};
 `;
+
+export const ContentTopArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 428px) {
+    gap: 1rem;
+    flex-direction: column;
+  }
+`;

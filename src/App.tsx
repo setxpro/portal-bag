@@ -5,9 +5,8 @@ import RoutesApp from "./Routes";
 import GlobalStyle from "./Styles/GlobalStyle";
 import { ToastContainer } from "react-toastify";
 
-const App: React.FC = () => {
+const App = () => {
   const { theme } = useTheme();
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />

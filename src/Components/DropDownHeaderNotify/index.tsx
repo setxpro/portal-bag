@@ -4,6 +4,7 @@ import { SendResponseContext } from "../../Contexts/SendResponse";
 
 import * as C from "./styles";
 import { HeaderContext } from "./../../Contexts/Header/HeaderContext";
+import { title } from "process";
 
 const DropDownHeaderNotify: React.FC = () => {
   const { titles } = useContext(SendResponseContext);
@@ -17,10 +18,10 @@ const DropDownHeaderNotify: React.FC = () => {
         </div>
       ) : (
         <React.Fragment>
-          <div className="header">Fornecedor | Natureza</div>
+          <div className="header">Shehrazade</div>
           <div className="content-tabs">
             {titles.map((item, index) => {
-              if (item.ADFIWKF === "SHEHRAZADE     ")
+              if (item.ADFIWKF === "SHEHRAZADE")
                 return (
                   <React.Fragment key={index}>
                     <Link to={`/modal/${item.ANTIWKF}`}>
@@ -32,10 +33,43 @@ const DropDownHeaderNotify: React.FC = () => {
               return null;
             })}
           </div>
-          <div className="header">Fornecedor | Natureza</div>
+
+          <div className="header">Original</div>
           <div className="content-tabs">
             {titles.map((item, index) => {
               if (item.ADFIWKF === "ORIGINAL")
+                return (
+                  <React.Fragment key={index}>
+                    <Link to={`/modal/${item.ANTIWKF}`}>
+                      {item.ADFIWKF} | Natureza : {item.ANATWKF}
+                    </Link>
+                  </React.Fragment>
+                );
+
+              return null;
+            })}
+          </div>
+
+          <div className="header">Radu</div>
+          <div className="content-tabs">
+            {titles.map((item, index) => {
+              if (item.ADFIWKF === "RADU")
+                return (
+                  <React.Fragment key={index}>
+                    <Link to={`/modal/${item.ANTIWKF}`}>
+                      {item.ADFIWKF} | Natureza : {item.ANATWKF}
+                    </Link>
+                  </React.Fragment>
+                );
+
+              return null;
+            })}
+          </div>
+
+          <div className="header">Bag Online</div>
+          <div className="content-tabs">
+            {titles.map((item, index) => {
+              if (item.ADFIWKF === "BAG ONLINE")
                 return (
                   <React.Fragment key={index}>
                     <Link to={`/modal/${item.ANTIWKF}`}>

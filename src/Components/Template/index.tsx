@@ -12,15 +12,15 @@ const Template = ({ children }: { children: ReactNode }) => {
   return (
     <Layout>
       <HeaderProvider>
-        <PalletProvider>
-          <Sidebar />
-        </PalletProvider>
-        <C.Content>
-          <SendResponseProvider>
+        <SendResponseProvider>
+          <PalletProvider>
+            <Sidebar />
+          </PalletProvider>
+          <C.Content>
             <Header />
             {children}
-          </SendResponseProvider>
-        </C.Content>
+          </C.Content>
+        </SendResponseProvider>
       </HeaderProvider>
     </Layout>
   );

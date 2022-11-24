@@ -19,6 +19,7 @@ import { VendasFlexProps } from "../../../Types/VendasFlexType";
 import CircularStatic from "../../../Components/utils/SpinnTable";
 import * as C from "./styles";
 import SpinnerTableEmpty from "../../../Components/utils/SpinnerTableEmpty";
+import { toast } from "react-toastify";
 
 const VendasFlex: React.FC = () => {
   const [initialDate, setInitialDate] = useState<Date | null>(new Date());
@@ -41,7 +42,6 @@ const VendasFlex: React.FC = () => {
 
     try {
       setLoading(true);
-      setMessage("");
       const { data } = await axios.get(
         `${process.env.REACT_APP_SELLBIE}/flex?idEmpresa=${process.env.REACT_APP_NUM_BAGAGGIO}&dataInicio=${dataInicial}&dataFim=${dataFinal}`,
         {
@@ -49,15 +49,12 @@ const VendasFlex: React.FC = () => {
         }
       );
       setLoading(false);
+      toast.error(data.response.data.mensagem);
       setInfoTable(data.resultado);
       return data;
     } catch (error: any) {
-      if (message === "Verifique os dados informados.") {
-        setMessage(error.response.data.mensagem);
-        setLoading(false);
-      }
-
-      return;
+      toast.error(error.response.data.mensagem);
+      setLoading(false);
     }
   };
 
