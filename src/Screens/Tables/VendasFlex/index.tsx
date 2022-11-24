@@ -26,7 +26,7 @@ const VendasFlex: React.FC = () => {
   const [lastDate, setLastDate] = useState<Date | null>(new Date());
 
   const [infoTable, setInfoTable] = useState<VendasFlexProps[]>([]);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   const [loading, setLoading] = useState(false);
   const { accessToken } = useContext(GetInfoSellbieContext);

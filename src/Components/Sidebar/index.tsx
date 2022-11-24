@@ -100,7 +100,8 @@ const Sidebar: React.FC = () => {
                 onClick={getThemeAndOpenDropdown}
                 className={cHome ? "active cta" : ""}
               >
-                <span>Contas a Pagar</span> <C.ArrowIcon />
+                <span>Contas a Pagar</span>
+                {/* <C.ArrowIcon /> */}
               </Link>
             )}
 

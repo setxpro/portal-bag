@@ -4,7 +4,6 @@ import { SendResponseContext } from "../../Contexts/SendResponse";
 
 import * as C from "./styles";
 import { HeaderContext } from "./../../Contexts/Header/HeaderContext";
-import { title } from "process";
 
 const DropDownHeaderNotify: React.FC = () => {
   const { titles } = useContext(SendResponseContext);
