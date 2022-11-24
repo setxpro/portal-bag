@@ -25,10 +25,9 @@
 - [x] React
 - [x] TypeScript
 
-<<<<<<< HEAD
+Alter error with deploy in netlify
+
 ## Starting Dev Environment
 
 1. Run `npm install` or `yarn install`.<br />
-2. Run `yarn start`.<br />
-=======
->>>>>>> 36a0e32de8f8eb5110a8a4c981cc00b52e6abca9
+2. # Run `yarn start`.<br />

@@ -18,9 +18,9 @@ import { GetInfoSellbieProvider } from "../Contexts/GetInfoSellbie";
 import VendasFlex from "../Screens/Tables/VendasFlex";
 import Home from "../Screens/Home";
 import Settings from "../Screens/settings";
-import Original from "../Screens/Tables/Original";
 import Radu from "../Screens/Tables/Radu";
 import Malas88 from "../Screens/Tables/Malas88";
+import Original from "../Screens/Tables/Original";
 // import Todo from "../Screens/Todo";
 
 const RoutesApp: React.FC = () => {
