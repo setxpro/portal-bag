@@ -20,7 +20,7 @@ import Home from "../Screens/Home";
 import Settings from "../Screens/settings";
 import Radu from "../Screens/Tables/Radu";
 import Malas88 from "../Screens/Tables/Malas88";
-import Original from "../Screens/Tables/Original";
+// import Original from "../Screens/Tables/Original";
 // import Todo from "../Screens/Todo";
 
 const RoutesApp: React.FC = () => {
@@ -57,7 +57,7 @@ const RoutesApp: React.FC = () => {
         }
       />
 
-      <Route
+      {/* <Route
         path="/original"
         element={
           <SecurityRoutes>
@@ -70,7 +70,7 @@ const RoutesApp: React.FC = () => {
             </Template>
           </SecurityRoutes>
         }
-      />
+      /> */}
       <Route
         path="/radu"
         element={
